@@ -1,0 +1,50 @@
+.update-list-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+/* 自定义导航栏 */
+.custom-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 100;
+  padding-top: calc(48rpx + env(safe-area-inset-top)); /* 状态栏高度 + 顶部安全距离 */
+}
+
+.nav-content {
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+  position: relative;
+}
+
+.back-icon {
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon image {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.nav-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+/* 内容区域 */
+.content {
+  padding-top: calc(136rpx + env(safe-area-inset-top)); /* 导航栏高度(88rpx) + 状态栏高度(48rpx) + 顶部安全距离 */
+} 

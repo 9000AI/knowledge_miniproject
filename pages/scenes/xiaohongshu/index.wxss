@@ -1,0 +1,115 @@
+/* 页面容器 */
+.page-container {
+    min-height: 100vh;
+    position: relative;
+}
+
+/* 顶部渐变背景区域 */
+.gradient-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 33.33vh;
+    /* 设置为屏幕高度的三分之一 */
+    background: linear-gradient(to bottom, rgb(212, 244, 120), rgb(230, 245, 157), rgb(255, 255, 255));
+    z-index: 0;
+    /* 确保渐变背景在内容下层 */
+}
+
+/* 内容区域 */
+.content {
+    position: relative;
+    z-index: 1;
+    /* 确保内容在渐变背景上层 */
+    padding: 100rpx 40rpx;
+}
+
+/* 返回按钮图标 */
+.back-icon {
+    width: 48rpx;
+    height: 48rpx;
+    margin-bottom: 10rpx;
+}
+
+/* 文字容器 */
+.text-container {
+    margin-left: 10rpx;
+}
+
+/* 标题样式 */
+.title {
+    font-size: 48rpx;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10rpx;
+}
+
+/* 副标题样式 */
+.subtitle {
+    font-size: 28rpx;
+    color: #666;
+}
+
+/* 文章列表容器 */
+.article-list {
+    margin-top: 30rpx;
+}
+
+/* 文章项样式 */
+.article-item {
+    background: #FFFFFF;
+    border-radius: 12rpx;
+    padding: 24rpx;
+    margin-bottom: 16rpx;
+    box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+/* 点击时的效果 */
+.article-item:active {
+    transform: scale(0.98);
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+}
+
+/* 文章标题样式 */
+.article-title {
+    font-size: 30rpx;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 12rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+/* 底部容器 */
+.article-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 标签容器 */
+.tags-container {
+    display: flex;
+    gap: 8rpx;
+    flex: 1;
+}
+
+/* 标签样式 */
+.tag {
+    font-size: 22rpx;
+    color: #666666;
+    background: #f5f5f5;
+    padding: 2rpx 8rpx;
+    border-radius: 8rpx;
+}
+
+/* 时间样式 */
+.article-time {
+    font-size: 24rpx;
+    color: #999999;
+    margin-left: 16rpx;
+}

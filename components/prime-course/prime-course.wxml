@@ -1,0 +1,59 @@
+<view class="prime-course">
+  <!-- 标题区域 -->
+  <view class="section-title">
+    <view class="title-bar"></view>
+    <text>精华课程</text>
+  </view>
+
+  <!-- 课程卡片网格 -->
+  <view class="course-grid">
+    <view class="course-card">
+      <image src="https://mini.9000aigc.com/assets/course/super_course.png" mode="aspectFill"></image>
+      <view class="vip-tag">会员免费</view>
+    </view>
+    <view class="course-card">
+      <image src="https://mini.9000aigc.com/assets/course/grow_with.png" mode="aspectFill"></image>
+      <view class="vip-tag">会员免费</view>
+    </view>
+    <view class="course-card">
+      <image src="https://mini.9000aigc.com/assets/course/2025.png" mode="aspectFill"></image>
+      <view class="vip-tag">会员免费</view>
+    </view>
+    <view class="course-card">
+      <image src="https://mini.9000aigc.com/assets/course/one_w.png" mode="aspectFill"></image>
+      <view class="vip-tag">会员免费</view>
+    </view>
+        <view class="course-card">
+      <image src="https://mini.9000aigc.com/assets/course/chuangshiren.png" mode="aspectFill"></image>
+      <view class="vip-tags">会员免费</view>
+    </view>
+        <view class="course-card">
+      <image src="https://mini.9000aigc.com/assets/course/douyin.png" mode="aspectFill"></image>
+      <view class="vip-tags">会员免费</view>
+    </view>
+        <view class="course-card">
+      <image src="https://mini.9000aigc.com/assets/course/duanshiping.png" mode="aspectFill"></image>
+      <view class="vip-tags">会员免费</view>
+    </view>
+        <view class="course-card">
+      <image src="https://mini.9000aigc.com/assets/course/gaolirun.png" mode="aspectFill"></image>
+      <view class="vip-tags">会员免费</view>
+    </view>
+        <view class="course-card">
+      <image src="https://mini.9000aigc.com/assets/course/shipinghao.png" mode="aspectFill"></image>
+      <view class="vip-tags">会员免费</view>
+    </view>
+        <view class="course-card">
+      <image src="https://mini.9000aigc.com/assets/course/siyu.png" mode="aspectFill"></image>
+      <view class="vip-tags">会员免费</view>
+    </view>
+       <view class="course-card">
+      <image src="https://mini.9000aigc.com/assets/course/touliuliang.png" mode="aspectFill"></image>
+      <view class="vip-tags">会员免费</view>
+    </view>
+       <view class="course-card">
+      <image src="https://mini.9000aigc.com/assets/course/zhishifufei.png" mode="aspectFill"></image>
+      <view class="vip-tags">会员免费</view>
+    </view>
+  </view>
+</view>

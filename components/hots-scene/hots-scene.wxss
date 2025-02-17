@@ -1,0 +1,62 @@
+/* 标题样式 */
+.section-title {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #000000;
+    padding: 6rpx 18rpx 2rpx;
+    margin: 10rpx 0 20rpx 28rpx;
+    border-left: 8rpx solid #c5eb59;
+    text-align: left;
+}
+
+/* 场景卡片网格容器 */
+.scene-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20rpx;
+    padding: 0 20rpx;
+    box-sizing: border-box;
+}
+
+/* 场景卡片样式 */
+.scene-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2/1;
+    border-radius: 16rpx;
+    overflow: hidden;
+}
+
+/* 背景图片样式 */
+.card-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* 卡片内容容器 */
+.card-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 20rpx;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;  /* 确保内容在背景图片上层 */
+    letter-spacing: 1px;
+}
+
+/* 卡片文字 */
+.card-text {
+    font-size: 43rpx;  /* 增大字体尺寸 */
+    font-weight: 800;  /* 加粗字体 */
+    font-family: 'Douyin', sans-serif;  /* 使用新艺体 */
+    color: #333333;
+    text-align: center;
+    font-style: italic; 
+}

@@ -1,0 +1,3 @@
+<view class="html-wrapper">
+    <rich-text nodes="{{nodes}}" bindtap="onLinkTap"></rich-text>
+</view> 

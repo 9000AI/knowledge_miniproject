@@ -1,0 +1,24 @@
+<!--index.wxml-->
+<view class="page-container">
+  <!-- 顶部图片区域 -->
+  <view class="top-image">
+    <image src="https://mini.9000aigc.com/assets/images/R.png" mode="aspectFill"></image>
+    <view class="text-container">
+      <view class="top-text">科技流量第一站</view>
+      <view class="sub-text">私域流量｜IP操盘｜短视频操盘</view>
+      <view class="search-container">
+        <input class="search-input" placeholder="请输入关键词搜索" placeholder-class="placeholder-style"/>
+        <button class="search-btn">搜索</button>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view class="scrollarea" scroll-y type="list">
+    <!-- 使用热门场景组件 -->
+    <hots-scene></hots-scene>
+    <up-date limit="{{5}}"></up-date>
+    <night-talk limit="{{5}}"></night-talk>
+    <column-pages></column-pages>
+    <materials-download></materials-download>
+  </scroll-view>
+</view>

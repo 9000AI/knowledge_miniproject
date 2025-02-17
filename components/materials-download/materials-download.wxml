@@ -1,0 +1,29 @@
+<view class="up-date-container">
+  <view class="section-title">资料下载</view>
+  <view class="update-list">
+    <view 
+      wx:for="{{updateList}}" 
+      wx:key="index"
+      class="update-item"
+      bindtap="onItemTap"
+      data-index="{{index}}"
+    >
+      <image class="item-image" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="item-content">
+        <view class="item-title">{{item.title}}</view>
+        <view class="item-footer">
+          <view class="tags-container">
+            <view 
+              wx:for="{{item.tags}}" 
+              wx:key="tagIndex" 
+              wx:for-item="tag"
+              class="tag"
+            >{{tag}}</view>
+          </view>
+          <text class="item-time">{{item.time}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+   

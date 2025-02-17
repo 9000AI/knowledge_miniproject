@@ -1,0 +1,31 @@
+<view class="container">
+  <!-- 返回按钮 -->
+  <image 
+    class="back-icon" 
+    src="https://mini.9000aigc.com/assets/icons/back (1).png" 
+    mode="aspectFit"
+    bindtap="handleBack"
+  />
+
+  <!-- 文章头部 -->
+  <view class="article-header">
+    <view class="title">{{title}}</view>
+    <view class="meta">
+      <!-- 作者和时间容器 -->
+      <view class="info-container">
+        <text class="author">{{author}}</text>
+        <text class="time">{{time}}</text>
+      </view>
+      <view class="tags">
+        <text wx:for="{{tags}}" wx:key="index" class="tag">{{item}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- HTML 内容 -->
+  <view class="article-content">
+    <view class="html-content">
+      <wemark html="{{content}}" />
+    </view>
+  </view>
+</view>

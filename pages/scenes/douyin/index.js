@@ -1,0 +1,87 @@
+Page({
+    data: {
+        articleList: [
+            {
+                title: "抖音运营核心技巧分享",
+                time: "2024-03-20",
+                tags: ["运营干货", "实战案例"]
+            },
+            {
+                title: "如何打造爆款抖音内容",
+                time: "2024-03-19",
+                tags: ["内容创作", "数据分析"]
+            },
+            {
+                title: "抖音流量提升实战指南",
+                time: "2024-03-18",
+                tags: ["流量运营", "变现技巧"]
+            },
+            {
+                title: "抖音运营核心技巧分享",
+                time: "2024-03-20",
+                tags: ["运营干货", "实战案例"]
+            },
+            {
+                title: "如何打造爆款抖音内容",
+                time: "2024-03-19",
+                tags: ["内容创作", "数据分析"]
+            },
+            {
+                title: "抖音流量提升实战指南",
+                time: "2024-03-18",
+                tags: ["流量运营", "变现技巧"]
+            },
+            {
+                title: "抖音运营核心技巧分享",
+                time: "2024-03-20",
+                tags: ["运营干货", "实战案例"]
+            },
+            {
+                title: "如何打造爆款抖音内容",
+                time: "2024-03-19",
+                tags: ["内容创作", "数据分析"]
+            },
+            {
+                title: "抖音流量提升实战指南",
+                time: "2024-03-18",
+                tags: ["流量运营", "变现技巧"]
+            },
+            {
+                title: "抖音运营核心技巧分享",
+                time: "2024-03-20",
+                tags: ["运营干货", "实战案例"]
+            },
+            {
+                title: "如何打造爆款抖音内容",
+                time: "2024-03-19",
+                tags: ["内容创作", "数据分析"]
+            },
+            {
+                title: "抖音流量提升实战指南",
+                time: "2024-03-18",
+                tags: ["流量运营", "变现技巧"]
+            }
+        ]
+    },
+    handleBack() {
+        wx.navigateBack({
+            delta: 1
+        });
+    },
+    onLoad: function (options) {
+        // 页面加载时执行
+    },
+    onReady: function () {
+        // 页面初次渲染完成时执行
+    },
+    onShow: function () {
+        // 页面显示时执行
+    },
+    onArticleTap(e) {
+        const index = e.currentTarget.dataset.index;
+        wx.showToast({
+            title: '查看文章详情' + (index + 1),
+            icon: 'none'
+        });
+    }
+})

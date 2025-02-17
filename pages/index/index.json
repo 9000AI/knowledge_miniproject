@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "hot-scene": "/components/hot-scene/hot-scene",
+    "hots-scene": "/components/hots-scene/hots-scene",
+    "up-date": "/components/up-date/up-date",
+    "night-talk": "/components/night-talk/night-talk",
+    "column-pages": "/components/column-pages/column-pages",
+    "materials-download": "/components/materials-download/materials-download",
+    "prime-course": "/components/prime-course/prime-course",
+    "new-course": "/components/new-course/new-course"
+  }
+}

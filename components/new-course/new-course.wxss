@@ -1,0 +1,105 @@
+.new-course {
+  padding: 10rpx 20rpx;
+  width: 100%;
+  box-sizing: border-box;  /* 确保padding不会导致超出容器 */
+}
+
+/* 标题样式 */
+.section-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.title-bar {
+  width: 8rpx;
+  height: 32rpx;
+  background: #c5eb59;
+  margin-right: 16rpx;
+  border-radius: 4rpx;
+}
+
+.section-title text {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 课程网格样式 */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3列布局 */
+  gap: 20rpx; /* 卡片之间的间距 */
+  width: 100%;
+}
+
+/* 课程卡片样式 */
+.course-card {
+  position: relative;
+  width: 100%;
+  padding-bottom: 130%; /* 设置宽高比为 2:3 */
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+/* 卡片图片样式 */
+.course-card image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 会员标签样式 */
+.vip-tag {
+  position: absolute;
+  top: 12rpx;
+  right: 12rpx;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #c5eb59;
+  padding: 4rpx 12rpx;
+  border-radius: 16rpx;
+  font-size: 20rpx;
+  z-index: 1;  /* 确保标签显示在图片上层 */
+}
+
+/* 卡片信息遮罩层 */
+.card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 38%;  /* 占据卡片下半部分 */
+  background: rgba(49, 56, 60, 0.2);  /* 半透明背景 */
+  backdrop-filter: blur(10px);  /* 毛玻璃效果 */
+  -webkit-backdrop-filter: blur(10px);  /* Safari 兼容 */
+  padding: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;  /* 文字靠底部对齐 */
+}
+
+/* 卡片标题 */
+.card-title {
+  color: #ffffff;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+  /* 文本超出省略号 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 卡片描述 */
+.card-desc {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 24rpx;
+  /* 文本超出省略号 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

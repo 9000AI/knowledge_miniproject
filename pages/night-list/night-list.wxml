@@ -1,0 +1,16 @@
+<view class="update-list-container">
+  <!-- 自定义导航栏 -->
+  <view class="custom-nav">
+    <view class="nav-content">
+      <view class="back-icon" bindtap="handleBack">
+        <image src="https://mini.9000aigc.com/assets/icons/back (1).png" mode="aspectFit"></image>
+      </view>
+      <view class="nav-title">9000AI夜谈会</view>
+    </view>
+  </view>
+  
+  <!-- 内容区域 -->
+  <view class="content">
+    <night-talk limit="{{-1}}"></night-talk>
+  </view>
+</view> 

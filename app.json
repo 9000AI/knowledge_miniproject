@@ -1,0 +1,67 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/communicate/communicate",
+    "pages/document/document",
+    "pages/fire/fire",
+    "pages/user/user",
+    "pages/logs/logs",
+    "pages/scenes/video-account/index",
+    "pages/scenes/xiaohongshu/index",
+    "pages/scenes/douyin/index",
+    "pages/update-item/update-item",
+    "pages/update-list/update-list",
+    "pages/night-list/night-list"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#C4EA58",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/tabbar/details.png",
+        "selectedIconPath": "static/tabbar/details-active.png",
+        "text": "资料库"
+      },
+      {
+        "pagePath": "pages/communicate/communicate",
+        "iconPath": "static/tabbar/communicate.png",
+        "selectedIconPath": "static/tabbar/communicate-active.png",
+        "text": "会员库"
+      },
+      {
+        "pagePath": "pages/document/document",
+        "iconPath": "static/tabbar/document.png",
+        "selectedIconPath": "static/tabbar/document-active.png",
+        "text": "课程"
+      },
+      {
+        "pagePath": "pages/fire/fire",
+        "iconPath": "static/tabbar/fire.png",
+        "selectedIconPath": "static/tabbar/fire-active.png",
+        "text": "流量圈"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "static/tabbar/user.png",
+        "selectedIconPath": "static/tabbar/user-active.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "useExtendedLib": {
+    "weui": true
+  }
+}

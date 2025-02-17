@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "最新文章",
+  "usingComponents": {
+    "up-date": "/components/up-date/up-date"
+  }
+} 

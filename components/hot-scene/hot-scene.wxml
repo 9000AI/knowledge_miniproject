@@ -1,0 +1,22 @@
+<view class="section-title">热门场景</view>
+<view class="scene-grid">
+  <block wx:for="{{sceneList}}" wx:key="index">
+    <view class="scene-card {{index < 12 ? 'card-gradient-1' : ''}}" 
+          bindtap="handleCardClick" 
+          data-scene="{{item}}" 
+          data-index="{{index}}">
+      <view class="card-content">
+        <view class="card-left">
+          <text class="card-text">{{item}}</text>
+          <view class="card-button">立即查阅</view>
+        </view>
+        <image 
+          class="card-image" 
+          src="https://mini.9000aigc.com/assets/cards/card-{{cardImages[index]}}.png" 
+          mode="aspectFit"
+        ></image>
+      </view>
+      <!-- <image wx:if="{{index >= 3 && index < 9}}" src="https://mini.9000aigc.com/assets/images/scene{{index + 1}}.png" mode="aspectFill"></image> -->
+    </view>
+  </block>
+</view>
