@@ -1,0 +1,55 @@
+<view class="container">
+    <!-- 返回按钮 -->
+    <image 
+        class="back-icon" 
+        src="https://mini.9000aigc.com/assets/icons/back (1).png" 
+        mode="aspectFit"
+        bindtap="handleBack"
+    />
+
+    <view wx:if="{{!loading}}" class="article-content">
+        <!-- 文章头部 -->
+        <view class="article-header">
+            <view class="title">{{title}}</view>
+            <view class="meta">
+                <view class="info-container">
+                    <text class="author">{{author}}</text>
+                    <text class="time">{{time}}</text>
+                </view>
+                <view class="tags">
+                    <text wx:for="{{tags}}" 
+                          wx:key="index" 
+                          class="tag">{{item}}</text>
+                </view>
+            </view>
+        </view>
+        
+        <!-- 文章内容容器 -->
+        <view class="content-wrapper">
+            <!-- 文章内容 -->
+            <rich-text nodes="{{content}}" class="rich-content"></rich-text>
+            <!-- 渐变遮罩，添加条件渲染 -->
+            <view class="content-mask {{showMask ? 'show' : ''}}"></view>
+            <!-- 解锁按钮，添加条件渲染 -->
+            <view class="unlock-button {{showMask ? 'show' : ''}}" bindtap="handleUnlock">
+                <text>加入会员，解锁内容</text>
+            </view>
+            <!-- 分享和收藏按钮组 -->
+            <view class="action-buttons">
+                <button class="action-button" open-type="share">
+                    <image src="https://mini.9000aigc.com/assets/icon/分享.png" mode="aspectFit"></image>
+                    <text>分享</text>
+                </button>
+                <view class="action-button" bindtap="handleCollect">
+                    <image src="https://mini.9000aigc.com/assets/icon/收藏.png" mode="aspectFit"></image>
+                    <text>收藏</text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 加载中状态 -->
+    <view wx:else class="loading-container">
+        <view class="loading-spinner"></view>
+    </view>
+</view>

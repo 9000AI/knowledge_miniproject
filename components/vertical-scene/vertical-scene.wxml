@@ -1,4 +1,4 @@
-<view class="section-title">热门场景</view>
+<view class="section-title">垂直领域</view>
 <view class="scene-grid">
   <block wx:for="{{sceneList}}" wx:key="index">
     <view class="scene-card {{index < 12 ? 'card-gradient-1' : ''}}" 

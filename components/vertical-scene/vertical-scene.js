@@ -6,15 +6,9 @@ Component({
         sceneList: {
             type: Array,
             value: [
-                { title: '视频号', desc: '带货新风口' },
-                { title: '小红书', desc: '社区新商机' },
-                { title: '抖音', desc: '直播新赛道' },
-                { title: '直播', desc: '互动新模式' },
-                { title: 'IP', desc: '价值新高地' },
-                { title: '私域', desc: '运营新思路' },
-                { title: '知识付费', desc: '变现新方向' },
-                { title: 'AI', desc: '科技新未来' },
-                { title: '出海跨境', desc: '市场新机遇' },
+                { title: '大厂转型', desc: '升级新方案' },
+                { title: '电商转型', desc: '营销新渠道' },
+                { title: '实体', desc: '商业新玩法' }
             ]
         }
     },
@@ -27,8 +21,7 @@ Component({
         hasUserInfo: false,
         canIUseGetUserProfile: wx.canIUse('getUserProfile'),
         canIUseNicknameComp: wx.canIUse('input.type.nickname'),
-        cardImages: ['one', 'two', 'three', 'four', 'five', 'six',
-            'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve']
+        cardImages: [ 'ten', 'eleven', 'twelve']
     },
     methods: {
         bindViewTap() {
@@ -74,9 +67,6 @@ Component({
             
             // 定义场景与页面路径的映射关系
             const scenePages = {
-                '视频号': '/pages/scenes/video-account/index',
-                '小红书': '/pages/scenes/xiaohongshu/index',
-                '抖音': '/pages/scenes/douyin/index'
             };
 
             // 获取对应的页面路径

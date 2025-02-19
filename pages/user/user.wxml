@@ -1,2 +1,29 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<view class="user-container">
+  <!-- 用户信息卡片 -->
+  <view class="user-card">
+    <view class="user-info">
+      <!-- 头像 -->
+      <image class="avatar" src="{{userInfo.avatar}}" mode="aspectFill"></image>
+      
+      <!-- 用户信息 -->
+      <view class="info-right">
+        <!-- 昵称 -->
+        <text class="nickname">{{userInfo.nickname}}</text>
+        
+        <!-- 会员类型标签 -->
+        <view class="member-tag {{userInfo.userType === 1 ? 'vip' : ''}}">
+          {{userInfo.userType === 1 ? 'VIP会员' : '普通会员'}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 资料完善按钮 -->
+    <view class="profile-btn" bindtap="goToCompleteProfile">
+      {{userInfo.profileCompleted ? '查看我的资料 >' : '完善我的资料 >'}}
+    </view>
+  </view>
+
+  <!-- 添加退出登录按钮 -->
+  <view class="logout-btn" bindtap="handleLogout">退出登录</view>
+</view>

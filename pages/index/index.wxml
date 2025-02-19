@@ -15,7 +15,8 @@
 
   <scroll-view class="scrollarea" scroll-y type="list">
     <!-- 使用热门场景组件 -->
-    <hots-scene></hots-scene>
+    <hot-scene></hot-scene>
+    <vertical-scene></vertical-scene>
     <up-date limit="{{5}}"></up-date>
     <night-talk limit="{{5}}"></night-talk>
     <column-pages></column-pages>

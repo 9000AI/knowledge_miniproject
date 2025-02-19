@@ -1,1 +1,114 @@
 /* pages/user/user.wxss */
+.user-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 100rpx 30rpx 30rpx 30rpx;
+}
+
+.user-card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  margin-right: 30rpx;
+}
+
+.info-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.nickname {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+
+.member-tag {
+  align-self: flex-start;
+  font-size: 24rpx;
+  color: #666;
+  background: #f5f5f5;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.member-tag.vip {
+  color: #ff9c00;
+  background: rgba(255, 156, 0, 0.1);
+}
+
+.profile-btn {
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  color: #07c160;
+  font-size: 32rpx;
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0rpx;
+}
+
+.profile-status {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.status-text {
+  margin-right: 10rpx;
+}
+
+.completed {
+  color: #07c160;
+}
+
+.incomplete {
+  color: #ff6b6b;
+}
+
+.complete-btn {
+  margin-left: 20rpx;
+  color: #07c160;
+  font-size: 26rpx;
+  padding: 4rpx 16rpx;
+  border: 1rpx solid #07c160;
+  border-radius: 24rpx;
+}
+
+/* 添加退出登录按钮样式 */
+.logout-btn {
+  width: 90%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #ffffff;
+  color: #ff4d4f;
+  font-size: 32rpx;
+  border-radius: 44rpx;
+  margin: 60rpx auto 0;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.logout-btn:active {
+  opacity: 0.8;
+}

@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/auth/auth",
+    "pages/register/register",
     "pages/index/index",
     "pages/communicate/communicate",
     "pages/document/document",
@@ -11,7 +13,9 @@
     "pages/scenes/douyin/index",
     "pages/update-item/update-item",
     "pages/update-list/update-list",
-    "pages/night-list/night-list"
+    "pages/night-list/night-list",
+    "pages/articles/douyin/index",
+    "pages/articles/video-account/index"
   ],
   "window": {
     "navigationStyle": "custom",

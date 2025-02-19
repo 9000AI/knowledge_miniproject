@@ -79,9 +79,17 @@ Page({
     },
     onArticleTap(e) {
         const index = e.currentTarget.dataset.index;
-        wx.showToast({
-            title: '查看文章详情' + (index + 1),
-            icon: 'none'
+        const article = this.data.articleList[index];
+        
+        wx.navigateTo({
+            url: `/pages/articles/video-account/index?scene=视频号&articleId=${index + 1}&title=${article.title}&time=${article.time}&tags=${JSON.stringify(article.tags)}`,
+            fail: (err) => {
+                console.error('页面跳转失败：', err);
+                wx.showToast({
+                    title: '页面跳转失败',
+                    icon: 'none'
+                });
+            }
         });
     }
 })

@@ -1,6 +1,6 @@
 <view class="update-list-container">
   <!-- 自定义导航栏 -->
-  <view class="custom-nav">
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
     <view class="nav-content">
       <view class="back-icon" bindtap="handleBack">
         <image src="https://mini.9000aigc.com/assets/icons/back (1).png" mode="aspectFit"></image>
@@ -10,7 +10,7 @@
   </view>
   
   <!-- 内容区域 -->
-  <view class="content">
+  <view class="content" style="padding-top: {{statusBarHeight + 44}}px;">
     <up-date limit="{{-1}}"></up-date>
   </view>
 </view> 
