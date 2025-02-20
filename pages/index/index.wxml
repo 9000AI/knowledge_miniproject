@@ -15,11 +15,17 @@
 
   <scroll-view class="scrollarea" scroll-y type="list">
     <!-- 使用热门场景组件 -->
-    <hot-scene></hot-scene>
-    <vertical-scene></vertical-scene>
-    <up-date limit="{{5}}"></up-date>
-    <night-talk limit="{{5}}"></night-talk>
-    <column-pages></column-pages>
-    <materials-download></materials-download>
+    <scene-card></scene-card>
+    <!-- 最新文章 -->
+    <article-card cardType="latest" limit="5" />
+
+    <!-- 夜谈会文章 -->
+    <article-card cardType="nightTalk" limit="5" />
+
+    <!-- 专栏文章 -->
+    <article-card cardType="column" limit="5" />
+
+    <!-- 资料下载 -->
+    <article-card cardType="download" limit="5" />
   </scroll-view>
 </view>

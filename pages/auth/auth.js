@@ -8,45 +8,56 @@ Page({
   },
 
   onLoad() {
-    // 检查是否已登录
-    const token = wx.getStorageSync('token')
-    if (token) {
-      wx.switchTab({
-        url: '/pages/index/index'
-      })
-    }
+    // 注释掉登录检查逻辑，直接跳转到首页
+    // const token = wx.getStorageSync('token')
+    // if (token) {
+    //   wx.switchTab({
+    //     url: '/pages/index/index'
+    //   })
+    // }
+    
+    // 直接跳转到首页
+    wx.switchTab({
+      url: '/pages/index/index'
+    })
   },
 
   async checkLoginStatus() {
-    try {
-      // 从本地存储获取 token
-      const token = wx.getStorageSync('token')
+    // 注释掉 checkLoginStatus 函数内的检查逻辑
+    // try {
+    //   // 从本地存储获取 token
+    //   const token = wx.getStorageSync('token')
       
-      if (!token) {
-        // 情况1：没有 token，说明没注册过
-        this.setData({ isChecking: false })
-        return
-      }
+    //   if (!token) {
+    //     // 情况1：没有 token，说明没注册过
+    //     this.setData({ isChecking: false })
+    //     return
+    //   }
 
-      // 验证 token 是否有效
-      const checkResult = await this.checkToken(token)
+    //   // 验证 token 是否有效
+    //   const checkResult = await this.checkToken(token)
       
-      if (!checkResult.valid) {
-        // 情况2：token 过期
-        wx.removeStorageSync('token') // 清除无效 token
-        this.setData({ isChecking: false })
-        return
-      }
+    //   if (!checkResult.valid) {
+    //     // 情况2：token 过期
+    //     wx.removeStorageSync('token') // 清除无效 token
+    //     this.setData({ isChecking: false })
+    //     return
+    //   }
 
-      // 情况3：token 有效，直接跳转到首页
-      wx.reLaunch({
-        url: '/pages/index/index'
-      })
+    //   // 情况3：token 有效，直接跳转到首页
+    //   wx.reLaunch({
+    //     url: '/pages/index/index'
+    //   })
 
-    } catch (error) {
-      console.error('检查登录状态失败:', error)
-      this.setData({ isChecking: false })
-    }
+    // } catch (error) {
+    //   console.error('检查登录状态失败:', error)
+    //   this.setData({ isChecking: false })
+    // }
+
+    // 直接跳转到首页
+    wx.reLaunch({
+      url: '/pages/index/index'
+    })
   },
 
   checkToken(token) {

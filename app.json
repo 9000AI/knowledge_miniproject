@@ -8,14 +8,8 @@
     "pages/fire/fire",
     "pages/user/user",
     "pages/logs/logs",
-    "pages/scenes/video-account/index",
-    "pages/scenes/xiaohongshu/index",
-    "pages/scenes/douyin/index",
-    "pages/update-item/update-item",
-    "pages/update-list/update-list",
-    "pages/night-list/night-list",
-    "pages/articles/douyin/index",
-    "pages/articles/video-account/index"
+    "pages/scene/list/list",
+    "pages/scene/detail/detail"
   ],
   "window": {
     "navigationStyle": "custom",
