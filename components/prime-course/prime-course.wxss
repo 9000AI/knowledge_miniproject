@@ -26,45 +26,142 @@
 }
 
 /* 课程卡片网格 */
-.course-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.course-list {
+  display: flex;
+  flex-direction: column;
   gap: 20rpx;
   width: 100%;
 }
 
 .course-card {
-  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
   border-radius: 12rpx;
   overflow: hidden;
   box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
-  position: relative;  /* 添加相对定位 */
+  background-color: #fff;
+  padding: 16rpx;
 }
 
-.course-card image {
-  width: 100%;
-  height: 200rpx;
+.course-left {
+  position: relative;
+  width: 200rpx;
+  height: 150rpx;
+  flex-shrink: 0;
+  margin-right: 16rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.course-image {
+  width: 200rpx;
+  height: 150rpx;
   display: block;
+}
+
+.course-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
 /* 会员标签样式 */
 .vip-tag {
   position: absolute;
-  top: 12rpx;          
-  left: 12rpx;         /* 改成 left 而不是 right */
+  top: 12rpx;
+  right: 12rpx;
   background-color: rgba(0, 0, 0, 0.6);
-  color: #c5eb59;
+  color:rgb(90, 121, 4);
   padding: 4rpx 12rpx;
   border-radius: 16rpx;
   font-size: 20rpx;
 }
 .vip-tags {
   position: absolute;
-  top: 12rpx;          
-  left: 12rpx;         /* 改成 left 而不是 right */
-  background-color: rgba(197, 218, 85, 0.4);
+  top: 12rpx;
+  left: 8rpx;
+  background-color: rgba(170, 200, 5, 0.8);
   color: #eeeeee;
   padding: 4rpx 12rpx;
   border-radius: 16rpx;
-  font-size: 20rpx;
+  font-size: 18rpx;
+}
+
+/* 课程信息遮罩 */
+.course-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10rpx;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: #fff;
+}
+
+/* 标题行样式 */
+.title-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+/* 会员标签新样式 */
+.vip-badge {
+  background-color: rgba(170, 200, 5, 0.8);
+  color: #ffffff;
+  padding: 2rpx 8rpx;
+  border-radius: 6rpx;
+  font-size: 18rpx;
+  margin-right: 8rpx;
+  flex-shrink: 0;
+}
+
+.course-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  flex: 1;
+}
+
+.course-desc {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 4rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.course-teacher {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: auto;
+}
+
+/* 加载状态样式 */
+.loading-status {
+  text-align: center;
+  padding: 20rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-more {
+  color: #999;
 }

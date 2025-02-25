@@ -1,0 +1,35 @@
+<view class="container">
+  <!-- 课程信息头部 -->
+  <view class="course-header">
+    <!-- 返回按钮 -->
+    <view class="back-icon" bindtap="navigateBack">
+      <text>←</text>
+    </view>
+    <image class="course-cover" src="{{courseInfo.coverImage}}" mode="aspectFill"></image>
+    <view class="course-info-overlay">
+      <view class="course-title-large">{{courseInfo.title || courseName}}</view>
+      <view class="course-description">{{courseInfo.description || '暂无课程描述'}}</view>
+    </view>
+  </view>
+
+  <!-- 课时列表 -->
+  <view class="lesson-list">
+    <view class="lesson-item" 
+          wx:for="{{lessons}}" 
+          wx:key="id"
+          bindtap="playLesson"
+          data-index="{{index}}">
+      <view class="lesson-left">
+        <image class="lesson-cover" src="{{item.coverImage}}" mode="aspectFill"></image>
+        <image class="play-icon" src="https://mini.9000aigc.com/assets/icons/播放.png"></image>
+      </view>
+      <view class="lesson-right">
+        <view class="lesson-title">{{item.title}}</view>
+        <view class="lesson-info">
+          <text class="lesson-duration">{{item.duration}}分钟</text>
+          <text class="lesson-views">{{item.viewCount || 0}}次观看</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view> 

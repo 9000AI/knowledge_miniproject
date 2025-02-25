@@ -5,6 +5,7 @@
     "pages/index/index",
     "pages/communicate/communicate",
     "pages/document/document",
+    "pages/course/course",
     "pages/fire/fire",
     "pages/user/user",
     "pages/logs/logs",
@@ -13,7 +14,9 @@
     "pages/all-article/all-article",
     "pages/category-articles/category-articles",
     "pages/article-detail/article-detail",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/lesson/lesson",
+    "pages/video/video"
   ],
   "window": {
     "navigationStyle": "custom",
@@ -40,7 +43,7 @@
         "text": "会员库"
       },
       {
-        "pagePath": "pages/document/document",
+        "pagePath": "pages/course/course",
         "iconPath": "static/tabbar/document.png",
         "selectedIconPath": "static/tabbar/document-active.png",
         "text": "课程"
