@@ -1,0 +1,24 @@
+<view class="category-container">
+  <view class="section-title">热门场景</view>
+  <view class="category-list">
+    <view class="category-item" 
+          wx:for="{{categories}}" 
+          wx:key="id" 
+          bindtap="onTapCategory"
+          data-category="{{item}}">
+      <view class="card-content">
+        <view class="card-left">
+          <view class="card-text-wrapper">
+            <text class="card-text">{{item.name}}</text>
+            <text class="card-desc">{{item.desc}}</text>
+          </view>
+        </view>
+        <image 
+          class="card-image" 
+          src="https://mini.9000aigc.com/assets/cards/cards-{{cardImages[index]}}.png" 
+          mode="aspectFit"
+        ></image>
+      </view>
+    </view>
+  </view>
+</view>

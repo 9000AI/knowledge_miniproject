@@ -1,0 +1,37 @@
+<view class="up-date-container">
+  <view class="section-header">
+    <view class="section-title">{{uiText.sectionTitle}}</view>
+    <view class="more-link" bindtap="onMoreTap" wx:if="{{!showAll && displayList.length < currentList.length}}">
+      <text>{{uiText.moreText}}</text>
+      <image class="right-icon" src="{{icons.rightArrow}}" mode="aspectFit"></image>
+    </view>
+  </view>
+  <view class="update-list">
+    <view 
+      wx:for="{{displayList}}" 
+      wx:key="id"
+      class="update-item"
+      bindtap="onItemTap"
+      data-index="{{index}}"
+    >
+      <image class="item-image" src="{{item.coverImage}}" mode="aspectFill"></image>
+      <view class="item-content">
+        <view class="item-title">{{item.title}}</view>
+        <view class="item-footer">
+          <view class="tags-container">
+            <view 
+              wx:for="{{item.tags}}" 
+              wx:key="*this" 
+              wx:for-item="tag"
+              class="tag"
+            >{{tag}}</view>
+          </view>
+          <text class="item-time">{{item.updateTime}}</text>
+        </view>
+      </view>
+      <!-- 如果是会员专属内容，显示小图标 -->
+     
+    </view>
+  </view>
+</view>
+   

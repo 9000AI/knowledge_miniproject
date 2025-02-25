@@ -54,4 +54,15 @@ Page({
       }
     })
   },
+  navigateToSearchArticles() {
+    wx.navigateTo({
+      url: '../search/search' // 跳转到 all-article 页面
+    });
+  },
+  // 添加搜索框点击事件处理函数
+  onSearchTap() {
+    wx.navigateTo({
+      url: '/pages/search/search'
+    });
+  }
 })

@@ -1,0 +1,27 @@
+<view class="all-article">
+    <view class="top-image">
+        <image src="https://mini.9000aigc.com/assets/images/R.png" mode="aspectFill"></image>
+        <view class="text-container">
+            <view class="top-text">高端的流量操盘手</view>
+            <view class="sub-text">与各行各业的老板一起搞流量赚钱</view>
+            <view class="search-container">
+                <input class="search-input" placeholder="请输入关键词搜索" placeholder-class="placeholder-style"/>
+                <button class="search-btn">搜索</button>
+            </view>
+        </view>
+    </view>
+
+    <view class="article-list">
+        <view class="section-title">所有文章</view>
+        <view class="article-container">
+            <view wx:for="{{articles}}" wx:key="id" class="article-item">
+                <image class="article-image" src="{{item.coverImage}}" mode="aspectFill"></image>
+                <view class="article-content">
+                    <view class="article-title">{{item.title}}</view>
+                    <text class="article-time">{{item.createTime}}</text>
+                </view>
+            </view>
+        </view>
+        <view wx:if="{{hasMore}}" bindtap="loadMore" class="load-more">加载更多...</view>
+    </view>
+</view>

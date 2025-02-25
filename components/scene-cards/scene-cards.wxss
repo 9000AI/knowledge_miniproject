@@ -1,0 +1,145 @@
+/* 添加热门场景标题样式 */
+.section-title {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #000000;
+    padding: 6rpx 18rpx 2rpx;
+    margin: 30rpx 0 20rpx 28rpx;
+    border-left: 8rpx solid #c5eb59;
+    /* 左边框，使用指定的颜色 */
+    text-align: left;
+}
+
+/* 场景卡片网格容器 */
+.scene-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 一行三个卡片 */
+    gap: 20rpx;
+    /* 卡片之间的间距 */
+    padding: 0 20rpx;
+    /* 左右边距 */
+    box-sizing: border-box;
+}
+
+/* 场景卡片样式 */
+.scene-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2/1;
+    border-radius: 16rpx;
+    overflow: hidden;
+    background: linear-gradient(
+      135deg,
+      rgb(233, 255, 83), 
+      rgb(195, 240, 117), 
+      rgb(148, 224, 153)
+    );
+}
+
+/* 背景图片样式 */
+.scene-card>image {
+    /* 选择直接子元素中的 image */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    /* 确保背景图片在内容之下 */
+}
+
+/* 调整卡片内容容器，确保有足够空间 */
+.card-content {
+    position: absolute;
+    top: 16rpx;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5rpx 0rpx 5rpx 10rpx;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+/* 左侧文字和按钮区域 */
+.card-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    flex: 0.8;
+}
+
+/* 卡片文字包装器 */
+.card-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rpx;  /* 减小标题和描述之间的间距 */
+    margin-top: 18rpx;
+    margin-left: 16rpx;
+}
+
+/* 卡片文字样式 */
+.card-text {
+    position: static;
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #000000 !important;
+    white-space: nowrap;
+    line-height: 1;  /* 减小行高 */
+}
+
+/* 添加按钮样式 */
+.card-button {
+    position: static;
+    /* 移除绝对定位 */
+    width: 90rpx;
+    height: 38rpx;
+    line-height: 38rpx;
+    background: #363636;
+    color: #ffffff;
+    font-size: 17rpx;
+    text-align: center;
+    border-radius: 28rpx;
+    margin-bottom: 20rpx;
+    /* 保持原来的下边距 */
+}
+
+/* 调整卡片图片样式 */
+.card-image {
+    position: static;
+    width: 420rpx;
+    height: 420rpx;
+    object-fit: contain;
+    margin-left: 10rpx;
+    transform: scale(0.8);
+    margin-right: -20rpx;
+    margin-bottom: -20rpx;
+    opacity: 0.7;
+}
+
+/* 移除之前的文字颜色覆盖 */
+.card-gradient-1 .card-text {
+    color: #000000 !important;
+}
+
+.scene-card:not(.card-gradient-1) .card-text {
+    color: #000000 !important;
+    text-shadow: none;
+    /* 移除文字阴影 */
+}
+
+/* 卡片描述文字样式 */
+.card-desc {
+    font-size: 18rpx;
+    color: #666666;
+    white-space: nowrap;
+    font-weight: normal;
+    line-height: 1;  /* 减小行高 */
+    margin-top: 6rpx;
+}

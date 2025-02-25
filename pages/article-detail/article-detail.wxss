@@ -1,0 +1,242 @@
+.page-container {
+  min-height: 100vh;
+  background: #fff;
+  position: relative;
+}
+
+.gradient-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200rpx;
+  background: linear-gradient(to bottom, rgb(212, 244, 120), rgb(230, 245, 157), rgb(255, 255, 255));
+  z-index: 0;
+}
+
+/* 导航栏样式 */
+.custom-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: #fff;
+}
+
+.nav-content {
+  position: relative;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+
+}
+
+.back-icon {
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16rpx;
+  transition: opacity 0.3s ease;
+}
+
+.back-icon:active {
+  opacity: 0.6;
+}
+
+.back-icon image {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.nav-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+/* 文章内容样式 */
+.content {
+  position: relative;
+  z-index: 1;
+  margin-top: 20rpx;
+  padding: 20rpx 32rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  line-height: 1.6;
+  color: #333;
+  background: #fff;
+}
+
+/* 富文本内容基础样式 */
+.content rich-text {
+  display: block;
+  width: 100%;
+}
+
+/* 修改富文本内容中图片的样式控制 */
+.content image {
+  max-width: 100% !important; /* 确保图片不会超出容器宽度 */
+  height: auto !important; /* 保持图片比例 */
+  display: block; /* 块级显示 */
+  margin: 20rpx auto; /* 上下添加间距 */
+}
+
+/* 富文本段落样式 */
+.content p {
+  margin: 16rpx 0;
+}
+
+.article-header {
+  margin-bottom: 40rpx;
+}
+
+.article-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.4;
+}
+
+.article-meta {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.article-meta text {
+  margin-right: 20rpx;
+}
+
+.tags-container {
+  margin-top: 20rpx;
+}
+
+.category-tags, .article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 12rpx;
+}
+
+.category-tag {
+  background: #f0f9eb;
+  color: #67c23a;
+  padding: 4rpx 16rpx;
+  border-radius: 4rpx;
+  font-size: 24rpx;
+}
+
+.article-tag {
+  background: #f4f4f5;
+  color: #909399;
+  padding: 4rpx 16rpx;
+  border-radius: 4rpx;
+  font-size: 24rpx;
+}
+
+.article-content {
+  position: relative;
+  line-height: 1.8;
+  color: #333;
+}
+
+/* 遮罩层样式 */
+.content-mask {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.9), #fff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mask-content {
+  text-align: center;
+}
+
+.lock-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.mask-text {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 30rpx;
+}
+
+.unlock-btn {
+  background: #67c23a;
+  color: #fff;
+  padding: 20rpx 60rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+}
+
+/* 底部操作栏 */
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20rpx 32rpx;
+  background: #fff;
+  box-shadow: 0 -2rpx 10rpx rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-around;
+  box-sizing: border-box;
+}
+
+.share-btn, .like-btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1;
+  padding: 0;
+}
+
+.share-btn::after {
+  display: none;
+}
+
+.share-btn image, .like-btn image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 8rpx;
+}
+
+/* 加载动画 */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 6rpx solid #f3f3f3;
+  border-top: 6rpx solid #67c23a;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} 

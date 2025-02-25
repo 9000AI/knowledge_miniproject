@@ -1,0 +1,7 @@
+<view class="article-item" bindtap="onTap">
+    <image class="article-image" src="{{article.coverImage}}" mode="aspectFill"></image>
+    <view class="article-content">
+        <view class="article-title">{{article.title}}</view>
+        <text class="article-time">{{article.createTime}}</text>
+    </view>
+</view>

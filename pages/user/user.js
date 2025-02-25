@@ -1,4 +1,6 @@
 // pages/user/user.js
+const config = require('../../utils/config.js')
+
 Page({
 
   /**
@@ -110,7 +112,7 @@ Page({
     })
 
     wx.request({
-      url: 'http://192.168.1.93:8100/knowledge/user/logout',
+      url: `${config.baseURL}/knowledge/user/logout`,
       method: 'POST',
       success: () => {
         // 清除本地存储的用户信息和token

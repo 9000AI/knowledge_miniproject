@@ -2,6 +2,7 @@
   "usingComponents": {
 
     "scene-card": "/components/scene-card/scene-card",
-    "article-card": "/components/article-card/article-card"
+    "test-card": "/components/test-card/test-card",
+    "article-item": "/components/article-item/article-item"
   }
 }

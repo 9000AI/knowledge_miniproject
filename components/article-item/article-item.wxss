@@ -1,0 +1,58 @@
+.article-list {
+    padding: 20rpx;
+}
+
+.section-title {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #000000;
+    padding: 6rpx 18rpx 2rpx;
+    margin: 30rpx 0 20rpx 28rpx;
+    border-left: 8rpx solid #c5eb59;
+}
+
+.article-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* 每行一个文章项 */
+    gap: 20rpx;
+    padding: 0rpx 16rpx;
+}
+
+.article-item {
+    display: flex; /* 使用flex布局 */
+    align-items: center; /* 垂直居中对齐 */
+    border-radius: 16rpx;
+    overflow: hidden;
+    background: #fff; /* 背景颜色 */
+    padding: 10rpx; /* 内边距 */
+}
+
+.article-image {
+    width: 180rpx; /* 设置封面图宽度 */
+    height: 100rpx; /* 设置封面图高度 */
+    border-radius: 8rpx; /* 圆角 */
+    object-fit: cover; /* 保持比例 */
+    margin-right: 10rpx; /* 右边距 */
+}
+
+.article-content {
+    flex: 1; /* 让内容区域占据剩余空间 */
+}
+
+.article-title {
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #000000;
+}
+
+.article-time {
+    font-size: 24rpx;
+    color: #999;
+    margin-top: 5rpx; /* 时间与标题之间的间距 */
+}
+
+.load-more {
+    text-align: center;
+    color:rgb(150, 158, 166);
+    margin-top: 20rpx;
+}

@@ -6,8 +6,12 @@
     <view class="text-container">
       <view class="top-text">科技流量第一站</view>
       <view class="sub-text">私域流量｜IP操盘｜短视频操盘</view>
-      <view class="search-container">
-        <input class="search-input" placeholder="请输入关键词搜索" placeholder-class="placeholder-style"/>
+      <view class="search-container" bindtap="onSearchTap">
+        <input class="search-input" 
+          placeholder="请输入关键词搜索" 
+          placeholder-class="placeholder-style"
+          disabled="{{true}}"
+        />
         <button class="search-btn">搜索</button>
       </view>
     </view>
@@ -15,17 +19,19 @@
 
   <scroll-view class="scrollarea" scroll-y type="list">
     <!-- 使用热门场景组件 -->
-    <scene-card></scene-card>
+     <!--<scene-cards></scene-cards> -->
+     <test-card />
     <!-- 最新文章 -->
-    <article-card cardType="latest" limit="5" />
+   <!-- <article-card cardType="latest" limit="5" /> -->
 
     <!-- 夜谈会文章 -->
-    <article-card cardType="nightTalk" limit="5" />
+   <!-- <article-card cardType="nightTalk" limit="5" /> -->
 
     <!-- 专栏文章 -->
-    <article-card cardType="column" limit="5" />
+   <!-- <article-card cardType="column" limit="5" /> -->
 
     <!-- 资料下载 -->
-    <article-card cardType="download" limit="5" />
+   <!-- <article-card cardType="download" limit="5" /> -->
+   <article-item bindtap="navigateToSearchArticles" />
   </scroll-view>
 </view>

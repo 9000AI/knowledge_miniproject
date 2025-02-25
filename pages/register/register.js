@@ -1,3 +1,6 @@
+// 添加配置文件引用
+const config = require('../../utils/config.js')
+
 Page({
   data: {
     isAgree: false,
@@ -104,7 +107,7 @@ Page({
       // 使用 Promise 包装 wx.request，添加超时和重试机制
       const result = await new Promise((resolve, reject) => {
         const requestTask = wx.request({
-          url: 'http://192.168.1.93:8100/knowledge/user/register',
+          url: `${config.baseURL}/knowledge/user/register`,
           method: 'POST',
           data: requestData,
           timeout: 15000, // 增加超时时间到 15 秒
