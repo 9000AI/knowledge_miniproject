@@ -9,7 +9,11 @@
     "pages/user/user",
     "pages/logs/logs",
     "pages/scene/list/list",
-    "pages/scene/detail/detail"
+    "pages/scene/detail/detail",
+    "pages/all-article/all-article",
+    "pages/category-articles/category-articles",
+    "pages/article-detail/article-detail",
+    "pages/search/search"
   ],
   "window": {
     "navigationStyle": "custom",
