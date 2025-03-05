@@ -7,6 +7,7 @@
     "pages/document/document",
     "pages/course/course",
     "pages/fire/fire",
+    "pages/more/more",
     "pages/user/user",
     "pages/logs/logs",
     "pages/scene/list/list",
@@ -16,7 +17,9 @@
     "pages/article-detail/article-detail",
     "pages/search/search",
     "pages/lesson/lesson",
-    "pages/video/video"
+    "pages/video/video",
+    "pages/member-detail/member-detail",
+    "pages/card-detail/card-detail"
   ],
   "window": {
     "navigationStyle": "custom",
@@ -34,14 +37,9 @@
         "pagePath": "pages/index/index",
         "iconPath": "static/tabbar/details.png",
         "selectedIconPath": "static/tabbar/details-active.png",
-        "text": "资料库"
+        "text": "资料"
       },
-      {
-        "pagePath": "pages/communicate/communicate",
-        "iconPath": "static/tabbar/communicate.png",
-        "selectedIconPath": "static/tabbar/communicate-active.png",
-        "text": "会员库"
-      },
+
       {
         "pagePath": "pages/course/course",
         "iconPath": "static/tabbar/document.png",
@@ -52,13 +50,13 @@
         "pagePath": "pages/fire/fire",
         "iconPath": "static/tabbar/fire.png",
         "selectedIconPath": "static/tabbar/fire-active.png",
-        "text": "流量圈"
+        "text": "圈子"
       },
       {
         "pagePath": "pages/user/user",
         "iconPath": "static/tabbar/user.png",
         "selectedIconPath": "static/tabbar/user-active.png",
-        "text": "个人中心"
+        "text": "我的"
       }
     ]
   },

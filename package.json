@@ -9,6 +9,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@vant/area-data": "^2.0.0",
         "@vant/weapp": "^1.11.1",
         "miniprogram-api-promise": "^1.0.4"
     },

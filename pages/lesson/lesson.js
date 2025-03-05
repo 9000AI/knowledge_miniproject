@@ -53,10 +53,17 @@ Page({
     
     this.setData({ loading: true })
     
+    // 获取用户信息
+    const userInfo = wx.getStorageSync('userInfo')
+    if (!userInfo) {
+      wx.navigateTo({ url: '/pages/auth/auth' })
+      return
+    }
+    
     // 使用Promise包装wx.request
     new Promise((resolve, reject) => {
       wx.request({
-        url: 'http://192.168.1.93:8100/knowledge/lesson/scroll',
+        url: 'https://know-admin.9000aigc.com/knowledge/lesson/scroll',
         method: 'POST',
         header: {
           'Content-Type': 'application/json',
@@ -65,7 +72,8 @@ Page({
         data: {
           size: 20,
           courseId: this.data.courseId,
-          lastId: this.data.nextId
+          lastId: this.data.nextId,
+          userId: userInfo.id
         },
         success: (res) => {
           resolve(res)
@@ -124,15 +132,23 @@ Page({
   
   // 获取课程详情
   getCourseInfo() {
+    // 获取用户信息
+    const userInfo = wx.getStorageSync('userInfo')
+    if (!userInfo) {
+      wx.navigateTo({ url: '/pages/auth/auth' })
+      return
+    }
+
     wx.request({
-      url: 'http://192.168.1.93:8100/knowledge/course/detail',
+      url: 'https://know-admin.9000aigc.com/knowledge/course/detail',
       method: 'GET',
       header: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${wx.getStorageSync('token')}`
       },
       data: {
-        id: this.data.courseId
+        id: this.data.courseId,
+        userId: userInfo.id
       },
       success: (res) => {
         console.log('课程详情请求成功:', res.data)

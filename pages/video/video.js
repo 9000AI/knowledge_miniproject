@@ -19,29 +19,34 @@ Page({
     currentLesson: {}, // 当前播放的课时信息
     hasMore: true,     // 是否还有更多数据
     nextId: '',        // 下一页的ID
+    isVip: false,      // 是否是会员
+    errorType: '', // 错误类型：'no_access'表示无权访问，'need_vip'表示需要开通会员
   },
 
   // 页面加载时获取参数
   onLoad(options) {
     if (options.id) {
-      // 判断是否是视频链接
-      const defaultVideoUrl = 'https://mini.9000aigc.com/assets/video/mini_video_compressed.mp4';
-      const isVideo = true; // 因为我们知道是视频，所以直接设置为 true
+      // 获取用户信息和会员状态
+      const userInfo = wx.getStorageSync('userInfo')
+      const isVip = userInfo?.isVip || false
       
       this.setData({
         lessonId: options.id,
         lessonTitle: options.title ? decodeURIComponent(options.title) : '课时播放',
-        videoUrl: defaultVideoUrl,
-        isVideo: isVideo,
+        isVideo: true,
         coverImage: options.coverImage || '',
         teacherInfo: options.teacher ? decodeURIComponent(options.teacher) : '未知',
-        courseId: options.courseId || ''
+        courseId: options.courseId || '',
+        isVip: isVip
       })
       
       // 获取章节列表
       if (options.courseId) {
         this.loadChapters(options.courseId)
       }
+
+      // 加载当前课时信息
+      this.loadLesson(options.id)
     } else {
       wx.showToast({
         title: '参数错误',
@@ -125,8 +130,15 @@ Page({
   
   // 加载章节列表
   loadChapters(courseId) {
+    // 获取用户信息
+    const userInfo = wx.getStorageSync('userInfo')
+    if (!userInfo) {
+      wx.navigateTo({ url: '/pages/auth/auth' })
+      return
+    }
+
     wx.request({
-      url: 'http://192.168.1.93:8100/knowledge/lesson/scroll',
+      url: 'https://know-admin.9000aigc.com/knowledge/lesson/scroll',
       method: 'POST',
       header: {
         'Content-Type': 'application/json',
@@ -135,21 +147,16 @@ Page({
       data: {
         size: 20,
         courseId: courseId,
-        lastId: '0'
+        lastId: '0',
+        userId: userInfo.id
       },
       success: (res) => {
         console.log('章节列表请求成功:', res.data)
         if (res.data.code === 200) {
           const { list } = res.data.data
           
-          // 给每个章节添加测试视频URL
-          const processedList = list.map(item => ({
-            ...item,
-            videoUrl: 'https://mini.9000aigc.com/assets/video/mini_video_compressed.mp4'
-          }))
-          
           this.setData({
-            chapterList: processedList || []
+            chapterList: list || []
           })
         }
       },
@@ -168,13 +175,22 @@ Page({
     // 如果点击的是当前正在播放的章节，不做任何操作
     if (id === this.data.lessonId) return
     
+    // 直接播放视频
     this.setData({
       lessonId: id,
       lessonTitle: title,
       videoUrl: url,
-      isVideo: true,  // 因为我们确定是视频，直接设置为 true
+      isVideo: true,
       loading: true
     })
+
+    // 更新当前课时信息
+    const currentLesson = this.data.chapterList.find(item => item.id === id)
+    if (currentLesson) {
+      this.setData({
+        currentLesson: currentLesson
+      })
+    }
   },
 
   // 切换倍速列表显示状态
@@ -202,17 +218,35 @@ Page({
     if(!this.data.hasMore || this.data.loading) return;
     
     this.setData({ loading: true });
+
+    // 获取用户信息
+    const userInfo = wx.getStorageSync('userInfo')
+    if (!userInfo) {
+      wx.navigateTo({ url: '/pages/auth/auth' })
+      return
+    }
     
     try {
-      const res = await wx.cloud.callContainer({
-        path: '/knowledge/lesson/scroll',
-        method: 'POST',
-        data: {
-          courseId: this.data.courseId,
-          lastId: this.data.nextId,
-          size: 20
-        }
+      const promise = new Promise((resolve, reject) => {
+        wx.request({
+          url: 'https://know-admin.9000aigc.com/knowledge/lesson/scroll',
+          method: 'POST',
+          header: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${wx.getStorageSync('token')}`
+          },
+          data: {
+            courseId: this.data.courseId,
+            lastId: this.data.nextId,
+            size: 20,
+            userId: userInfo.id
+          },
+          success: resolve,
+          fail: reject
+        });
       });
+
+      const res = await promise;
 
       if(res.data.code === 200) {
         const { list, hasMore, nextId } = res.data.data;
@@ -238,24 +272,62 @@ Page({
 
   // 加载指定课时
   async loadLesson(lessonId) {
+    // 获取用户信息
+    const userInfo = wx.getStorageSync('userInfo')
+    if (!userInfo) {
+      wx.navigateTo({ url: '/pages/auth/auth' })
+      return
+    }
+
     try {
       // 先查找本地列表
       let lesson = this.data.chapterList.find(item => item.id === lessonId);
       
       if(!lesson) {
         // 如果本地没有,从服务器获取
-        const res = await wx.cloud.callContainer({
-          path: `/knowledge/lesson/${lessonId}`,
-          method: 'GET'
+        const promise = new Promise((resolve, reject) => {
+          wx.request({
+            url: `https://know-admin.9000aigc.com/knowledge/lesson/${lessonId}`,
+            method: 'GET',
+            header: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${wx.getStorageSync('token')}`
+            },
+            data: {
+              userId: userInfo.id
+            },
+            success: resolve,
+            fail: reject
+          });
         });
+
+        const res = await promise;
         
         if(res.data.code === 200) {
           lesson = res.data.data;
+        } else if(res.data.code === 500 && res.data.message === '无权访问该课时') {
+          this.setData({ 
+            errorType: 'no_access',
+            loading: false
+          });
+          return;
+        } else {
+          this.setData({ 
+            errorType: 'need_vip',
+            loading: false
+          });
+          return;
         }
       }
       
       if(lesson) {
-        this.setData({ currentLesson: lesson });
+        console.log('当前课时信息:', lesson);  // 添加日志
+        // 直接使用后端返回的视频地址
+        this.setData({ 
+          currentLesson: lesson,
+          videoUrl: lesson.videoUrl || '',
+          errorType: lesson.videoUrl ? '' : 'need_vip'
+        });
       }
     } catch(err) {
       console.error('加载课时失败:', err);
@@ -270,6 +342,13 @@ Page({
   goToVip() {
     wx.navigateTo({
       url: '/pages/vip/vip'
+    });
+  },
+
+  // 跳转到课程购买页
+  goBuyCourse() {
+    wx.navigateTo({
+      url: `/pages/course/buy?id=${this.data.courseId}`
     });
   }
 }) 

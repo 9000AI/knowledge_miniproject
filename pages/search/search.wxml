@@ -13,6 +13,8 @@
         placeholder-class="placeholder-style"
         value="{{keyword}}"
         bindinput="onSearchInput"
+        bindconfirm="handleSearch"
+        confirm-type="search"
         focus="{{true}}"
       />
       <button class="search-btn" bindtap="handleSearch">搜索</button>

@@ -1,2 +1,169 @@
 <!--pages/fire/fire.wxml-->
-<text>pages/fire/fire.wxml</text>
+<view class="page-container">
+  <!-- 顶部图片区域 -->
+  <view class="top-image">
+    <image src="https://mini.9000aigc.com/assets/images/R.png" mode="aspectFill"></image>
+    <view class="text-container" style="padding-top: {{statusBarHeight + 10}}px;">
+ 
+      <!-- 添加 tab 栏 -->
+      <scroll-view scroll-x class="tab-scroll" enhanced show-scrollbar="{{false}}">
+        <view class="tab-container">
+          <view class="tab-item {{currentTab === 0 ? 'active' : ''}}" bindtap="switchTab" data-index="0">
+            <text>全部</text>
+            <view class="tab-line" wx:if="{{currentTab === 0}}"></view>
+          </view>
+          <view class="tab-item {{currentTab === 1 ? 'active' : ''}}" bindtap="switchTab" data-index="1">
+            <text>流量主</text>
+            <view class="tab-line" wx:if="{{currentTab === 1}}"></view>
+          </view>
+          <view class="tab-item {{currentTab === 2 ? 'active' : ''}}" bindtap="switchTab" data-index="2">
+            <text>品牌方</text>
+            <view class="tab-line" wx:if="{{currentTab === 2}}"></view>
+          </view>
+          <view class="tab-item {{currentTab === 3 ? 'active' : ''}}" bindtap="switchTab" data-index="3">
+            <text>供应链</text>
+            <view class="tab-line" wx:if="{{currentTab === 3}}"></view>
+          </view>
+          <view class="tab-item {{currentTab === 4 ? 'active' : ''}}" bindtap="switchTab" data-index="4">
+            <text>服务器</text>
+            <view class="tab-line" wx:if="{{currentTab === 4}}"></view>
+          </view>
+          <view class="tab-item {{currentTab === 5 ? 'active' : ''}}" bindtap="switchTab" data-index="5">
+            <text>投资人</text>
+            <view class="tab-line" wx:if="{{currentTab === 5}}"></view>
+          </view>
+        </view>
+      </scroll-view>
+
+      <!-- 搜索框 -->
+      <view class="search-container">
+        <input class="search-input" 
+          placeholder="请输入关键词搜索" 
+          placeholder-class="placeholder-style"
+          value="{{keyword}}"
+          bindinput="onSearchInput"
+          bindconfirm="onSearchConfirm"
+          confirm-type="search"
+        />
+      </view>
+    </view>
+  </view>
+
+  <scroll-view class="scrollarea" scroll-y type="list">
+    <view class="card-list">
+      <view class="cards-container">
+        <view class="card-wrapper left">
+          <block wx:if="{{cardList[0]}}">
+            <view class="card-item" bindtap="onCardTap" data-id="{{cardList[0].id}}">
+              <image class="card-image" src="{{cardList[0].posterUrl}}" mode="aspectFill"></image>
+              <view class="card-title">{{cardList[0].title}}</view>
+            </view>
+          </block>
+        </view>
+        <view class="card-wrapper right">
+          <block wx:if="{{cardList[1]}}">
+            <view class="card-item" bindtap="onCardTap" data-id="{{cardList[1].id}}">
+              <image class="card-image" src="{{cardList[1].posterUrl}}" mode="aspectFill"></image>
+              <view class="card-title">{{cardList[1].title}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="view-more" bindtap="onViewMore">点击查看更多 ></view>
+    </view>
+
+    <!-- 添加会员列表标题 -->
+    <view class="section-header">
+      <text class="section-header-title">会员列表</text>
+    </view>
+
+    <!-- 会员列表 -->
+    <view class="member-list">
+      <block wx:for="{{memberList}}" wx:key="id">
+        <view class="member-card" bindtap="onMemberCardTap" data-id="{{item.id}}">
+          <view class="member-header">
+            <image class="member-avatar" src="{{item.avatar || defaultAvatar}}" mode="aspectFill"></image>
+            <view class="member-info">
+              <view class="name-label-container">
+                <text class="member-name">{{item.nickname || '未设置昵称'}}</text>
+                <view class="member-labels">
+                  <view class="label-item label-type-{{label.type}}" 
+                        wx:for="{{item.labels}}" 
+                        wx:for-item="label"
+                        wx:key="name">
+                    {{label.name}}
+                  </view>
+                </view>
+              </view>
+              <view class="member-position">{{item.company || '未填写公司'}}{{item.company && item.position ? ' · ' : ''}}{{item.position || '未填写职位'}}</view>
+            </view>
+          </view>
+
+          <view class="member-location" wx:if="{{item.location}}">
+            <image class="icon" src="https://mini.9000aigc.com/assets/icons/location.png" mode="aspectFit"></image>
+            <text>{{item.location}}</text>
+          </view>
+          
+          <view class="member-about" wx:if="{{item.about}}">
+            <image class="icons" src="https://mini.9000aigc.com/assets/icons/lists.png" mode="aspectFit"></image>
+            <text>{{item.about}}</text>
+          </view>
+
+          <!-- 只在有资源内容时显示资源区块 -->
+          <view class="member-section" wx:if="{{item.shareableResources}}">
+            <view class="section-title">资源</view>
+            <view class="section-content">{{item.shareableResources}}</view>
+          </view>
+
+          <!-- 只在有需求内容时显示需求区块 -->
+          <view class="member-section" wx:if="{{item.demands}}">
+            <view class="section-title">需求</view>
+            <view class="section-content">{{item.demands}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+
+  <!-- 会员名片信息 -->
+  <view class="member-card" wx:if="{{memberInfo}}">
+    <view class="member-header">
+      <image class="member-avatar" src="{{memberInfo.avatar}}" mode="aspectFill"></image>
+      <view class="member-info">
+        <view class="name-label-container">
+          <text class="member-name">{{memberInfo.nickname}}</text>
+          <view class="member-labels">
+            <view class="label-item label-type-{{item.type}}" 
+                  wx:for="{{memberInfo.labels}}" 
+                  wx:key="name">
+              {{item.name}}
+            </view>
+          </view>
+        </view>
+        <view class="member-position">{{memberInfo.company || ''}}{{memberInfo.company && memberInfo.position ? ' · ' : ''}}{{memberInfo.position || ''}}</view>
+      </view>
+    </view>
+
+    <view class="member-location" wx:if="{{memberInfo.location}}">
+      <image class="icon" src="https://mini.9000aigc.com/assets/icons/location.png" mode="aspectFit"></image>
+      <text>{{memberInfo.location}}</text>
+    </view>
+    
+    <view class="member-about" wx:if="{{memberInfo.about}}">
+      <image class="icons" src="https://mini.9000aigc.com/assets/icons/lists.png" mode="aspectFit"></image>
+      <text>{{memberInfo.about}}</text>
+    </view>
+
+    <view class="member-section" wx:if="{{memberInfo.shareableResources}}">
+      <view class="section-title">资源</view>
+      <view class="section-content">{{memberInfo.shareableResources}}</view>
+    </view>
+
+    <view class="member-section" wx:if="{{memberInfo.demands}}">
+      <view class="section-title">需求</view>
+      <view class="section-content">{{memberInfo.demands}}</view>
+    </view>
+  </view>
+
+
+</view>

@@ -1,4 +1,5 @@
 .test-card {
+  
   padding: 20rpx;
 }
 
@@ -19,7 +20,7 @@
   font-weight: bold;
   color: #000000;
   padding: 6rpx 18rpx 2rpx;
-  margin: 30rpx 0 20rpx 28rpx;
+  margin: 500rpx 0 20rpx 28rpx;
   border-left: 8rpx solid #c5eb59;
   text-align: left;
 }

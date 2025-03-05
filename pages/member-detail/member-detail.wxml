@@ -1,0 +1,72 @@
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-content">
+      <view class="back-icon" bindtap="onBack">
+        <image src="https://mini.9000aigc.com/assets/icons/back.png" mode="aspectFit"></image>
+      </view>
+      <view class="nav-title">会员详情</view>
+    </view>
+  </view>
+
+  <!-- 会员详情内容 -->
+  <view class="content-container">
+    <view class="member-detail">
+      <!-- 头部信息 -->
+      <view class="member-header">
+        <image class="member-avatar" src="{{memberInfo.avatar || defaultAvatar}}" mode="aspectFill"></image>
+        <view class="member-info">
+          <view class="name-label-container">
+            <text class="member-name">{{memberInfo.nickname || '未设置昵称'}}</text>
+            <view class="member-labels">
+              <view class="label-item label-type-{{label.type}}" 
+                    wx:for="{{memberInfo.labels}}" 
+                    wx:for-item="label"
+                    wx:key="name">
+                {{label.name}}
+              </view>
+            </view>
+          </view>
+          <view class="member-position">
+            <text class="company">{{memberInfo.company || '未填写公司'}}</text>
+            <text class="separator" wx:if="{{memberInfo.company && memberInfo.position}}"> · </text>
+            <text class="position">{{memberInfo.position || '未填写职位'}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 基本信息 -->
+      <view class="info-section" wx:if="{{memberInfo.location || memberInfo.about}}">
+        <view class="info-title">
+          <text class="title-text">基本信息</text>
+        </view>
+        <view class="info-content">
+          <view class="info-item" wx:if="{{memberInfo.location}}">
+            <image class="icon" src="https://mini.9000aigc.com/assets/icons/location.png" mode="aspectFit"></image>
+            <text>{{memberInfo.location}}</text>
+          </view>
+          <view class="info-item" wx:if="{{memberInfo.about}}">
+            <image class="icon" src="https://mini.9000aigc.com/assets/icons/lists.png" mode="aspectFit"></image>
+            <text>{{memberInfo.about}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 资源信息 -->
+      <view class="info-section" wx:if="{{memberInfo.shareableResources}}">
+        <view class="info-title">
+          <text class="title-text">可分享资源</text>
+        </view>
+        <view class="info-content">{{memberInfo.shareableResources}}</view>
+      </view>
+
+      <!-- 需求信息 -->
+      <view class="info-section" wx:if="{{memberInfo.demands}}">
+        <view class="info-title">
+          <text class="title-text">需求信息</text>
+        </view>
+        <view class="info-content">{{memberInfo.demands}}</view>
+      </view>
+    </view>
+  </view>
+</view> 

@@ -1,0 +1,62 @@
+/* 卡片网格容器 */
+.top-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 一行三个卡片 */
+  gap: 20rpx; /* 卡片之间的间距 */
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+/* 单个卡片样式 */
+.top-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1.3; /* 设置宽高比为 1:1.5 */
+  border-radius: 12rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
+}
+
+/* 卡片图片样式 */
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* 确保图片完全填充容器 */
+}
+
+/* 播放按钮圆圈 */
+.play-circle {
+  position: absolute;
+  bottom: 35rpx;  /* 调整到标题上方的位置 */
+  left: 10%;
+  transform: translateX(-10%);
+  width: 60rpx;
+  height: 62rpx;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+/* 播放图标 */
+.play-icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+/* 调整标题样式，给播放按钮留出空间 */
+.card-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 12rpx;
+  background: rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  font-size: 26rpx;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.4;
+}

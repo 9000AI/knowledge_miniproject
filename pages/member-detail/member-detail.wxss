@@ -1,0 +1,208 @@
+.container {
+  min-height: 100vh;
+  background: #F8F8F8;
+}
+
+/* 自定义导航栏 */
+.custom-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 101;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.nav-content {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+}
+
+.back-icon {
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon image {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.nav-title {
+  flex: 1;
+  text-align: center;
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+  margin-right: 48rpx;
+}
+
+/* 内容区域 */
+.content-container {
+  width: 90%;
+  padding: 14rpx 24rpx 0;
+}
+
+.member-detail {
+  background: #FFFFFF;
+  border-radius: 20rpx 20rpx 0 0;
+  padding: 40rpx 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+  min-height: calc(100vh - 24rpx - {{statusBarHeight}}px - 44px);
+}
+
+/* 头部信息 */
+.member-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 48rpx;
+  padding-bottom: 40rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.member-avatar {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 70rpx;
+  margin-right: 28rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+.member-info {
+  flex: 1;
+}
+
+.member-name {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.4;
+}
+
+.member-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 16rpx;
+}
+
+.label-item {
+  padding: 4rpx 16rpx;
+  border-radius: 6rpx;
+  font-size: 22rpx;
+  background: rgba(203, 251, 150, 0.15);
+  color: #67C23A;
+  font-weight: 500;
+}
+
+.member-position {
+  font-size: 26rpx;
+  color: #666;
+  margin-top: 12rpx;
+  line-height: 1.6;
+}
+
+.company, .position {
+  color: #666;
+}
+
+.separator {
+  color: #999;
+  margin: 0 8rpx;
+}
+
+/* 信息区块 */
+.info-section {
+  margin-bottom: 36rpx;
+  padding-bottom: 36rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.info-section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.info-title {
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.title-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  position: relative;
+  padding-left: 20rpx;
+}
+
+.title-text::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6rpx;
+  height: 28rpx;
+  background: #cbfb96;
+  border-radius: 3rpx;
+}
+
+.info-content {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+  padding: 16rpx;
+  background: #f9f9f9;
+  border-radius: 12rpx;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-item .icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 16rpx;
+  margin-top: 4rpx;
+}
+
+.info-item text {
+  flex: 1;
+  line-height: 1.6;
+}
+
+/* 会员有效期样式 */
+.period {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx;
+  background: #f9f9f9;
+  border-radius: 12rpx;
+}
+
+.period .date {
+  color: #333;
+  font-weight: 500;
+}
+
+.period .separator {
+  margin: 0 20rpx;
+  color: #999;
+} 

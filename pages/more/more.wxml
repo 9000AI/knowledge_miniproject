@@ -1,0 +1,22 @@
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-content">
+      <view class="nav-title">全部卡片</view>
+    </view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content-container">
+    <scroll-view class="card-list" scroll-y>
+      <view class="card-grid">
+        <block wx:for="{{cardList}}" wx:key="id">
+          <view class="card-item" bindtap="onCardTap" data-id="{{item.id}}">
+            <image class="card-image" src="{{item.posterUrl}}" mode="aspectFill"></image>
+            <view class="card-title">{{item.title}}</view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+</view> 

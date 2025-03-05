@@ -1,0 +1,168 @@
+<view class="card-detail">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-content">
+      <view class="back-btn" bindtap="handleBack">
+        <image src="https://mini.9000aigc.com/assets/images/返回.png" mode="aspectFit"></image>
+      </view>
+      <text class="nav-title">我的名片</text>
+    </view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content" style="margin-top: {{statusBarHeight + 44}}px;">
+    <!-- 基本信息 -->
+    <view class="section">
+      <view class="section-title">基本信息</view>
+      <view class="info-list">
+        <view class="info-item" bindtap="handleEdit" data-field="realName">
+          <text class="label">真实姓名</text>
+          <view class="value-container">
+            <text class="value">{{userProfile.realName || '未设置'}}</text>
+            <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
+          </view>
+        </view>
+        <view class="info-item" bindtap="handleEdit" data-field="userPhone">
+          <text class="label">手机号码</text>
+          <view class="value-container">
+            <text class="value">{{userProfile.userPhone || '未设置'}}</text>
+            <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 职业信息 -->
+    <view class="section">
+      <view class="section-title">职业信息</view>
+      <view class="info-list">
+        <view class="info-item" bindtap="handleEdit" data-field="company">
+          <text class="label">公司</text>
+          <view class="value-container">
+            <text class="value">{{userProfile.company || '未设置'}}</text>
+            <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
+          </view>
+        </view>
+        <view class="info-item" bindtap="handleEdit" data-field="position">
+          <text class="label">职位</text>
+          <view class="value-container">
+            <text class="value">{{userProfile.position || '未设置'}}</text>
+            <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 地址信息 -->
+    <view class="section">
+      <view class="section-title">地址信息</view>
+      <view class="info-list">
+        <view class="info-item" bindtap="handleEditAddress" data-type="region">
+          <text class="label">所在地区</text>
+          <view class="value-container">
+            <text class="value">{{userProfile.address.province}} {{userProfile.address.city}} {{userProfile.address.district}}</text>
+            <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
+          </view>
+        </view>
+        <view class="info-item" bindtap="handleEdit" data-field="address.address">
+          <text class="label">详细地址</text>
+          <view class="value-container">
+            <text class="value">{{userProfile.address.address || '未设置'}}</text>
+            <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 个人介绍 -->
+    <view class="section">
+      <view class="section-title">个人介绍</view>
+      <view class="info-content" bindtap="handleEdit" data-field="about">
+        <text>{{userProfile.about || '未设置'}}</text>
+        <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
+      </view>
+    </view>
+
+    <!-- 可分享资源 -->
+    <view class="section">
+      <view class="section-title">可分享资源</view>
+      <view class="info-content" bindtap="handleEdit" data-field="shareableResources">
+        <text>{{userProfile.shareableResources || '未设置'}}</text>
+        <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
+      </view>
+    </view>
+
+    <!-- 需求 -->
+    <view class="section">
+      <view class="section-title">需求</view>
+      <view class="info-content" bindtap="handleEdit" data-field="demands">
+        <text>{{userProfile.demands || '未设置'}}</text>
+        <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
+      </view>
+    </view>
+
+    <!-- 标签 -->
+    <view class="section">
+      <view class="section-title">标签</view>
+      <view class="tags-list" bindtap="handleEditLabels">
+        <view class="tag" wx:for="{{userProfile.labels}}" wx:key="code">
+          {{item.name}}
+        </view>
+        <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 在最底部添加 -->
+  <view class="bottom-safe-area"></view>
+  <view class="save-btn" bindtap="handleSave">保存</view>
+</view>
+
+<!-- 编辑弹窗 -->
+<view class="edit-modal" wx:if="{{showEditModal}}">
+  <view class="modal-mask" bindtap="closeEditModal"></view>
+  <view class="modal-content">
+    <view class="modal-title">{{editTitle}}</view>
+    <view class="modal-input-container">
+      <textarea wx:if="{{['about', 'shareableResources', 'demands'].includes(currentField)}}"
+        class="modal-textarea"
+        value="{{editValue}}"
+        bindinput="handleInputChange"
+        maxlength="500"
+        placeholder="请输入{{editTitle}}"
+      ></textarea>
+      <input wx:else
+        class="modal-input"
+        value="{{editValue}}"
+        bindinput="handleInputChange"
+        placeholder="请输入{{editTitle}}"
+      />
+    </view>
+    <view class="modal-buttons">
+      <view class="modal-btn cancel" bindtap="closeEditModal">取消</view>
+      <view class="modal-btn confirm" bindtap="confirmEdit">确定</view>
+    </view>
+  </view>
+</view>
+
+<!-- 标签选择弹窗 -->
+<view class="edit-modal" wx:if="{{showLabelModal}}">
+  <view class="modal-mask" bindtap="closeLabelModal"></view>
+  <view class="modal-content">
+    <view class="modal-title">选择标签</view>
+    <view class="labels-container">
+      <view class="label-item {{item.selected ? 'selected' : ''}}"
+        wx:for="{{labelOptions}}"
+        wx:key="code"
+        bindtap="toggleLabel"
+        data-code="{{item.code}}"
+      >
+        {{item.name}}
+      </view>
+    </view>
+    <view class="modal-buttons">
+      <view class="modal-btn cancel" bindtap="closeLabelModal">取消</view>
+      <view class="modal-btn confirm" bindtap="confirmLabels">确定</view>
+    </view>
+  </view>
+</view> 

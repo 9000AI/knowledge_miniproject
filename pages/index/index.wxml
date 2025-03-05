@@ -5,7 +5,7 @@
     <image src="https://mini.9000aigc.com/assets/images/R.png" mode="aspectFill"></image>
     <view class="text-container">
       <view class="top-text">科技流量第一站</view>
-      <view class="sub-text">私域流量｜IP操盘｜短视频操盘</view>
+       <view class="sub-text">私域流量｜IP操盘｜短视频操盘</view>
       <view class="search-container" bindtap="onSearchTap">
         <input class="search-input" 
           placeholder="请输入关键词搜索" 
@@ -19,8 +19,8 @@
 
   <scroll-view class="scrollarea" scroll-y type="list">
     <!-- 使用热门场景组件 -->
-     <!--<scene-cards></scene-cards> -->
-     <test-card />
+    <top-card cardList="{{topCardList}}"></top-card>
+    <hot-scene></hot-scene>
     <!-- 最新文章 -->
    <!-- <article-card cardType="latest" limit="5" /> -->
 

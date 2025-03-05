@@ -31,7 +31,7 @@ Component({
       // 使用Promise包装wx.request
       new Promise((resolve, reject) => {
         wx.request({
-          url: 'http://192.168.1.93:8100/knowledge/course/scroll',
+          url: 'https://know-admin.9000aigc.com/knowledge/course/scroll',
           method: 'POST',
           header: {
             'Content-Type': 'application/json',

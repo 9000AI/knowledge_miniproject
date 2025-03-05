@@ -6,7 +6,7 @@
         <button class="avatar-wrapper" 
                 open-type="chooseAvatar" 
                 bind:chooseavatar="onChooseAvatar">
-          <image class="avatar" src="{{avatarUrl || '../../images/icons/avatar.png'}}"></image>
+          <image class="avatar" src="{{tempAvatarUrl || avatarUrl || '../../images/icons/avatar.png'}}"></image>
         </button>
         <input type="nickname" 
                class="nickname-input" 

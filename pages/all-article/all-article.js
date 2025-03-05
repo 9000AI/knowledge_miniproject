@@ -9,6 +9,14 @@ Page({
         this.fetchArticles(); // 页面加载时请求文章数据
     },
 
+    onArticleClick(e) {
+        const id = e.currentTarget.dataset.id; // 获取文章ID
+        // 使用字符串形式跳转
+        wx.navigateTo({
+            url: `/pages/article-detail/article-detail?id=${id}`
+        });
+    },
+
     fetchArticles() {
         const token = wx.getStorageSync('token'); // 获取token
         if (!token) {
@@ -25,7 +33,7 @@ Page({
         };
 
         wx.request({
-            url: 'http://192.168.1.93:8100/knowledge/article/category/cursor',
+            url: 'https://know-admin.9000aigc.com/knowledge/article/category/cursor',
             method: 'POST',
             data: requestData,
             header: {
@@ -35,7 +43,7 @@ Page({
             success: (res) => {
                 if (res.data.code === 200) {
                     const newArticles = res.data.data.articles.map(item => ({
-                        id: item.id,
+                        id: String(item.id), // 确保 ID 是字符串类型
                         title: item.title,
                         coverImage: item.coverImage,
                         createTime: item.createTime.split('T')[0], // 格式化时间
@@ -45,7 +53,7 @@ Page({
                     this.setData({
                         articles: this.data.articles.concat(newArticles), // 合并新旧数据
                         hasMore: res.data.data.hasMore,
-                        lastId: res.data.data.lastId // 更新lastId
+                        lastId: String(res.data.data.lastId) // 确保 lastId 也是字符串
                     });
                 } else {
                     console.error(res.data.message); // 处理错误信息

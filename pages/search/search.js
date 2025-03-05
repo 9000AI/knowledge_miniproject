@@ -108,7 +108,7 @@ Page({
     };
 
     wx.request({
-      url: 'http://192.168.1.93:8100/knowledge/article/category/cursor',
+      url: 'https://know-admin.9000aigc.com/knowledge/article/category/cursor',
       method: 'POST',
       data: requestData,
       header: {

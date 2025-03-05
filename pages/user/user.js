@@ -86,6 +86,20 @@ Page({
     }
   },
 
+  goToCardDetail() {
+    const userInfo = wx.getStorageSync('userInfo')
+    if (!userInfo) {
+      wx.showToast({
+        title: '请先登录',
+        icon: 'none'
+      })
+      return
+    }
+    wx.navigateTo({
+      url: '/pages/card-detail/card-detail'
+    })
+  },
+
   goToCompleteProfile() {
     // 跳转到资料完善页面
     wx.navigateTo({

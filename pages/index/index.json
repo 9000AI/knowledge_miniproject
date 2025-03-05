@@ -3,6 +3,9 @@
 
     "scene-card": "/components/scene-card/scene-card",
     "test-card": "/components/test-card/test-card",
-    "article-item": "/components/article-item/article-item"
+    "article-item": "/components/article-item/article-item",
+    "top-card": "/components/top-card/top-card",
+    "hots-scene": "/components/hots-scene/hots-scene",
+    "hot-scene": "/components/hot-scene/hot-scene"
   }
 }

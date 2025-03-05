@@ -1,0 +1,26 @@
+<view class="section-title">热门场景</view>
+<view class="scene-grid">
+  <block wx:for="{{hotSceneList}}" wx:key="id">
+    <view class="scene-card" bindtap="handleCardClick" data-scene="{{item}}" style="background-color: {{item.bgColor}};">
+      <view class="card-content">
+        <view class="text-container">
+          <text class="card-text">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<!-- 行业联营部分 -->
+<view class="section-title section-title-industry">行业联营</view>
+<view class="scene-grid">
+  <block wx:for="{{industryList}}" wx:key="id">
+    <view class="scene-card industry-card" bindtap="handleIndustryClick" data-industry="{{item}}" style="background-color: {{item.bgColor}};">
+      <view class="card-content">
+        <view class="text-container">
+          <text class="card-text">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

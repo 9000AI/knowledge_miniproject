@@ -14,7 +14,7 @@
     <view class="article-list">
         <view class="section-title">所有文章</view>
         <view class="article-container">
-            <view wx:for="{{articles}}" wx:key="id" class="article-item">
+            <view wx:for="{{articles}}" wx:key="id" class="article-item" bindtap="onArticleClick" data-id="{{item.id}}">
                 <image class="article-image" src="{{item.coverImage}}" mode="aspectFill"></image>
                 <view class="article-content">
                     <view class="article-title">{{item.title}}</view>

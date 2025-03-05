@@ -227,10 +227,23 @@ Page({
               icon: 'success',
               duration: 1500
             })
+            
+            // 获取重定向URL
+            const redirectUrl = wx.getStorageSync('redirect_url')
+            wx.removeStorageSync('redirect_url') // 使用后立即清除
+            
             setTimeout(() => {
-              wx.switchTab({
-                url: '/pages/index/index'
-              })
+              if (redirectUrl) {
+                // 重定向到之前的页面
+                wx.reLaunch({
+                  url: redirectUrl
+                })
+              } else {
+                // 默认跳转到首页
+                wx.switchTab({
+                  url: '/pages/index/index'
+                })
+              }
             }, 1500)
           }
         } else {

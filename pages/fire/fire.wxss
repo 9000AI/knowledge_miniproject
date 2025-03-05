@@ -1,1 +1,368 @@
 /* pages/fire/fire.wxss */
+.page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-image {
+  height: 20vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.top-image image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 文字容器样式 */
+.text-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 1;
+  width: 100%;
+}
+
+/* 主标题样式 */
+.top-text {
+  color: #000000;
+  font-size: 56rpx;
+  font-family: 'XinYi', sans-serif;
+  font-weight: bold;
+  white-space: nowrap;
+  letter-spacing: 2px;
+  margin-bottom: 16rpx;
+}
+
+/* 副标题样式 */
+.sub-text {
+  color: #333333;
+  font-size: 28rpx;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  margin-bottom: 20rpx;
+}
+
+/* 搜索框容器 */
+.search-container {
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+  background: #F8F8F8;
+  border: none;
+  border-radius: 40rpx;
+  padding: 0 30rpx;
+  margin: 14rpx auto 0;
+  width: 85%;
+}
+
+/* 搜索输入框 */
+.search-input {
+  flex: 1;
+  height: 100%;
+  font-size: 28rpx;
+  color: #333333;
+  text-align: left;
+}
+
+
+/* 占位符样式 */
+.placeholder-style {
+  color:rgb(182, 179, 179);
+  font-size: 28rpx;
+  text-align: left;
+}
+
+/* Tab 栏样式 */
+.tab-scroll {
+  margin-top: 10rpx;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.tab-container {
+  display: flex;
+  padding: 0 0 0 20rpx;
+}
+
+.tab-item {
+  position: relative;
+  padding: 0 20rpx;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.tab-item text {
+  font-size: 28rpx;
+  color: #666666;
+  transition: all 0.3s;
+}
+
+.tab-item.active text {
+  font-size: 32rpx;
+  color: #000000;
+  font-weight: bold;
+}
+
+.tab-line {
+  position: absolute;
+  bottom: -8rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 6rpx;
+  background: #000000;
+  border-radius: 3rpx;
+}
+
+.scrollarea {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 20rpx;
+  background: #F8F8F8;
+}
+
+/* 添加字体声明 */
+@font-face {
+  font-family: 'XinYi';
+  src: url('https://mini.9000aigc.com/assets/fonts/xinyi.ttf');
+}
+
+.card-list {
+  padding: 20rpx 20rpx 10rpx;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4rpx 8rpx 6rpx rgba(0, 0, 0, 0.03);
+  margin: 10rpx 10rpx;
+  border-radius: 12rpx;
+  background: #FFFFFF;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+
+.card-wrapper {
+  width: calc(50% - 8rpx);
+  background:rgb(255, 255, 255);
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card-item {
+  width: 100%;
+  background:rgb(255, 255, 255);
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: 180rpx;
+  background-color: #f5f5f5;
+}
+
+.card-title {
+  font-size: 28rpx;
+  color: #333333;
+  padding: 12rpx;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-align: center;
+}
+
+/* 会员列表样式 */
+.member-list {
+  padding: 0 20rpx 20rpx;
+}
+
+/* 会员卡片样式 */
+.member-card {
+  margin-bottom: 20rpx;
+  padding: 24rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.member-card:last-child {
+  margin-bottom: 0;
+}
+
+.member-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.member-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+
+.member-info {
+  flex: 1;
+}
+
+.name-label-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6rpx;
+}
+
+.member-name {
+  font-size: 32rpx;
+  color: #333333;
+  margin-right: 12rpx;
+}
+
+.member-position {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 4rpx;
+}
+
+.member-location {
+  font-size: 24rpx;
+  color: #999999;
+  margin: 16rpx 0 1rpx;
+  display: flex;
+  align-items: center;
+}
+
+.member-about {
+  font-size: 24rpx;
+  color: #999999;
+  margin-bottom: 29rpx;
+  display: flex;
+  align-items: flex-start;
+}
+
+.icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 8rpx;
+  flex-shrink: 0;
+}
+
+.icons {
+  width: 22rpx;
+  height: 22rpx;
+  margin: 8rpx 8rpx 0 4rpx;
+  flex-shrink: 0;
+}
+
+.member-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+  margin-top: 8rpx;
+}
+
+.label-item {
+  padding: 2rpx 10rpx;
+  border-radius: 4rpx;
+  font-size: 20rpx;
+}
+
+/* 不同类型标签的颜色 */
+.label-type-1 {
+  background: rgba(255, 95, 95, 0.1);
+  color: #FF5F5F;
+}
+
+.label-type-2 {
+  background: rgba(64, 169, 255, 0.1);
+  color: #40A9FF;
+}
+
+.label-type-3 {
+  background: rgba(103, 194, 58, 0.1);
+  color: #67C23A;
+}
+
+.label-type-4 {
+  background: rgba(230, 162, 60, 0.1);
+  color: #E6A23C;
+}
+
+.member-section {
+  margin-bottom: 20rpx;
+  background: rgba(234, 249, 166, 0.2);
+  padding: 16rpx;
+  border-radius: 8rpx;
+}
+
+.section-title {
+  font-size: 26rpx;
+  color: #333333;
+  margin-bottom: 12rpx;
+  opacity: 0.9;
+  font-weight: bold;
+  border-left: 6rpx solidrgb(173, 188, 62);
+  padding-left: 12rpx;
+}
+
+.section-content {
+  font-size: 24rpx;
+  color: #666666;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.view-more {
+  text-align: right;
+  padding: 12rpx 20rpx;
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.empty-state {
+  padding: 40rpx;
+  text-align: center;
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* 添加标题样式 */
+.section-header {
+  padding: 30rpx 30rpx 20rpx;
+  background: #F8F8F8;
+}
+
+.section-header-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333333;
+  position: relative;
+  padding-left: 24rpx;
+}
+
+.section-header-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6rpx;
+  height: 28rpx;
+  background:rgb(145, 198, 89);
+  border-radius: 3rpx;
+}

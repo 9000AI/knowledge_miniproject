@@ -17,10 +17,15 @@
         </view>
       </view>
     </view>
+  </view>
 
-    <!-- 资料完善按钮 -->
-    <view class="profile-btn" bindtap="goToCompleteProfile">
-      {{userInfo.profileCompleted ? '查看我的资料 >' : '完善我的资料 >'}}
+  <!-- 名片入口 -->
+  <view class="menu-card" bindtap="goToCardDetail">
+    <view class="menu-item">
+      <view class="menu-title">
+        <text>我的名片信息</text>
+      </view>
+      <image class="arrow-icon" src="https://mini.9000aigc.com/assets/icons/back (1).png" mode="aspectFit" style="transform: rotate(180deg)"></image>
     </view>
   </view>
 

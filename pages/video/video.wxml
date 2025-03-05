@@ -45,8 +45,15 @@
       />
       <view class="video-lock-mask">
         <image class="lock-icon" src="/assets/icons/lock.png" />
-        <text class="lock-text">开通会员观看完整视频</text>
-        <button class="unlock-btn" bindtap="goToVip">立即开通</button>
+        <!-- 根据错误类型显示不同提示 -->
+        <block wx:if="{{errorType === 'no_access'}}">
+          <text class="lock-text">报名后即可收看</text>
+          <button class="unlock-btn" bindtap="goBuyCourse">立即报名</button>
+        </block>
+        <block wx:else>
+          <text class="lock-text">开通会员观看完整视频</text>
+          <button class="unlock-btn" bindtap="goToVip">立即开通</button>
+        </block>
       </view>
     </block>
     
