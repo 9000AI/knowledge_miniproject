@@ -41,7 +41,7 @@ Component({
         },
         // 添加图标配置
         icons: {
-            rightArrow: 'https://mini.9000aigc.com/assets/icons/right.png'
+            rightArrow: 'https://miniknowledge.9000aigc.com/assets/icons/right.png'
         },
         currentList: [], // 当前显示的列表
         showAll: false,

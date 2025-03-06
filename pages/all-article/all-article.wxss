@@ -150,5 +150,5 @@
 }
 @font-face {
   font-family: 'XinYi';
-  src: url('https://mini.9000aigc.com/assets/fonts/xinyi.ttf');
+  src: url('https://miniknowledge.9000aigc.com/assets/fonts/xinyi.ttf');
 }

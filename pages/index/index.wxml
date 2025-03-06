@@ -2,7 +2,7 @@
 <view class="page-container">
   <!-- 顶部图片区域 -->
   <view class="top-image">
-    <image src="https://mini.9000aigc.com/assets/images/R.png" mode="aspectFill"></image>
+    <image src="https://miniknowledge.9000aigc.com/assets/images/R.png" mode="aspectFill"></image>
     <view class="text-container">
       <view class="top-text">科技流量第一站</view>
        <view class="sub-text">私域流量｜IP操盘｜短视频操盘</view>

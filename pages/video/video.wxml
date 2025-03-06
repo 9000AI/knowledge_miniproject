@@ -5,7 +5,7 @@
       <view class="back-icon-nav">
          <image 
             class="back-icon" 
-            src="https://mini.9000aigc.com/assets/icons/back (1).png" 
+            src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" 
             mode="aspectFit"
             bindtap="navigateBack"
         />

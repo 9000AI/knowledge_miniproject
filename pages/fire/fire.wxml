@@ -100,12 +100,12 @@
           </view>
 
           <view class="member-location" wx:if="{{item.location}}">
-            <image class="icon" src="https://mini.9000aigc.com/assets/icons/location.png" mode="aspectFit"></image>
+            <image class="icon" src="https://miniknowledge.9000aigc.com/assets/icons/location.png" mode="aspectFit"></image>
             <text>{{item.location}}</text>
           </view>
           
           <view class="member-about" wx:if="{{item.about}}">
-            <image class="icons" src="https://mini.9000aigc.com/assets/icons/lists.png" mode="aspectFit"></image>
+            <image class="icons" src="https://miniknowledge.9000aigc.com/assets/icons/lists.png" mode="aspectFit"></image>
             <text>{{item.about}}</text>
           </view>
 
@@ -145,12 +145,12 @@
     </view>
 
     <view class="member-location" wx:if="{{memberInfo.location}}">
-      <image class="icon" src="https://mini.9000aigc.com/assets/icons/location.png" mode="aspectFit"></image>
+      <image class="icon" src="https://miniknowledge.9000aigc.com/assets/icons/location.png" mode="aspectFit"></image>
       <text>{{memberInfo.location}}</text>
     </view>
     
     <view class="member-about" wx:if="{{memberInfo.about}}">
-      <image class="icons" src="https://mini.9000aigc.com/assets/icons/lists.png" mode="aspectFit"></image>
+      <image class="icons" src="https://miniknowledge.9000aigc.com/assets/icons/lists.png" mode="aspectFit"></image>
       <text>{{memberInfo.about}}</text>
     </view>
 

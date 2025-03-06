@@ -5,7 +5,7 @@
   <!-- 搜索区域 -->
   <view class="search-area" style="padding-top: {{statusBarHeight + 10}}px;">
     <view class="back-icon" bindtap="handleBack">
-      <image src="https://mini.9000aigc.com/assets/icons/back (1).png" mode="aspectFit"></image>
+      <image src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit"></image>
     </view>
     <view class="search-container">
       <input class="search-input" 
@@ -30,28 +30,28 @@
               bindtap="toggleDropdown" data-type="1">
           平台
           <image class="arrow-icon" 
-                 src="{{currentFilter === '1' ? 'https://mini.9000aigc.com/assets/icons/down (4).png' : 'https://mini.9000aigc.com/assets/icons/down (3).png'}}" 
+                 src="{{currentFilter === '1' ? 'https://miniknowledge.9000aigc.com/assets/icons/down (4).png' :  'https://miniknowledge.9000aigc.com/assets/icons/down (3).png'}}" 
                  mode="aspectFit"></image>
         </view>
         <view class="filter-tag {{currentFilter === '2' ? 'active' : ''}}" 
               bindtap="toggleDropdown" data-type="2">
           流量形态
           <image class="arrow-icon" 
-                 src="{{currentFilter === '2' ? 'https://mini.9000aigc.com/assets/icons/down (4).png' : 'https://mini.9000aigc.com/assets/icons/down (3).png'}}" 
+                 src="{{currentFilter === '2' ? 'https://miniknowledge.9000aigc.com/assets/icons/down (4).png' :  'https://miniknowledge.9000aigc.com/assets/icons/down (3).png'}}" 
                  mode="aspectFit"></image>
         </view>
         <view class="filter-tag {{currentFilter === '3' ? 'active' : ''}}" 
               bindtap="toggleDropdown" data-type="3">
           行业
           <image class="arrow-icon" 
-                 src="{{currentFilter === '3' ? 'https://mini.9000aigc.com/assets/icons/down (4).png' : 'https://mini.9000aigc.com/assets/icons/down (3).png'}}" 
+                 src="{{currentFilter === '3' ? 'https://miniknowledge.9000aigc.com/assets/icons/down (4).png' :  'https://miniknowledge.9000aigc.com/assets/icons/down (3).png'}}" 
                  mode="aspectFit"></image>
         </view>
         <view class="filter-tag {{currentFilter === '4' ? 'active' : ''}}" 
               bindtap="toggleDropdown" data-type="4">
           来源
           <image class="arrow-icon" 
-                 src="{{currentFilter === '4' ? 'https://mini.9000aigc.com/assets/icons/down (4).png' : 'https://mini.9000aigc.com/assets/icons/down (3).png'}}" 
+                 src="{{currentFilter === '4' ? 'https://miniknowledge.9000aigc.com/assets/icons/down (4).png' :  'https://miniknowledge.9000aigc.com/assets/icons/down (3).png'}}" 
                  mode="aspectFit"></image>
         </view>
       </view>

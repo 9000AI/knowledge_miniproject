@@ -21,7 +21,7 @@
           data-index="{{index}}">
       <view class="lesson-left">
         <image class="lesson-cover" src="{{item.coverImage}}" mode="aspectFill"></image>
-        <image class="play-icon" src="https://mini.9000aigc.com/assets/icons/播放.png"></image>
+        <image class="play-icon" src="https://miniknowledge.9000aigc.com/assets/icons/播放.png"></image>
       </view>
       <view class="lesson-right">
         <view class="lesson-title">{{item.title}}</view>

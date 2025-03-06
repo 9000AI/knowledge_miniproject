@@ -41,7 +41,7 @@ Component({
         },
         // 添加图标配置
         icons: {
-            rightArrow: 'https://mini.9000aigc.com/assets/icons/right.png'
+            rightArrow: 'https://miniknowledge.9000aigc.com/assets/icons/right.png'
         },
         // 不同类型的文章列表
         articleLists: {
@@ -50,61 +50,61 @@ Component({
                     title: "群响夜话会267期|小公司如何快速招人?群响6年创业血泪掏心窝子分享",
                     time: "2024-03-20",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/ip.png"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/ip.png"
                 },
                 {
                     title: "私域流量增长方法论",
                     time: "2024-03-19",
                     tags: ["全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/black.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/black.jpg"
                 },
                 {
                     title: "IP打造实战案例",
                     time: "2024-03-18",
                     tags: ["资料下载", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/black.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/black.jpg"
                 },
                 {
                     title: "短视频运营技巧分享",
                     time: "2024-03-20",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/ip.png"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/ip.png"
                 },
                 {
                     title: "私域流量增长方法论",
                     time: "2024-03-19",
                     tags: ["全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/black.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/black.jpg"
                 },
                 {
                     title: "群响夜话会267期|小公司如何快速招人?群响6年创业血泪掏心窝子分享",
                     time: "2024-03-20",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/ip.png"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/ip.png"
                 },
                 {
                     title: "私域流量增长方法论",
                     time: "2024-03-19",
                     tags: ["全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/black.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/black.jpg"
                 },
                 {
                     title: "IP打造实战案例",
                     time: "2024-03-18",
                     tags: ["资料下载", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/black.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/black.jpg"
                 },
                 {
                     title: "短视频运营技巧分享",
                     time: "2024-03-20",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/ip.png"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/ip.png"
                 },
                 {
                     title: "私域流量增长方法论",
                     time: "2024-03-19",
                     tags: ["全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/black.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/black.jpg"
                 },
             ],
             nightTalk: [
@@ -112,37 +112,37 @@ Component({
                     title: "群响夜话会267期|小公司如何快速招人?",
                     time: "2024-03-20",
                     tags: ["夜话会", "创业分享"],
-                    image: "https://mini.9000aigc.com/assets/course/ip.png"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/ip.png"
                 },
                 {
                     title: "短视频运营技巧分享",
                     time: "2024-03-20",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/black.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/black.jpg"
                 },
                 {
                     title: "私域流量增长方法论",
                     time: "2024-03-19",
                     tags: ["全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/black.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/black.jpg"
                 },
                 {
                     title: "IP打造实战案例",
                     time: "2024-03-18",
                     tags: ["资料下载", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/black.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/black.jpg"
                 },
                 {
                     title: "短视频运营技巧分享",
                     time: "2024-03-20",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/black.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/black.jpg"
                 },
                 {
                     title: "私域流量增长方法论",
                     time: "2024-03-19",
                     tags: ["全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/black.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/black.jpg"
                 },
             ],
             column: [
@@ -150,37 +150,37 @@ Component({
                     title: "专栏文章1",
                     time: "2024-03-20",
                     tags: ["专栏", "观点"],
-                    image: "https://mini.9000aigc.com/assets/course/ip.png"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/ip.png"
                 },
                 {
                     title: "短视频运营技巧分享",
                     time: "2024-03-20",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/ip.png"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/ip.png"
                 },
                 {
                     title: "私域流量增长方法论",
                     time: "2024-03-19",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/ip.png"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/ip.png"
                 },
                 {
                     title: "IP打造实战案例",
                     time: "2024-03-18",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/ip.png"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/ip.png"
                 },
                 {
                     title: "短视频运营技巧分享",
                     time: "2024-03-20",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/ip.png"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/ip.png"
                 },
                 {
                     title: "私域流量增长方法论",
                     time: "2024-03-19",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/ip.png"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/ip.png"
                 },
             ],
             download: [
@@ -188,37 +188,37 @@ Component({
                     title: "短视频运营技巧分享",
                     time: "2024-03-20",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/green.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/green.jpg"
                 },
                 {
                     title: "私域流量增长方法论",
                     time: "2024-03-19",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/green.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/green.jpg"
                 },
                 {
                     title: "IP打造实战案例",
                     time: "2024-03-18",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/green.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/green.jpg"
                 },
                 {
                     title: "短视频运营技巧分享",
                     time: "2024-03-20",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/green.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/green.jpg"
                 },
                 {
                     title: "私域流量增长方法论",
                     time: "2024-03-19",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/green.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/green.jpg"
                 },
                 {
                     title: "私域流量增长方法论",
                     time: "2024-03-19",
                     tags: ["资料下载", "全域", "直播"],
-                    image: "https://mini.9000aigc.com/assets/course/green.jpg"
+                    image: "https://miniknowledge.9000aigc.com/assets/course/green.jpg"
                 },
             ]
         },

@@ -1,6 +1,6 @@
 <view class="all-article">
     <view class="top-image">
-        <image src="https://mini.9000aigc.com/assets/images/R.png" mode="aspectFill"></image>
+        <image src="https://miniknowledge.9000aigc.com/assets/images/R.png" mode="aspectFill"></image>
         <view class="text-container">
             <view class="top-text">高端的流量操盘手</view>
             <view class="sub-text">与各行各业的老板一起搞流量赚钱</view>

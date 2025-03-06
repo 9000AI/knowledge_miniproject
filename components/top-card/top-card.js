@@ -54,7 +54,7 @@ Component({
           
           // 映射数据到卡片格式
           const cardList = topThree.map(item => ({
-            image: 'https://mini.9000aigc.com/assets/images/zl-one.png', // 默认图片，可根据实际需求修改
+            image: 'https://miniknowledge.9000aigc.com/assets/images/zl-one.png', // 默认图片，可根据实际需求修改
             title: item.name
           }));
 
@@ -70,17 +70,17 @@ Component({
           {
             id: '1',
             name: '加入我们',
-            image: 'https://mini.9000aigc.com/assets/images/zl-one.png'
+            image: 'https://miniknowledge.9000aigc.com/assets/images/zl-one.png'
           },
           {
             id: '2',
             name: '李家旺专栏',
-            image: 'https://mini.9000aigc.com/assets/images/zl_two.jpg'
+            image: 'https://miniknowledge.9000aigc.com/assets/images/zl_two.jpg'
           },
           {
             id: '3',
             name: '闭环裂变',
-            image: 'https://mini.9000aigc.com/assets/images/zl-three.png'
+            image: 'https://miniknowledge.9000aigc.com/assets/images/zl-three.png'
           }
         ];
 

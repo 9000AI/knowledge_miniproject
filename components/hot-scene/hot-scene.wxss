@@ -1,7 +1,7 @@
 /* 导入字体 */
 @font-face {
     font-family: 'HuXiaoBo';
-    src: url('https://mini.9000aigc.com/assets/fonts/HuXiaoBoNanShenTi-2.otf');
+    src: url('https://miniknowledge.9000aigc.com/assets/fonts/HuXiaoBoNanShenTi-2.otf');
     font-weight: normal;
     font-style: normal;
 }

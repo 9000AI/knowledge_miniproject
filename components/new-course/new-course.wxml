@@ -8,7 +8,7 @@
   <!-- 课程卡片网格 -->
   <view class="course-grid">
     <view class="course-card">
-      <image src="https://mini.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
+      <image src="https://miniknowledge.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
       <view class="vip-tag">会员免费</view>
       <view class="card-info">
         <view class="card-title">聊聊创业的修炼，我们的能量管理和....</view>
@@ -16,7 +16,7 @@
       </view>
     </view>
     <view class="course-card">
-      <image src="https://mini.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
+      <image src="https://miniknowledge.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
       <view class="vip-tag">会员免费</view>
       <view class="card-info">
         <view class="card-title">视频号运营课程</view>
@@ -24,7 +24,7 @@
       </view>
     </view>
     <view class="course-card">
-      <image src="https://mini.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
+      <image src="https://miniknowledge.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
       <view class="vip-tag">会员免费</view>
       <view class="card-info">
         <view class="card-title">视频号运营课程</view>
@@ -32,7 +32,7 @@
       </view>
     </view>
     <view class="course-card">
-      <image src="https://mini.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
+      <image src="https://miniknowledge.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
       <view class="vip-tag">会员免费</view>
       <view class="card-info">
         <view class="card-title">视频号运营课程</view>
@@ -40,7 +40,7 @@
       </view>
     </view>
     <view class="course-card">
-      <image src="https://mini.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
+      <image src="https://miniknowledge.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
       <view class="vip-tag">会员免费</view>
       <view class="card-info">
         <view class="card-title">视频号运营课程</view>
@@ -48,7 +48,7 @@
       </view>
     </view>
     <view class="course-card">
-      <image src="https://mini.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
+      <image src="https://miniknowledge.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
       <view class="vip-tag">会员免费</view>
       <view class="card-info">
         <view class="card-title">视频号运营课程</view>
@@ -56,7 +56,7 @@
       </view>
     </view>
     <view class="course-card">
-      <image src="https://mini.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
+      <image src="https://miniknowledge.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
       <view class="vip-tag">会员免费</view>
       <view class="card-info">
         <view class="card-title">视频号运营课程</view>
@@ -64,7 +64,7 @@
       </view>
     </view>
     <view class="course-card">
-      <image src="https://mini.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
+      <image src="https://miniknowledge.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
       <view class="vip-tag">会员免费</view>
       <view class="card-info">
         <view class="card-title">视频号运营课程</view>
@@ -72,7 +72,7 @@
       </view>
     </view>
     <view class="course-card">
-      <image src="https://mini.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
+      <image src="https://miniknowledge.9000aigc.com/assets/course/news_course.png" mode="aspectFill"></image>
       <view class="vip-tag">会员免费</view>
       <view class="card-info">
         <view class="card-title">视频号运营课程</view>

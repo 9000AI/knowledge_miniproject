@@ -1,3 +1,5 @@
+const { request } = require('../../utils/request.js')
+
 Component({
   properties: {
   },
@@ -23,34 +25,22 @@ Component({
 
   methods: {
     // 加载课程列表
-    loadCourses() {
+    async loadCourses() {
       if(this.data.loading || !this.data.hasMore) return
       
       this.setData({ loading: true })
       
-      // 使用Promise包装wx.request
-      new Promise((resolve, reject) => {
-        wx.request({
+      try {
+        const res = await request({
           url: 'https://know-admin.9000aigc.com/knowledge/course/scroll',
           method: 'POST',
-          header: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${wx.getStorageSync('token')}`
-          },
           data: {
             size: 20,
             price: 1,  // 付费课程
             lastId: this.data.nextId
-          },
-          success: (res) => {
-            resolve(res)
-          },
-          fail: (err) => {
-            reject(err)
           }
         })
-      })
-      .then(res => {
+
         console.log('付费课程请求成功:', res.data)
         if(res.data.code === 200) {
           const { list, hasMore, nextId } = res.data.data
@@ -78,17 +68,15 @@ Component({
             icon: 'none'
           })
         }
-      })
-      .catch(err => {
+      } catch (err) {
         console.error('加载付费课程失败:', err)
         wx.showToast({
           title: '网络错误',
           icon: 'none'
         })
-      })
-      .finally(() => {
+      } finally {
         this.setData({ loading: false })
-      })
+      }
     },
     
     // 跳转到课时列表页面

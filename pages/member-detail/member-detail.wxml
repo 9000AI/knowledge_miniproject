@@ -3,7 +3,7 @@
   <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
     <view class="nav-content">
       <view class="back-icon" bindtap="onBack">
-        <image src="https://mini.9000aigc.com/assets/icons/back.png" mode="aspectFit"></image>
+        <image src="https://miniknowledge.9000aigc.com/assets/icons/back.png" mode="aspectFit"></image>
       </view>
       <view class="nav-title">会员详情</view>
     </view>
@@ -42,11 +42,11 @@
         </view>
         <view class="info-content">
           <view class="info-item" wx:if="{{memberInfo.location}}">
-            <image class="icon" src="https://mini.9000aigc.com/assets/icons/location.png" mode="aspectFit"></image>
+            <image class="icon" src="https://miniknowledge.9000aigc.com/assets/icons/location.png" mode="aspectFit"></image>
             <text>{{memberInfo.location}}</text>
           </view>
           <view class="info-item" wx:if="{{memberInfo.about}}">
-            <image class="icon" src="https://mini.9000aigc.com/assets/icons/lists.png" mode="aspectFit"></image>
+            <image class="icon" src="https://miniknowledge.9000aigc.com/assets/icons/lists.png" mode="aspectFit"></image>
             <text>{{memberInfo.about}}</text>
           </view>
         </view>

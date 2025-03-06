@@ -89,15 +89,15 @@ Page({
       'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'],
     topCardList: [
       {
-        image: 'https://mini.9000aigc.com/assets/images/zl-one.png',
+        image: 'https://miniknowledge.9000aigc.com/assets/images/zl-one.png',
         title: '加入我们'
       },
       {
-        image: 'https://mini.9000aigc.com/assets/images/zl_two.jpg',
+        image: 'https://miniknowledge.9000aigc.com/assets/images/zl_two.jpg',
         title: '李家旺专栏'
       },
       {
-        image: 'https://mini.9000aigc.com/assets/images/zl-three.png',
+        image: 'https://miniknowledge.9000aigc.com/assets/images/zl-three.png',
         title: '闭环裂变'
       }
     ]

@@ -42,7 +42,7 @@ Page({
                     <div class="wemark-image-wrapper">
                         <img 
                             class="wemark-img"
-                            src="https://mini.9000aigc.com/assets/course/ip.png" 
+                            src="https://miniknowledge.9000aigc.com/assets/course/ip.png" 
                             alt="示例图片"
                             mode="widthFix"
                         />

@@ -9,7 +9,7 @@
       <view class="play-circle">
         <image 
           class="play-icon" 
-          src="https://mini.9000aigc.com/assets/images/播放 (1).png" 
+          src="https://miniknowledge.9000aigc.com/assets/images/播放 (1).png" 
           mode="aspectFit"
         />
       </view>

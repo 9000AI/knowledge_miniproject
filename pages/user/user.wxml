@@ -25,7 +25,7 @@
       <view class="menu-title">
         <text>我的名片信息</text>
       </view>
-      <image class="arrow-icon" src="https://mini.9000aigc.com/assets/icons/back (1).png" mode="aspectFit" style="transform: rotate(180deg)"></image>
+      <image class="arrow-icon" src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit" style="transform: rotate(180deg)"></image>
     </view>
   </view>
 
