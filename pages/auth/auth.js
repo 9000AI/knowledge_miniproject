@@ -149,31 +149,60 @@ Page({
     })
   },
 
-  // 处理微信一键登录
+  // 处理一键登录
   handleWxLogin() {
+    // 检查是否同意协议
+    if (!this.data.isAgree) {
+      wx.showModal({
+        title: '提示',
+        content: '请先阅读并同意用户协议',
+        showCancel: false,
+        success: (res) => {
+          if (res.confirm) {
+            // 用户点击确定后，自动勾选协议
+            this.setData({ 
+              isAgree: true 
+            })
+            // 重新触发登录流程
+            this.handleWxLogin()
+          }
+        }
+      })
+      return
+    }
+
+    wx.showLoading({
+      title: '登录中...',
+      mask: true
+    })
+
     wx.login({
       success: (res) => {
         if (res.code) {
-          console.log('微信登录凭证：', res.code)
+          console.log('获取登录凭证成功, code:', res.code)
           this.wxSilentLogin(res.code)
         } else {
-          this.showMessage('登录失败：' + res.errMsg)
+          console.error('获取登录凭证失败:', res.errMsg)
+          wx.hideLoading()
+          wx.showToast({
+            title: '登录失败,请重试',
+            icon: 'none'
+          })
         }
       },
       fail: (err) => {
-        console.error('wx.login 调用失败：', err)
-        this.showMessage('获取登录凭证失败')
+        console.error('wx.login 调用失败:', err)
+        wx.hideLoading()
+        wx.showToast({
+          title: '登录失败,请重试',
+          icon: 'none'
+        })
       }
     })
   },
 
   // 调用后端静默登录接口
   wxSilentLogin(code) {
-    wx.showLoading({
-      title: '登录中...',
-      mask: true
-    })
-
     wx.request({
       url: `${config.baseURL}/knowledge/user/wx-silent-login?code=${code}`,
       method: 'POST',
@@ -184,44 +213,25 @@ Page({
         if (res.data.code === 200) {
           const { data } = res.data
           
-          // 如果头像是临时路径，需要上传到服务器
-          if (data.avatar && data.avatar.startsWith('http://tmp/')) {
-            // 先把临时头像下载到本地
-            wx.downloadFile({
-              url: data.avatar,
-              success: (downloadRes) => {
-                if (downloadRes.statusCode === 200) {
-                  // 上传到自己的服务器
-                  wx.uploadFile({
-                    url: `${config.baseURL}/knowledge/upload/image`,
-                    filePath: downloadRes.tempFilePath,
-                    name: 'file',
-                    success: (uploadRes) => {
-                      const uploadResult = JSON.parse(uploadRes.data)
-                      if (uploadResult.code === 200) {
-                        // 更新用户头像为永久地址
-                        data.avatar = uploadResult.data.url
-                      }
-                      // 保存用户信息
-                      wx.setStorageSync('userInfo', data)
-                    }
-                  })
+          if (data.needReg) {
+            console.log('用户未注册，需要获取手机号')
+            // 弹出获取手机号授权按钮
+            wx.showModal({
+              title: '提示',
+              content: '需要获取您的手机号完成注册',
+              success: (res) => {
+                if (res.confirm) {
+                  // 打开获取手机号界面
+                  this.getPhoneNumber()
                 }
               }
             })
-          }
-          
-          // 保存用户信息和token
-          wx.setStorageSync('token', data.token)
-          wx.setStorageSync('userInfo', data)
-          
-          if (data.needReg) {
-            console.log('用户未注册,跳转注册页面')
-            wx.navigateTo({
-              url: '/pages/register/register'
-            })
           } else {
             console.log('登录成功,用户信息:', data)
+            // 保存用户信息和token
+            wx.setStorageSync('token', data.token)
+            wx.setStorageSync('userInfo', data)
+            
             wx.showToast({
               title: '登录成功',
               icon: 'success',
@@ -261,6 +271,19 @@ Page({
           icon: 'none'
         })
       }
+    })
+  },
+
+  // 获取手机号（仅在需要注册时调用）
+  getPhoneNumber() {
+    wx.showLoading({
+      title: '正在注册...',
+      mask: true
+    })
+    
+    // 跳转到注册页面
+    wx.navigateTo({
+      url: '/pages/register/register'
     })
   },
 

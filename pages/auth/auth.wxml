@@ -1,15 +1,14 @@
 <view class="auth-container">
-  <view class="logo">
-    <image src="/static/images/logo.png" mode="aspectFit"></image>
+  <!-- 顶部图片区域 -->
+  <view class="top-image">
+    <image src="https://mini.9000aigc.com/assets/images/R.png" mode="aspectFill"></image>
   </view>
 
-  <view class="title">欢迎使用科技流量第一站</view>
-  
   <view class="auth-content">
-    <button class="auth-btn" 
-            open-type="getPhoneNumber" 
-            bindgetphonenumber="getPhoneNumber">
-      手机号一键登录
+    <view class="title">欢迎使用科技流量第一站</view>
+    
+    <button class="auth-btn" bindtap="handleWxLogin">
+      一键登录
     </button>
 
     <!-- 注册入口 -->

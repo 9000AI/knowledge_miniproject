@@ -3,16 +3,11 @@
     "pages/auth/auth",
     "pages/register/register",
     "pages/index/index",
-    "pages/communicate/communicate",
-    "pages/document/document",
     "pages/course/course",
     "pages/fire/fire",
     "pages/more/more",
     "pages/user/user",
     "pages/logs/logs",
-    "pages/scene/list/list",
-    "pages/scene/detail/detail",
-    "pages/all-article/all-article",
     "pages/category-articles/category-articles",
     "pages/article-detail/article-detail",
     "pages/search/search",
@@ -37,20 +32,20 @@
         "pagePath": "pages/index/index",
         "iconPath": "static/tabbar/details.png",
         "selectedIconPath": "static/tabbar/details-active.png",
-        "text": "资料"
+        "text": "找资料"
       },
 
       {
         "pagePath": "pages/course/course",
         "iconPath": "static/tabbar/document.png",
         "selectedIconPath": "static/tabbar/document-active.png",
-        "text": "课程"
+        "text": "看课程"
       },
       {
         "pagePath": "pages/fire/fire",
         "iconPath": "static/tabbar/fire.png",
         "selectedIconPath": "static/tabbar/fire-active.png",
-        "text": "圈子"
+        "text": "进圈子"
       },
       {
         "pagePath": "pages/user/user",

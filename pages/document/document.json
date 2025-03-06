@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "prime-course": "/components/prime-course/prime-course",
-    "new-course": "/components/new-course/new-course"
-  }
-}
