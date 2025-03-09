@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: null
+    userInfo: {},
+    collectionCount: 0 // 添加收藏数量
   },
 
   /**
@@ -28,8 +29,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    // 每次显示页面时刷新用户信息
-    this.getUserInfo()
+    this.getUserInfo();
+    this.getCollectionCount(); // 获取收藏数量
   },
 
   /**
@@ -157,5 +158,38 @@ Page({
         wx.hideLoading()
       }
     })
-  }
+  },
+
+  // 获取收藏数量
+  getCollectionCount() {
+    const token = wx.getStorageSync('token');
+    const userInfo = wx.getStorageSync('userInfo');
+
+    if (!token || !userInfo) {
+      wx.navigateTo({ url: '/pages/auth/auth' });
+      return;
+    }
+
+    wx.request({
+      url: `${config.baseURL}/knowledge/article/collection/count`,
+      method: 'GET',
+      header: {
+        'Authorization': `Bearer ${token}`
+      },
+      success: (res) => {
+        if (res.data.code === 200) {
+          this.setData({
+            collectionCount: res.data.data || 0
+          });
+        }
+      }
+    });
+  },
+
+  // 跳转到收藏文章列表
+  goToCollections() {
+    wx.navigateTo({
+      url: '/pages/collection/collection'
+    });
+  },
 })

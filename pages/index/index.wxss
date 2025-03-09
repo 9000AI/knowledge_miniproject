@@ -5,6 +5,7 @@
   flex-direction: column;
 }
 
+
 .top-image {
   height: 28vh;
   /* 设置为屏幕高度的三分之一 */
@@ -113,13 +114,15 @@
 /* 添加字体声明 */
 @font-face {
   font-family: 'XinYi';
-  src: url('https://miniknowledge.9000aigc.com/assets/fonts/xinyi.ttf');
+  src: url('https://mini.9000aigc.com/assets/fonts/xinyi.ttf');
 }
 
 @font-face {
   font-family: 'Douyin';
-  src: url('https://miniknowledge.9000aigc.com/assets/fonts/douyin.otf');
+  src: url('https://mini.9000aigc.com/assets/fonts/douyin.otf');
 }
+
+
 
 /* 搜索框容器 */
 .search-container {

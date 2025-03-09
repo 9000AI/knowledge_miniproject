@@ -69,7 +69,7 @@ Component({
         const defaultData = [
           {
             id: '1',
-            name: '加入我们',
+            name: '有趣有料',
             image: 'https://miniknowledge.9000aigc.com/assets/images/zl-one.png'
           },
           {

@@ -72,6 +72,7 @@
   line-height: 1.6;
   color: #333;
   background: #fff;
+  padding-bottom: calc(100vh / 7 + 40rpx); /* 底部栏高度 + 额外间距 */
 }
 
 /* 富文本内容基础样式 */
@@ -239,4 +240,82 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* 固定底部栏样式 */
+.fixed-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100vh / 12);
+  background: #ffffff;
+  box-shadow: 0 -2rpx 20rpx rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32rpx;
+  box-sizing: border-box;
+  z-index: 999;
+}
+
+.bottom-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.logo-icon {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+
+.company-name {
+  font-size: 32rpx;
+  color: #333333;
+  font-weight: 500;
+}
+
+.bottom-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 8rpx; /* 减小间距 */
+}
+
+.action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60rpx; /* 固定宽度 */
+}
+
+.action-icon, .action-icons {
+  width: 40rpx;
+  height: 40rpx;
+  margin-bottom: 4rpx;
+}
+
+.action-item text {
+  font-size: 20rpx;
+  color: #666666;
+  line-height: 1;
+}
+
+.share-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+.share-button::after {
+  display: none;
 } 
+
+wx-button:not([size=mini]) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100rpx;
+}

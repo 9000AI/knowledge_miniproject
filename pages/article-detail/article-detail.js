@@ -6,14 +6,18 @@ Page({
     content: '',
     loading: true,
     statusBarHeight: 0,
-    navBarHeight: 44
+    navBarHeight: 44,
+    isCollected: false,
+    title: '',
+    fromCollection: false,
   },
 
   onLoad(options) {
     const systemInfo = wx.getSystemInfoSync();
     this.setData({
       statusBarHeight: systemInfo.statusBarHeight,
-      id: options.id
+      id: options.id,
+      fromCollection: options.from === 'collection'
     });
     this.fetchArticleDetail();
   },
@@ -39,7 +43,9 @@ Page({
           
           this.setData({
             content,
-            loading: false
+            loading: false,
+            title: res.data.data.title || '文章详情',
+            isCollected: this.data.fromCollection ? true : (res.data.data.isCollected || false)
           });
         }
       },
@@ -106,5 +112,73 @@ Page({
         url: '/pages/index/index'
       });
     }
-  }
+  },
+
+  onShareAppMessage() {
+    return {
+      title: this.data.title,
+      path: `/pages/article-detail/article-detail?id=${this.data.id}`,
+      imageUrl: 'https://miniknowledge.9000aigc.com/assets/images/logo_avatar.png'
+    };
+  },
+
+  // 处理收藏/取消收藏
+  handleCollection() {
+    const token = wx.getStorageSync('token');
+    const userInfo = wx.getStorageSync('userInfo');
+
+    if (!token || !userInfo) {
+      wx.navigateTo({ url: '/pages/auth/auth' });
+      return;
+    }
+
+    // 如果来自收藏页面，直接设置 actionType 为 0（取消收藏）
+    const actionType = this.data.fromCollection ? 0 : (this.data.isCollected ? 0 : 1);
+
+    wx.request({
+      url: `${config.baseURL}/knowledge/article/favorite/toggle`,
+      method: 'POST',
+      data: {
+        userId: userInfo.id,
+        articleId: this.data.id,
+        actionType: actionType
+      },
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      success: (res) => {
+        if (res.data.code === 200 && res.data.data) {
+          // 更新收藏状态
+          this.setData({
+            isCollected: !this.data.isCollected
+          });
+          
+          // 显示操作提示
+          wx.showToast({
+            title: this.data.isCollected ? '收藏成功' : '已取消收藏',
+            icon: 'success'
+          });
+
+          // 如果是从收藏页面进来的，取消收藏后返回上一页
+          if (this.data.fromCollection && !this.data.isCollected) {
+            setTimeout(() => {
+              wx.navigateBack();
+            }, 1500);
+          }
+        } else {
+          wx.showToast({
+            title: '操作失败',
+            icon: 'none'
+          });
+        }
+      },
+      fail: () => {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none'
+        });
+      }
+    });
+  },
 }); 
