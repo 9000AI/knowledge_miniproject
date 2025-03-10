@@ -15,7 +15,9 @@
     "pages/video/video",
     "pages/member-detail/member-detail",
     "pages/card-detail/card-detail",
-    "pages/collection/collection"
+    "pages/collection/collection",
+    "pages/program/program",
+    "pages/my-course/my-course"
   ],
   "window": {
     "navigationStyle": "custom",
@@ -35,7 +37,12 @@
         "selectedIconPath": "static/tabbar/details-active.png",
         "text": "找资料"
       },
-
+      {
+        "pagePath": "pages/program/program",
+        "iconPath": "static/tabbar/communicate.png",
+        "selectedIconPath": "static/tabbar/communicate-active.png",
+        "text": "做项目"
+      },
       {
         "pagePath": "pages/course/course",
         "iconPath": "static/tabbar/document.png",

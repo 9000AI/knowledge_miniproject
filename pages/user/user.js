@@ -7,8 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {},
-    collectionCount: 0 // 添加收藏数量
+    userInfo: {
+      avatar: '',
+      nickname: '',
+      userType: 0
+    },
+    collectionCount: 0,
+    courseCount: 0
   },
 
   /**
@@ -31,6 +36,7 @@ Page({
   onShow() {
     this.getUserInfo();
     this.getCollectionCount(); // 获取收藏数量
+    this.getCourseCount();
   },
 
   /**
@@ -191,5 +197,32 @@ Page({
     wx.navigateTo({
       url: '/pages/collection/collection'
     });
+  },
+
+  // 跳转到我的课程页面
+  goToMyCourse: function() {
+    wx.navigateTo({
+      url: '/pages/my-course/my-course'
+    })
+  },
+
+  // 获取课程数量
+  getCourseCount: function() {
+    const token = wx.getStorageSync('token')
+    
+    wx.request({
+      url: 'http://192.168.1.93:8100/knowledge/user/courses/count',
+      method: 'GET',
+      header: {
+        'Authorization': `Bearer ${token}`
+      },
+      success: (res) => {
+        if (res.data.code === 200) {
+          this.setData({
+            courseCount: res.data.data
+          })
+        }
+      }
+    })
   },
 })

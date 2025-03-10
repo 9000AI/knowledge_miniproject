@@ -132,3 +132,12 @@
 .logout-btn:active {
   opacity: 0.8;
 }
+
+.course-count {
+  font-size: 24rpx;
+  color: #fff;
+  background: #4CAF50;
+  padding: 2rpx 12rpx;
+  border-radius: 20rpx;
+  margin-left: 12rpx;
+}

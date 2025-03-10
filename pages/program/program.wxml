@@ -1,0 +1,29 @@
+<!-- 自定义导航栏 -->
+<view class="custom-nav">
+  <view class="nav-title">做项目</view>
+</view>
+
+<!-- 搜索框 -->
+<view class="search-box">
+  <input type="text" placeholder="搜索项目" bindinput="onSearchInput" value="{{searchText}}" />
+</view>
+
+<!-- 主要内容区域 -->
+<scroll-view class="container" scroll-y bindscrolltolower="loadMore" refresher-enabled="{{true}}" bindrefresherrefresh="onRefresh" refresher-triggered="{{isRefreshing}}">
+  <view class="project-list">
+    <block wx:for="{{projects}}" wx:key="id">
+      <view class="project-item" bindtap="goToDetail" data-id="{{item.id}}">
+        <image class="project-cover" src="{{item.coverImage}}" mode="aspectFill"></image>
+        <view class="project-info">
+          <view class="project-title">{{item.title}}</view>
+          <view class="project-desc">{{item.description}}</view>
+          <view class="project-time">{{item.createTime}}</view>
+        </view>
+      </view>
+    </block>
+    <!-- 加载更多提示 -->
+    <view class="loading-tips" wx:if="{{loading}}">加载中...</view>
+    <view class="loading-tips" wx:if="{{!hasMore && projects.length > 0}}">没有更多了</view>
+    <view class="empty-tips" wx:if="{{!loading && projects.length === 0}}">暂无项目</view>
+  </view>
+</scroll-view> 

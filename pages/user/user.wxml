@@ -23,14 +23,21 @@
   <view class="menu-card">
     <view class="menu-item" bindtap="goToCardDetail">
       <view class="menu-title">
-        <text>我的名片信息</text>
+        <text>我的名片</text>
       </view>
       <image class="arrow-icon" src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit" style="transform: rotate(180deg)"></image>
     </view>
     <view class="menu-item" bindtap="goToCollections">
       <view class="menu-title">
-        <text>我的收藏文章</text>
+        <text>收藏文章</text>
         <text class="collection-count" wx:if="{{collectionCount > 0}}">{{collectionCount}}</text>
+      </view>
+      <image class="arrow-icon" src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit" style="transform: rotate(180deg)"></image>
+    </view>
+    <view class="menu-item" bindtap="goToMyCourse">
+      <view class="menu-title">
+        <text>我的课程</text>
+        <text class="course-count" wx:if="{{courseCount > 0}}">{{courseCount}}</text>
       </view>
       <image class="arrow-icon" src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit" style="transform: rotate(180deg)"></image>
     </view>
