@@ -35,53 +35,78 @@ Page({
       title: '头像上传中...',
       mask: true
     })
-    
-    // 将图片转为 base64
-    wx.getFileSystemManager().readFile({
+
+    // 先获取文件信息
+    wx.getFileInfo({
       filePath: tempFilePath,
-      encoding: 'base64',
-      success: (res) => {
-        // 上传到服务器
-        wx.request({
-          url: `${config.baseURL}/knowledge/upload/base64`,
-          method: 'POST',
-          data: {
-            data: res.data,
-            module: 'avatar',
-            type: 'profile'
-          },
-          success: (uploadRes) => {
-            if (uploadRes.data.code === 200) {
-              // 保存服务器返回的永久头像URL，注意这里不要立即显示
-              this.setData({
-                avatarUrl: uploadRes.data.data,
-                tempAvatarUrl: tempFilePath // 用于显示的临时头像
-              })
-              wx.hideLoading()
-              wx.showToast({
-                title: '头像上传成功',
-                icon: 'success'
-              })
-            } else {
-              wx.hideLoading()
-              wx.showToast({
-                title: '头像上传失败',
-                icon: 'none'
-              })
-            }
+      success: (fileInfo) => {
+        // 文件大小限制为2MB
+        if (fileInfo.size > 2 * 1024 * 1024) {
+          wx.hideLoading()
+          wx.showToast({
+            title: '图片大小不能超过2MB',
+            icon: 'none'
+          })
+          return
+        }
+        
+        // 将图片转为 base64
+        wx.getFileSystemManager().readFile({
+          filePath: tempFilePath,
+          encoding: 'base64',
+          success: (res) => {
+            // 上传到服务器
+            wx.request({
+              url: `${config.baseURL}/knowledge/upload/base64`,
+              method: 'POST',
+              header: {
+                'content-type': 'application/json'
+              },
+              data: {
+                data: res.data,
+                moduleType: 2001
+              },
+              success: (uploadRes) => {
+                if (uploadRes.data.code === 200) {
+                  this.setData({
+                    avatarUrl: uploadRes.data.data,
+                    tempAvatarUrl: tempFilePath
+                  })
+                  wx.hideLoading()
+                  wx.showToast({
+                    title: '头像上传成功',
+                    icon: 'success'
+                  })
+                } else {
+                  wx.hideLoading()
+                  wx.showToast({
+                    title: uploadRes.data.message || '头像上传失败',
+                    icon: 'none'
+                  })
+                }
+              },
+              fail: (err) => {
+                console.error('头像上传失败:', err)
+                wx.hideLoading()
+                wx.showToast({
+                  title: '头像上传失败，请重试',
+                  icon: 'none'
+                })
+              }
+            })
           },
           fail: (err) => {
-            console.error('头像上传失败:', err)
+            console.error('读取文件失败:', err)
             wx.hideLoading()
             wx.showToast({
-              title: '头像上传失败，请重试',
+              title: '头像处理失败，请重试',
               icon: 'none'
             })
           }
         })
       },
       fail: (err) => {
-        console.error('读取文件失败:', err)
+        console.error('获取文件信息失败:', err)
         wx.hideLoading()
         wx.showToast({
           title: '头像处理失败，请重试',
