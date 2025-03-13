@@ -41,6 +41,14 @@
       </view>
       <image class="arrow-icon" src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit" style="transform: rotate(180deg)"></image>
     </view>
+
+    <!-- 添加推广菜单项 -->
+    <view class="menu-item" bindtap="goToPromotion">
+      <view class="menu-title">
+        <text>添加推广</text>
+      </view>
+      <image class="arrow-icon" src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit" style="transform: rotate(180deg)"></image>
+    </view>
   </view>
 
   <!-- 添加退出登录按钮 -->

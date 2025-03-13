@@ -225,4 +225,10 @@ Page({
       }
     })
   },
+
+  goToPromotion() {
+    wx.navigateTo({
+      url: '/pages/promotion/promotion'
+    });
+  },
 })

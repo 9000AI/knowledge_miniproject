@@ -117,11 +117,9 @@ Page({
 
   // 跳转到详情页
   goToDetail: function(e) {
-    const id = e.currentTarget.dataset.id
-    // TODO: 实现跳转到详情页的逻辑
-    wx.showToast({
-      title: '详情页开发中',
-      icon: 'none'
-    })
+    const id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `/pages/program-detail/program-detail?id=${id}`
+    });
   }
 }) 

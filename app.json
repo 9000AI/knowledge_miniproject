@@ -17,7 +17,8 @@
     "pages/card-detail/card-detail",
     "pages/collection/collection",
     "pages/program/program",
-    "pages/my-course/my-course"
+    "pages/my-course/my-course",
+    "pages/promotion/promotion"
   ],
   "window": {
     "navigationStyle": "custom",

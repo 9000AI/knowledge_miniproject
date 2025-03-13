@@ -1,0 +1,30 @@
+<view class="promotion-container">
+  <!-- 背景图 -->
+  <image class="bg-image" src="https://mini.9000aigc.com/assets/images/R.png" mode="aspectFill"></image>
+  
+  <!-- 返回按钮 -->
+  <view class="back-btn" bindtap="goBack">
+    <image src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit"></image>
+  </view>
+
+  <!-- 主要内容区 -->
+  <view class="content">
+    <!-- 输入框 -->
+    <view class="input-box">
+      <input 
+        class="input" 
+        placeholder="请输入推广人视频号 ID" 
+        placeholder-class="placeholder"
+        value="{{promotionId}}"
+        bindinput="onInput"
+      />
+    </view>
+
+    <!-- 推广按钮 -->
+    <button 
+      class="promote-btn {{!promotionId ? 'disabled' : ''}}" 
+      bindtap="submitPromotion"
+      disabled="{{!promotionId}}"
+    >推广</button>
+  </view>
+</view> 
