@@ -70,5 +70,8 @@
   "lazyCodeLoading": "requiredComponents",
   "useExtendedLib": {
     "weui": true
-  }
+  },
+  "requiredPrivateInfos": [
+    "chooseLocation"
+  ]
 }
