@@ -86,4 +86,13 @@
 .promote-btn:active {
   transform: translateY(2rpx);
   box-shadow: 0 4rpx 8rpx rgba(59, 125, 255, 0.2);
+}
+
+.tip-text {
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  color: #666666;
+  text-align: center;
+  padding: 0 40rpx;
+  line-height: 1.5;
 } 

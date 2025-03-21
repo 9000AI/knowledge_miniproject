@@ -13,7 +13,7 @@
     <view class="input-box">
       <input 
         class="input" 
-        placeholder="请输入推广人视频号 ID" 
+        placeholder="请输入小店「带货者ID」或「视频号ID」" 
         placeholder-class="placeholder"
         value="{{promotionId}}"
         bindinput="onInput"
@@ -26,5 +26,10 @@
       bindtap="submitPromotion"
       disabled="{{!promotionId}}"
     >推广</button>
+
+    <!-- 提示文案 -->
+    <view class="tip-text">
+      温馨提示：若视频号未开通橱窗功能，请填写小店带货者ID
+    </view>
   </view>
 </view> 
