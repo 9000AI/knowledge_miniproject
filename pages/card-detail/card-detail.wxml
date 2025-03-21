@@ -50,6 +50,13 @@
             <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
           </view>
         </view>
+        <view class="info-item" bindtap="handleEdit" data-field="location">
+          <text class="label">我的位置</text>
+          <view class="value-container">
+            <text class="value">{{userProfile.location || '未设置'}}</text>
+            <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
+          </view>
+        </view>
       </view>
     </view>
 
@@ -57,10 +64,38 @@
     <view class="section">
       <view class="section-title">地址信息</view>
       <view class="info-list">
-        <view class="info-item" bindtap="handleEditAddress" data-type="region">
-          <text class="label">所在地区</text>
+        <view class="info-item" bindtap="handleEdit" data-field="address.name">
+          <text class="label">收货人</text>
           <view class="value-container">
-            <text class="value">{{userProfile.address.province}} {{userProfile.address.city}} {{userProfile.address.district}}</text>
+            <text class="value">{{userProfile.address.name || '未设置'}}</text>
+            <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
+          </view>
+        </view>
+        <view class="info-item" bindtap="handleEdit" data-field="address.phone">
+          <text class="label">联系电话</text>
+          <view class="value-container">
+            <text class="value">{{userProfile.address.phone || '未设置'}}</text>
+            <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
+          </view>
+        </view>
+        <view class="info-item" bindtap="handleEdit" data-field="address.province">
+          <text class="label">省份</text>
+          <view class="value-container">
+            <text class="value">{{userProfile.address.province || '未设置'}}</text>
+            <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
+          </view>
+        </view>
+        <view class="info-item" bindtap="handleEdit" data-field="address.city">
+          <text class="label">城市</text>
+          <view class="value-container">
+            <text class="value">{{userProfile.address.city || '未设置'}}</text>
+            <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
+          </view>
+        </view>
+        <view class="info-item" bindtap="handleEdit" data-field="address.district">
+          <text class="label">区/县</text>
+          <view class="value-container">
+            <text class="value">{{userProfile.address.district || '未设置'}}</text>
             <image class="edit-icon" src="https://mini.9000aigc.com/assets/images/编辑.png" mode="aspectFit"></image>
           </view>
         </view>

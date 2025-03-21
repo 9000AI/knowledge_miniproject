@@ -64,9 +64,25 @@ Page({
       },
       success: (res) => {
         if (res.data.code === 200) {
+          // 确保address对象存在
+          const userData = res.data.data;
+          if (!userData.address) {
+            userData.address = {
+              name: '',
+              phone: '',
+              province: '',
+              city: '',
+              district: '',
+              address: ''
+            };
+          }
+          // 确保location字段存在
+          if (!userData.location) {
+            userData.location = '';
+          }
           this.setData({
-            userProfile: res.data.data,
-            selectedLabels: res.data.data.labels?.map(label => label.code) || []
+            userProfile: userData,
+            selectedLabels: userData.labels?.map(label => label.code) || []
           })
         } else {
           wx.showToast({
@@ -116,6 +132,10 @@ Page({
         title = '职位'
         value = this.data.userProfile.position || ''
         break
+      case 'location':
+        title = '我的位置'
+        value = this.data.userProfile.location || ''
+        break
       case 'about':
         title = '个人介绍'
         value = this.data.userProfile.about || ''
@@ -127,6 +147,26 @@ Page({
       case 'demands':
         title = '需求'
         value = this.data.userProfile.demands || ''
+        break
+      case 'address.name':
+        title = '收货人'
+        value = this.data.userProfile.address?.name || ''
+        break
+      case 'address.phone':
+        title = '联系电话'
+        value = this.data.userProfile.address?.phone || ''
+        break
+      case 'address.province':
+        title = '省份'
+        value = this.data.userProfile.address?.province || ''
+        break
+      case 'address.city':
+        title = '城市'
+        value = this.data.userProfile.address?.city || ''
+        break
+      case 'address.district':
+        title = '区/县'
+        value = this.data.userProfile.address?.district || ''
         break
       case 'address.address':
         title = '详细地址'
@@ -156,26 +196,6 @@ Page({
     })
   },
 
-  // 处理地址编辑
-  handleEditAddress(e) {
-    const type = e.currentTarget.dataset.type
-    if (type === 'region') {
-      wx.chooseLocation({
-        success: (res) => {
-          // 更新地址信息
-          const userProfile = this.data.userProfile
-          if (!userProfile.address) {
-            userProfile.address = {}
-          }
-          userProfile.address.province = res.address.split('省')[0] + '省'
-          userProfile.address.city = res.address.split('市')[0].split('省')[1] + '市'
-          userProfile.address.district = res.address.split('区')[0].split('市')[1] + '区'
-          this.setData({ userProfile })
-        }
-      })
-    }
-  },
-
   // 处理输入变化
   handleInputChange(e) {
     this.setData({
@@ -191,7 +211,15 @@ Page({
     if (currentField.includes('.')) {
       const [parent, child] = currentField.split('.')
       if (!userProfile[parent]) {
-        userProfile[parent] = {}
+        // 初始化父对象
+        userProfile[parent] = {
+          name: '',
+          phone: '',
+          province: '',
+          city: '',
+          district: '',
+          address: ''
+        }
       }
       userProfile[parent][child] = editValue
     } else {
@@ -269,20 +297,24 @@ Page({
     })
 
     // 构建请求数据
-    const { userProfile } = this.data
     const requestData = {
       userId: userInfo.id,
-      realName: userProfile.realName,
-      company: userProfile.company,
-      position: userProfile.position,
-      about: userProfile.about,
-      shareableResources: userProfile.shareableResources,
-      demands: userProfile.demands,
-      labels: userProfile.labels?.map(label => label.code) || [],
-      province: userProfile.address?.province,
-      city: userProfile.address?.city,
-      district: userProfile.address?.district,
-      address: userProfile.address?.address
+      realName: this.data.userProfile.realName || '',
+      company: this.data.userProfile.company || '',
+      position: this.data.userProfile.position || '',
+      email: this.data.userProfile.email || '',
+      about: this.data.userProfile.about || '',
+      location: this.data.userProfile.location || '',
+      labels: this.data.userProfile.labels?.map(label => label.code) || [],
+      shareableResources: this.data.userProfile.shareableResources || '',
+      demands: this.data.userProfile.demands || '',
+      // 确保地址字段都有默认值
+      name: this.data.userProfile.address?.name || '',
+      phone: this.data.userProfile.address?.phone || '',
+      province: this.data.userProfile.address?.province || '',
+      city: this.data.userProfile.address?.city || '',
+      district: this.data.userProfile.address?.district || '',
+      address: this.data.userProfile.address?.address || ''
     }
 
     wx.request({
@@ -294,7 +326,6 @@ Page({
       },
       success: (res) => {
         if (res.data.code === 200) {
-          wx.hideLoading()
           wx.showToast({
             title: '保存成功',
             icon: 'success',
@@ -303,7 +334,6 @@ Page({
             success: () => {
               // 延迟返回，让用户看到成功提示
               setTimeout(() => {
-                // 返回上一页（用户页面）
                 wx.navigateBack({
                   delta: 1
                 })
@@ -311,22 +341,21 @@ Page({
             }
           })
         } else {
-          wx.hideLoading()
           wx.showToast({
             title: res.data.message || '保存失败',
-            icon: 'none',
-            duration: 2000
+            icon: 'none'
           })
         }
       },
       fail: (err) => {
-        console.error('保存失败:', err)
-        wx.hideLoading()
+        console.error('保存用户资料失败:', err)
         wx.showToast({
-          title: '网络错误，请重试',
-          icon: 'none',
-          duration: 2000
+          title: '保存失败',
+          icon: 'none'
         })
+      },
+      complete: () => {
+        wx.hideLoading()
       }
     })
   }
