@@ -3,7 +3,6 @@
     "pages/auth/auth",
     "pages/register/register",
     "pages/index/index",
-    "pages/course/course",
     "pages/fire/fire",
     "pages/more/more",
     "pages/user/user",
@@ -11,13 +10,10 @@
     "pages/category-articles/category-articles",
     "pages/article-detail/article-detail",
     "pages/search/search",
-    "pages/lesson/lesson",
-    "pages/video/video",
     "pages/member-detail/member-detail",
     "pages/card-detail/card-detail",
     "pages/collection/collection",
     "pages/program/program",
-    "pages/my-course/my-course",
     "pages/promotion/promotion"
   ],
   "window": {
@@ -43,12 +39,6 @@
         "iconPath": "static/tabbar/communicate.png",
         "selectedIconPath": "static/tabbar/communicate-active.png",
         "text": "做项目"
-      },
-      {
-        "pagePath": "pages/course/course",
-        "iconPath": "static/tabbar/document.png",
-        "selectedIconPath": "static/tabbar/document-active.png",
-        "text": "看课程"
       },
       {
         "pagePath": "pages/fire/fire",

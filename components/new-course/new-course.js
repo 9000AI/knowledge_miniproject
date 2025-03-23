@@ -1,9 +1,0 @@
-Component({
-    properties: {
-    },
-    data: {
-    },
-    methods: {
-    }
-  })
-  
