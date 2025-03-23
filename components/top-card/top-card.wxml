@@ -6,13 +6,7 @@
         src="{{item.image}}" 
         mode="aspectFill"
       />
-      <view class="play-circle">
-        <image 
-          class="play-icon" 
-          src="https://miniknowledge.9000aigc.com/assets/images/播放 (1).png" 
-          mode="aspectFit"
-        />
-      </view>
+     
       <view class="card-title" wx:if="{{item.title}}">{{item.title}}</view>
     </view>
   </block>
