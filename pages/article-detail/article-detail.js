@@ -10,6 +10,13 @@ Page({
     isCollected: false,
     title: '',
     fromCollection: false,
+    isMemberOnly: false,
+    isLoggedIn: false,
+    showLoginButton: false,
+    userType: null,
+    isUnlocked: false,
+    buttonText: '登录账号，阅读完整内容',
+    showQrcodeModal: false
   },
 
   onLoad(options) {
@@ -19,33 +26,52 @@ Page({
       id: options.id,
       fromCollection: options.from === 'collection'
     });
+    this.checkLoginStatus();
     this.fetchArticleDetail();
+  },
+
+  checkLoginStatus() {
+    const token = wx.getStorageSync('token');
+    const userInfo = wx.getStorageSync('userInfo');
+    const userType = wx.getStorageSync('userType');
+    
+    this.setData({
+      isLoggedIn: !!(token && userInfo),
+      userType: userType || null
+    });
   },
 
   fetchArticleDetail() {
     const token = wx.getStorageSync('token');
     const userInfo = wx.getStorageSync('userInfo');
 
-    if (!token || !userInfo) {
-      wx.navigateTo({ url: '/pages/auth/auth' });
-      return;
-    }
-
     wx.request({
       url: `${config.baseURL}/knowledge/article/${this.data.id}`,
       method: 'GET',
-      data: { userId: userInfo.id },
-      header: { 'Authorization': `Bearer ${token}` },
+      data: userInfo ? { userId: userInfo.id } : {},
+      header: token ? { 'Authorization': `Bearer ${token}` } : {},
       success: (res) => {
         if (res.data.code === 200 && res.data.data) {
           let content = res.data.data.content;
           content = this.processRichTextContent(content);
           
+          // 打印isUnlocked的值
+          console.log('文章解锁状态 isUnlocked:', res.data.data.isUnlocked);
+          
+          // 根据登录状态、会员限制和是否解锁来决定是否显示登录按钮
+          const isUnlocked = res.data.data.isUnlocked || false;
+          const showLoginButton = (!this.data.isLoggedIn || (this.data.isLoggedIn && !isUnlocked));
+          const buttonText = this.data.isLoggedIn ? (isUnlocked ? '' : '加入会员查看更多') : '登录账号，阅读完整内容';
+          
           this.setData({
             content,
             loading: false,
             title: res.data.data.title || '文章详情',
-            isCollected: this.data.fromCollection ? true : (res.data.data.isCollected || false)
+            isCollected: this.data.fromCollection ? true : (res.data.data.isCollected || false),
+            isMemberOnly: res.data.data.isMemberOnly || false,
+            isUnlocked: isUnlocked,
+            showLoginButton,
+            buttonText
           });
         }
       },
@@ -56,6 +82,34 @@ Page({
     });
   },
 
+  // 处理登录按钮点击
+  handleLogin() {
+    // 如果已登录但文章未解锁，显示客服二维码模态框
+    if (this.data.isLoggedIn && !this.data.isUnlocked) {
+      this.setData({
+        showQrcodeModal: true
+      });
+    } else {
+      // 未登录用户跳转到登录页
+      wx.navigateTo({
+        url: '/pages/auth/auth'
+      });
+    }
+  },
+  
+  // 关闭二维码模态框
+  closeQrcodeModal() {
+    this.setData({
+      showQrcodeModal: false
+    });
+  },
+  
+  // 阻止事件冒泡
+  stopPropagation() {
+    // 仅用于阻止事件冒泡
+    return;
+  },
+
   processRichTextContent(html) {
     // 如果是完整的HTML文档，提取body中的内容
     if (html.includes('<!DOCTYPE html>') || html.includes('<html')) {
@@ -64,38 +118,6 @@ Page({
         html = bodyMatch[1].trim();
       }
     }
-
-    // 处理图片样式
-    html = html.replace(/<img[^>]*>/gi, (match) => {
-      const style = 'max-width:100%;height:auto;display:block;margin:20rpx auto;';
-      if (match.indexOf('style=') === -1) {
-        return match.replace(/<img/i, `<img style="${style}"`);
-      } else {
-        return match.replace(/style="([^"]*)"/i, `style="$1;${style}"`);
-      }
-    });
-
-    // 处理标题样式
-    html = html.replace(/<h([1-6])[^>]*>/gi, (match, level) => {
-      const fontSize = {
-        1: '24px',
-        2: '20px',
-        3: '18px',
-        4: '16px',
-        5: '14px',
-        6: '12px'
-      }[level];
-      return `<h${level} style="font-size:${fontSize};font-weight:bold;margin:20rpx 0;">`;
-    });
-
-    // 处理段落样式
-    html = html.replace(/<p[^>]*>/gi, '<p style="margin:16rpx 0;line-height:1.6;">');
-
-    // 处理列表样式
-    html = html.replace(/<ul[^>]*>/gi, '<ul style="margin:16rpx 0;padding-left:32rpx;">');
-    html = html.replace(/<ol[^>]*>/gi, '<ol style="margin:16rpx 0;padding-left:32rpx;">');
-    html = html.replace(/<li[^>]*>/gi, '<li style="margin:8rpx 0;">');
-
     return html;
   },
 
@@ -180,5 +202,10 @@ Page({
         });
       }
     });
+  },
+
+  // 在页面显示时检查登录状态
+  onShow() {
+    this.checkLoginStatus();
   },
 }); 

@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/auth/auth",
     "pages/register/register",
-    "pages/index/index",
+    "pages/program/program",
     "pages/fire/fire",
     "pages/more/more",
     "pages/user/user",
@@ -13,8 +14,12 @@
     "pages/member-detail/member-detail",
     "pages/card-detail/card-detail",
     "pages/collection/collection",
-    "pages/program/program",
-    "pages/promotion/promotion"
+    "pages/promotion/promotion",
+    "pages/course/course",
+    "pages/lesson/lesson",
+    "pages/my-course/my-course",
+    "pages/video/video",
+    "pages/member-card-list/member-card-list"
   ],
   "window": {
     "navigationStyle": "custom",
@@ -39,6 +44,12 @@
         "iconPath": "static/tabbar/communicate.png",
         "selectedIconPath": "static/tabbar/communicate-active.png",
         "text": "做项目"
+      },
+      {
+        "pagePath": "pages/course/course",
+        "iconPath": "static/tabbar/document.png",
+        "selectedIconPath": "static/tabbar/document-active.png",
+        "text": "进课程"
       },
       {
         "pagePath": "pages/fire/fire",

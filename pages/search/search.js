@@ -17,6 +17,7 @@ Page({
       3: [], // 行业标签
       4: []  // 来源标签
     },
+    selectedFilterNames: {}, // 用于存储每种类型筛选器的选中值名称
     articles: [], // 添加文章列表数据
     hasMore: true,
     lastId: '',
@@ -36,14 +37,6 @@ Page({
 
   // 获取标签数据
   fetchTags() {
-    const token = wx.getStorageSync('token');
-    const userInfo = wx.getStorageSync('userInfo');
-
-    if (!token || !userInfo) {
-      wx.navigateTo({ url: '/pages/auth/auth' });
-      return;
-    }
-
     wx.request({
       url: `${config.baseURL}/knowledge/tag/page`,
       method: 'POST',
@@ -52,8 +45,7 @@ Page({
         size: 999
       },
       header: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Content-Type': 'application/json'
       },
       success: (res) => {
         if (res.data.code === 200) {
@@ -83,22 +75,27 @@ Page({
             });
           });
 
-          this.setData({ filterOptions });
+          this.setData({ 
+            filterOptions,
+            selectedFilterNames: {} // 初始化时重置所有选中的筛选值
+          });
         }
       },
       fail: (err) => {
         console.error('获取标签失败：', err);
+        wx.showToast({
+          title: '获取标签失败',
+          icon: 'none'
+        });
       }
     });
   },
 
   // 添加获取文章列表的方法
   fetchArticles() {
-    const token = wx.getStorageSync('token');
-    if (!token) {
-      wx.navigateTo({ url: '/pages/auth/auth' });
-      return;
-    }
+    if (this.data.loading) return;
+    
+    this.setData({ loading: true });
 
     const requestData = {
       lastId: this.data.lastId || "",
@@ -112,8 +109,7 @@ Page({
       method: 'POST',
       data: requestData,
       header: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Content-Type': 'application/json'
       },
       success: (res) => {
         if (res.data.code === 200) {
@@ -128,9 +124,18 @@ Page({
           this.setData({
             articles: this.data.articles.concat(newArticles),
             hasMore: res.data.data.hasMore,
-            lastId: res.data.data.lastId
+            lastId: res.data.data.lastId,
+            loading: false
           });
         }
+      },
+      fail: (err) => {
+        console.error('获取文章列表失败：', err);
+        this.setData({ loading: false });
+        wx.showToast({
+          title: '获取文章列表失败',
+          icon: 'none'
+        });
       }
     });
   },
@@ -177,17 +182,8 @@ Page({
       lastId: '', // 重置 lastId
     });
 
-    const token = wx.getStorageSync('token');
-    const userInfo = wx.getStorageSync('userInfo');
-
-    if (!token || !userInfo) {
-      wx.navigateTo({ url: '/pages/auth/auth' });
-      return;
-    }
-
     // 构建请求参数
     const requestData = {
-      userId: userInfo.id,
       lastId: this.data.lastId || "",
       limit: 999
     };
@@ -207,8 +203,7 @@ Page({
       method: 'POST',
       data: requestData,
       header: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Content-Type': 'application/json'
       },
       success: (res) => {
         if (res.data.code === 200) {
@@ -275,8 +270,23 @@ Page({
       }
     });
 
+    // 更新 selectedFilterNames，存储每种筛选类型的选中值
+    const selectedFilterNames = { ...this.data.selectedFilterNames };
+    
+    // 获取当前筛选类型选中的选项
+    const selectedOption = filterOptions[currentFilter].find(item => item.selected);
+    
+    // 如果选择的是"全部"或没有选中任何选项，清除对应类型的选中值
+    if (!selectedOption || selectedOption.id.startsWith('all_')) {
+      delete selectedFilterNames[currentFilter];
+    } else {
+      // 存储选中的选项名称
+      selectedFilterNames[currentFilter] = selectedOption.name;
+    }
+
     this.setData({
       filterOptions,
+      selectedFilterNames,
       showDropdown: false
     });
 

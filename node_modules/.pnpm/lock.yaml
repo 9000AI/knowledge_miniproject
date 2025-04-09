@@ -1,0 +1,47 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@vant/area-data':
+        specifier: ^2.0.0
+        version: 2.0.0
+      '@vant/weapp':
+        specifier: ^1.11.1
+        version: 1.11.7
+      miniprogram-api-promise:
+        specifier: ^1.0.4
+        version: 1.0.4
+    devDependencies:
+      miniprogram-api-typings:
+        specifier: ^4.0.5
+        version: 4.0.5
+
+packages:
+
+  '@vant/area-data@2.0.0':
+    resolution: {integrity: sha512-zgP4AA8z09S9QTNgVCCHo9cHjcybrv22RJDYPjuCkecn4SB98T5EoPQh2TwqbQXmUhbaOGgiZGy3OUaUxnY7qg==}
+
+  '@vant/weapp@1.11.7':
+    resolution: {integrity: sha512-Rwn9BBnb4kHSV4XmvBicwtd42J+amEUfnFDcXJsGNPNX4a9c/DoT6YLsm4X1wB2+sQbdiQsbFBLAvGRBxCkD8g==}
+
+  miniprogram-api-promise@1.0.4:
+    resolution: {integrity: sha512-lS2ukj03Ugy8IJUDmdssklLT4kjzyRtVYwErhyDZkzxtqcxaed2xldRgNrsikigeMUBR9gAs7wgnjSKPlyKIYg==}
+
+  miniprogram-api-typings@4.0.5:
+    resolution: {integrity: sha512-34pYYg4pwjsE752x/zs7QYLL0x0UGBL/IxTuVRRIXbFcv1msDRCWGyZK5KpsDm2P78Fdaw+B80B8R1qbvX6YhQ==}
+
+snapshots:
+
+  '@vant/area-data@2.0.0': {}
+
+  '@vant/weapp@1.11.7': {}
+
+  miniprogram-api-promise@1.0.4: {}
+
+  miniprogram-api-typings@4.0.5: {}

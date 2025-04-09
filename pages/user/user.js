@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isLoggedIn: false,
     userInfo: {
       avatar: '',
       nickname: '',
@@ -20,7 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.getUserInfo()
+    this.checkLoginStatus()
   },
 
   /**
@@ -34,9 +35,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.getUserInfo();
-    this.getCollectionCount(); // 获取收藏数量
-    this.getCourseCount();
+    this.checkLoginStatus()
   },
 
   /**
@@ -74,21 +73,52 @@ Page({
 
   },
 
+  checkLoginStatus() {
+    const userInfo = wx.getStorageSync('userInfo')
+    const token = wx.getStorageSync('token')
+    
+    if (userInfo && token) {
+      this.setData({ 
+        isLoggedIn: true,
+        userInfo 
+      })
+      this.getCollectionCount()
+      this.getCourseCount()
+    } else {
+      this.setData({ 
+        isLoggedIn: false,
+        userInfo: {
+          avatar: '',
+          nickname: '',
+          userType: 0
+        },
+        collectionCount: 0,
+        courseCount: 0
+      })
+    }
+  },
+
+  goToLogin() {
+    wx.navigateTo({
+      url: '/pages/auth/auth'
+    })
+  },
+
   getUserInfo() {
     const userInfo = wx.getStorageSync('userInfo')
     if (userInfo) {
       this.setData({ userInfo })
     } else {
-      wx.showToast({
-        title: '请先登录',
-        icon: 'none',
-        success: () => {
-          setTimeout(() => {
-            wx.redirectTo({
-              url: '/pages/auth/auth'
-            })
-          }, 1500)
+      this.setData({
+        userInfo: {
+          nickName: '未登录用户',
+          avatarUrl: '默认头像URL'
         }
+      })
+      wx.showToast({
+        title: '登录后享受更多功能',
+        icon: 'none',
+        duration: 2000
       })
     }
   },
@@ -96,10 +126,7 @@ Page({
   goToCardDetail() {
     const userInfo = wx.getStorageSync('userInfo')
     if (!userInfo) {
-      wx.showToast({
-        title: '请先登录',
-        icon: 'none'
-      })
+      this.goToLogin()
       return
     }
     wx.navigateTo({
@@ -108,7 +135,11 @@ Page({
   },
 
   goToCompleteProfile() {
-    // 跳转到资料完善页面
+    const userInfo = wx.getStorageSync('userInfo')
+    if (!userInfo) {
+      this.goToLogin()
+      return
+    }
     wx.navigateTo({
       url: '/pages/profile/profile'
     })
@@ -146,12 +177,8 @@ Page({
           duration: 2000
         })
 
-        // 延迟跳转到登录页
-        setTimeout(() => {
-          wx.reLaunch({
-            url: '/pages/auth/auth'
-          })
-        }, 1500)
+        // 更新页面状态为未登录
+        this.checkLoginStatus()
       },
       fail: (err) => {
         console.error('退出登录失败:', err)
@@ -172,7 +199,6 @@ Page({
     const userInfo = wx.getStorageSync('userInfo');
 
     if (!token || !userInfo) {
-      wx.navigateTo({ url: '/pages/auth/auth' });
       return;
     }
 
@@ -194,6 +220,11 @@ Page({
 
   // 跳转到收藏文章列表
   goToCollections() {
+    const userInfo = wx.getStorageSync('userInfo')
+    if (!userInfo) {
+      this.goToLogin()
+      return
+    }
     wx.navigateTo({
       url: '/pages/collection/collection'
     });
@@ -201,6 +232,11 @@ Page({
 
   // 跳转到我的课程页面
   goToMyCourse: function() {
+    const userInfo = wx.getStorageSync('userInfo')
+    if (!userInfo) {
+      this.goToLogin()
+      return
+    }
     wx.navigateTo({
       url: '/pages/my-course/my-course'
     })
@@ -209,6 +245,10 @@ Page({
   // 获取课程数量
   getCourseCount: function() {
     const token = wx.getStorageSync('token')
+    
+    if (!token) {
+      return;
+    }
     
     wx.request({
       url: 'http://192.168.1.93:8100/knowledge/user/courses/count',
@@ -227,6 +267,11 @@ Page({
   },
 
   goToPromotion() {
+    const userInfo = wx.getStorageSync('userInfo')
+    if (!userInfo) {
+      this.goToLogin()
+      return
+    }
     wx.navigateTo({
       url: '/pages/promotion/promotion'
     });

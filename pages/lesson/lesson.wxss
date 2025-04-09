@@ -1,0 +1,167 @@
+/* pages/lesson/lesson.wxss */
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: #f8f8f8;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  display: block; /* 改为块级布局，不使用flex */
+}
+
+/* 返回按钮 */
+.back-icon {
+  position: fixed;
+  left: 30rpx;
+  top: 80rpx; /* 适应状态栏高度 */
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: rgba(0,0,0,0.3);
+  border-radius: 50%;
+  z-index: 100;
+  font-size: 30rpx;
+}
+
+/* 课程信息头部 */
+.course-header {
+  position: relative;
+  width: 100%;
+  height: 450rpx; /* 增加高度 */
+  margin-top: -40px; /* 向上延伸覆盖状态栏 */
+  padding-top: 40px; /* 内部填充，确保内容不被状态栏遮挡 */
+}
+
+.course-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.course-info-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30rpx 20rpx;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: #fff;
+}
+
+.course-title-large {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.course-description {
+  font-size: 26rpx;
+  opacity: 0.9;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.title-bar {
+  width: 8rpx;
+  height: 32rpx;
+  background: #c5eb59;
+  margin-right: 16rpx;
+  border-radius: 4rpx;
+}
+
+.section-title text {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 课时列表样式 */
+.lesson-list {
+  padding: 20rpx;
+  margin-top: 0;
+  background: #fff;
+}
+
+.lesson-item {
+  display: flex;
+  background: #fff;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.05);
+}
+
+.lesson-left {
+  position: relative;
+  width: 240rpx;
+  height: 135rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.lesson-cover {
+  width: 100%;
+  height: 100%;
+}
+
+.play-icon, .lock-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.lesson-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.lesson-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lesson-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 加载状态样式 */
+.loading-status {
+  text-align: center;
+  padding: 20rpx;
+  color: #999;
+  font-size: 24rpx;
+  margin-top: 0;
+  background: #fff;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-more {
+  color: #999;
+} 

@@ -42,12 +42,20 @@
     "useCompilerPlugins": [
       "typescript"
     ],
-    "minifyWXSS": true
+    "minifyWXSS": true,
+    "compileWorklet": false,
+    "minifyWXML": true,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true
   },
   "condition": {},
   "editorSetting": {
     "tabIndent": "auto",
     "tabSize": 2
   },
-  "appid": "wx458d18f169943f65"
+  "appid": "wx458d18f169943f65",
+  "simulatorPluginLibVersion": {}
 }

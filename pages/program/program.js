@@ -19,56 +19,71 @@ Page({
 
   // 加载项目列表
   loadProjects: function(refresh = false) {
+    // 如果正在加载或者（不是刷新且没有更多数据）则返回
     if (this.data.loading || (!refresh && !this.data.hasMore)) return
     
     this.setData({ loading: true })
     
-    // 从本地存储获取token
-    const token = wx.getStorageSync('token')
-    
+    const requestData = {
+      pageSize: this.data.pageSize
+    };
+
+    // 只有在有 lastId 且不是刷新操作时才添加
+    if (this.data.lastId && !refresh) {
+      requestData.lastId = this.data.lastId;
+    }
+
+    if (this.data.searchText && this.data.searchText.trim()) {
+      requestData.title = this.data.searchText.trim();
+    }
+
+    console.log('发送请求数据:', requestData);  // 添加请求数据日志
+
     wx.request({
-      url: 'http://192.168.1.93:8100/knowledge/projects/scroll',
+      url: 'https://know-admin.9000aigc.com/knowledge/projects/scroll',
       method: 'POST',
+      data: requestData,
       header: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` // 添加token到请求头
-      },
-      data: {
-        lastId: refresh ? '' : this.data.lastId,
-        pageSize: this.data.pageSize,
-        title: this.data.searchText || undefined
+        'Content-Type': 'application/json'
       },
       success: (res) => {
-        if (res.data.code === 401) {
-          wx.showToast({
-            title: '登录已过期，请重新登录',
-            icon: 'none'
-          })
-          // 可以在这里跳转到登录页
-          wx.navigateTo({
-            url: '/pages/login/login'
-          })
-          return
-        }
+        console.log('项目列表响应:', res.data);  // 添加响应日志
+        
         if (res.data.code === 200) {
           const { list, hasMore, nextLastId } = res.data.data
           
           // 格式化时间
           const formattedList = list.map(item => ({
             ...item,
-            createTime: item.createTime.split('T')[0]
+            createTime: item.createTime ? item.createTime.split('T')[0] : ''
           }))
           
+          console.log('格式化后的列表:', formattedList);  // 添加格式化数据日志
+          
+          // 如果是刷新操作且列表为空，则显示暂无数据
+          if (refresh && formattedList.length === 0) {
+            this.setData({
+              projects: [],
+              hasMore: false,
+              lastId: '',
+              loading: false,
+              isRefreshing: false
+            })
+            return
+          }
+
+          // 正常设置数据
           this.setData({
             projects: refresh ? formattedList : [...this.data.projects, ...formattedList],
             hasMore,
-            lastId: nextLastId,
+            lastId: nextLastId || '',
             loading: false,
             isRefreshing: false
           })
         } else {
+          console.error('请求返回错误:', res.data);  // 添加错误响应日志
           wx.showToast({
-            title: '加载失败',
+            title: res.data.message || '加载失败',
             icon: 'none'
           })
           this.setData({
@@ -77,7 +92,8 @@ Page({
           })
         }
       },
-      fail: () => {
+      fail: (err) => {
+        console.error('请求失败:', err);  // 添加错误日志
         wx.showToast({
           title: '网络错误',
           icon: 'none'
@@ -93,13 +109,15 @@ Page({
   // 下拉刷新
   onRefresh: function() {
     this.setData({
-      isRefreshing: true
+      isRefreshing: true,
+      lastId: '', // 重置 lastId
     })
     this.loadProjects(true)
   },
 
   // 加载更多
   loadMore: function() {
+    if (!this.data.hasMore) return
     this.loadProjects()
   },
 

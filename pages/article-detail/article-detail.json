@@ -1,5 +1,7 @@
 {
   "navigationStyle": "custom",
-  "usingComponents": {},
+  "usingComponents": {
+    "mp-html": "mp-html"
+  },
   "enablePullDownRefresh": false
 } 

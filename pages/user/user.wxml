@@ -1,56 +1,60 @@
 <!--pages/user/user.wxml-->
 <view class="user-container">
-  <!-- 用户信息卡片 -->
-  <view class="user-card">
-    <view class="user-info">
-      <!-- 头像 -->
-      <image class="avatar" src="{{userInfo.avatar}}" mode="aspectFill"></image>
-      
-      <!-- 用户信息 -->
-      <view class="info-right">
-        <!-- 昵称 -->
-        <text class="nickname">{{userInfo.nickname}}</text>
+  <block wx:if="{{!isLoggedIn}}">
+    <view class="login-container">
+      <image class="login-image" src="https://miniknowledge.9000aigc.com/assets/icons/login-placeholder.png" mode="aspectFit"></image>
+      <view class="login-text">登录后即可查看我的信息</view>
+      <view class="login-btn" bindtap="goToLogin">立即登录</view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <!-- 用户信息卡片 -->
+    <view class="user-card">
+      <view class="user-info">
+        <!-- 头像 -->
+        <image class="avatar" src="{{userInfo.avatar}}" mode="aspectFill"></image>
         
-        <!-- 会员类型标签 -->
-        <view class="member-tag {{userInfo.userType === 1 ? 'vip' : ''}}">
-          {{userInfo.userType === 1 ? 'VIP会员' : '普通会员'}}
+        <!-- 用户信息 -->
+        <view class="info-right">
+          <!-- 昵称 -->
+          <text class="nickname">{{userInfo.nickname}}</text>
+          
+          <!-- 会员类型标签 -->
+          <view class="member-tag {{userInfo.userType === 1 ? 'vip' : ''}}">
+            {{userInfo.userType === 1 ? 'VIP会员' : '普通会员'}}
+          </view>
         </view>
       </view>
     </view>
-  </view>
 
-  <!-- 功能菜单卡片 -->
-  <view class="menu-card">
-    <view class="menu-item" bindtap="goToCardDetail">
-      <view class="menu-title">
-        <text>我的名片</text>
+    <!-- 功能菜单卡片 -->
+    <view class="menu-card">
+      <view class="menu-item" bindtap="goToCardDetail">
+        <view class="menu-title">
+          <text>我的名片</text>
+        </view>
+        <image class="arrow-icon" src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit" style="transform: rotate(180deg)"></image>
       </view>
-      <image class="arrow-icon" src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit" style="transform: rotate(180deg)"></image>
-    </view>
-    <view class="menu-item" bindtap="goToCollections">
-      <view class="menu-title">
-        <text>收藏文章</text>
-        <text class="collection-count" wx:if="{{collectionCount > 0}}">{{collectionCount}}</text>
+      <view class="menu-item" bindtap="goToCollections">
+        <view class="menu-title">
+          <text>收藏文章</text>
+          <text class="collection-count" wx:if="{{collectionCount > 0}}">{{collectionCount}}</text>
+        </view>
+        <image class="arrow-icon" src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit" style="transform: rotate(180deg)"></image>
       </view>
-      <image class="arrow-icon" src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit" style="transform: rotate(180deg)"></image>
-    </view>
-    <view class="menu-item" bindtap="goToMyCourse">
-      <view class="menu-title">
-        <text>我的课程</text>
-        <text class="course-count" wx:if="{{courseCount > 0}}">{{courseCount}}</text>
+     
+
+      <!-- 添加推广菜单项 -->
+      <view class="menu-item" bindtap="goToPromotion">
+        <view class="menu-title">
+          <text>添加推广</text>
+        </view>
+        <image class="arrow-icon" src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit" style="transform: rotate(180deg)"></image>
       </view>
-      <image class="arrow-icon" src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit" style="transform: rotate(180deg)"></image>
     </view>
 
-    <!-- 添加推广菜单项 -->
-    <view class="menu-item" bindtap="goToPromotion">
-      <view class="menu-title">
-        <text>添加推广</text>
-      </view>
-      <image class="arrow-icon" src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit" style="transform: rotate(180deg)"></image>
-    </view>
-  </view>
-
-  <!-- 添加退出登录按钮 -->
-  <view class="logout-btn" bindtap="handleLogout">退出登录</view>
+    <!-- 添加退出登录按钮 -->
+    <view class="logout-btn" bindtap="handleLogout">退出登录</view>
+  </block>
 </view>

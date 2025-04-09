@@ -128,6 +128,10 @@
   background: #f8f8f8;
   border-radius: 26rpx;
   transition: all 0.3s;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 200rpx; /* 防止文字过长 */
 }
 
 .filter-tag.active {
@@ -135,11 +139,19 @@
   background: rgba(221,255,129,0.4);
 }
 
+/* 增加选中值的特殊样式 */
+.filter-tag.has-selected-value {
+  color: #73B100;
+  background: rgba(221,255,129,0.4);
+  font-weight: 500;
+}
+
 .arrow-icon {
   width: 24rpx;
   height: 24rpx;
   margin-left: 8rpx;
   transition: transform 0.3s;
+  flex-shrink: 0; /* 防止图标被压缩 */
 }
 
 .filter-tag.active .arrow-icon {

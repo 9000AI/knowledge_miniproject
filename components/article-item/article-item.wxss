@@ -29,7 +29,7 @@
 
 .article-image {
     width: 180rpx; /* 设置封面图宽度 */
-    height: 100rpx; /* 设置封面图高度 */
+    height: 120rpx; /* 设置封面图高度 (3:2 比例) */
     border-radius: 8rpx; /* 圆角 */
     object-fit: cover; /* 保持比例 */
     margin-right: 10rpx; /* 右边距 */

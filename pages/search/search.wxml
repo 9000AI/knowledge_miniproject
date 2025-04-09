@@ -24,30 +24,30 @@
     <!-- 一级筛选标签 -->
     <scroll-view scroll-x class="filter-scroll">
       <view class="filter-tags">
-        <view class="filter-tag {{currentFilter === '1' ? 'active' : ''}}" 
+        <view class="filter-tag {{currentFilter === '1' ? 'active' : ''}} {{selectedFilterNames['1'] ? 'has-selected-value' : ''}}" 
               bindtap="toggleDropdown" data-type="1">
-          平台
+          {{selectedFilterNames['1'] || '平台'}}
           <image class="arrow-icon" 
                  src="{{currentFilter === '1' ? 'https://mini.9000aigc.com/assets/icons/down (4).png' : 'https://mini.9000aigc.com/assets/icons/down (3).png'}}" 
                  mode="aspectFit"></image>
         </view>
-        <view class="filter-tag {{currentFilter === '2' ? 'active' : ''}}" 
+        <view class="filter-tag {{currentFilter === '2' ? 'active' : ''}} {{selectedFilterNames['2'] ? 'has-selected-value' : ''}}" 
               bindtap="toggleDropdown" data-type="2">
-          流量形态
+          {{selectedFilterNames['2'] || '流量形态'}}
           <image class="arrow-icon" 
                  src="{{currentFilter === '2' ? 'https://mini.9000aigc.com/assets/icons/down (4).png' : 'https://mini.9000aigc.com/assets/icons/down (3).png'}}" 
                  mode="aspectFit"></image>
         </view>
-        <view class="filter-tag {{currentFilter === '3' ? 'active' : ''}}" 
+        <view class="filter-tag {{currentFilter === '3' ? 'active' : ''}} {{selectedFilterNames['3'] ? 'has-selected-value' : ''}}" 
               bindtap="toggleDropdown" data-type="3">
-          行业
+          {{selectedFilterNames['3'] || '行业'}}
           <image class="arrow-icon" 
                  src="{{currentFilter === '3' ? 'https://mini.9000aigc.com/assets/icons/down (4).png' : 'https://mini.9000aigc.com/assets/icons/down (3).png'}}" 
                  mode="aspectFit"></image>
         </view>
-        <view class="filter-tag {{currentFilter === '4' ? 'active' : ''}}" 
+        <view class="filter-tag {{currentFilter === '4' ? 'active' : ''}} {{selectedFilterNames['4'] ? 'has-selected-value' : ''}}" 
               bindtap="toggleDropdown" data-type="4">
-          来源
+          {{selectedFilterNames['4'] || '来源'}}
           <image class="arrow-icon" 
                  src="{{currentFilter === '4' ? 'https://mini.9000aigc.com/assets/icons/down (4).png' : 'https://mini.9000aigc.com/assets/icons/down (3).png'}}" 
                  mode="aspectFit"></image>

@@ -93,6 +93,18 @@
   margin-bottom: 40rpx;
 }
 
+.skip-btn {
+  width: 80% !important;
+  height: 88rpx;
+  line-height: 54rpx;
+  background: #ffffff;
+  color: #666666;
+  font-size: 32rpx;
+  border-radius: 18rpx;
+  margin-bottom: 40rpx;
+  border: 1px solid #dddddd;
+}
+
 .agreement {
   display: flex;
   align-items: center;

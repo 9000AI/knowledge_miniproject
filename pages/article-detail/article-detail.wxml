@@ -19,7 +19,24 @@
 
   <!-- 文章内容 -->
   <view wx:else class="content" style="padding-top: {{statusBarHeight + navBarHeight}}px;">
-    <rich-text nodes="{{content}}"></rich-text>
+    <mp-html content="{{content}}" />
+    
+    <!-- 登录按钮 -->
+    <view wx:if="{{showLoginButton}}" class="login-button-container">
+      <button class="login-button" bindtap="handleLogin">
+        {{buttonText}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 客服二维码模态框 -->
+  <view class="qrcode-modal" wx:if="{{showQrcodeModal}}" bindtap="closeQrcodeModal">
+    <view class="qrcode-container" catchtap="stopPropagation">
+      <view class="qrcode-title">联系客服开通会员</view>
+      <image src="https://mini.9000aigc.com/assets/images/kefu.png" mode="aspectFit" class="qrcode-image" show-menu-by-longpress="true"></image>
+      <view class="qrcode-tips">长按识别二维码添加客服</view>
+
+    </view>
   </view>
 
   <!-- 固定底部栏 -->

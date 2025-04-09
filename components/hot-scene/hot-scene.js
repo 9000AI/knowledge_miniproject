@@ -12,16 +12,11 @@ Component({
 
   methods: {
     fetchCategories() {
-      const token = wx.getStorageSync('token') || '';
-      
       // 使用 Promise 方式处理请求
       new Promise((resolve, reject) => {
         wx.request({
           url: 'https://know-admin.9000aigc.com/knowledge/category/first-level',
           method: 'GET',
-          header: {
-            'Authorization': token ? `Bearer ${token}` : ''
-          },
           success: (res) => {
             resolve(res.data);
           },

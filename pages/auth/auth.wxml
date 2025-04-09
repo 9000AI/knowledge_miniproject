@@ -7,8 +7,12 @@
   <view class="auth-content">
     <view class="title">欢迎使用科技流量第一站</view>
     
+    <button class="skip-btn" bindtap="handleSkipLogin">
+      暂不登录，先去看看
+    </button>
+
     <button class="auth-btn" bindtap="handleWxLogin">
-      一键登录
+      登录体验更多功能
     </button>
 
     <!-- 注册入口 -->

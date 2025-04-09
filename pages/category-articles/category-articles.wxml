@@ -3,8 +3,8 @@
   <view class="gradient-header"></view>
   
   <!-- 自定义导航栏 -->
-  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
-    <view class="nav-content">
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px; ">
+    <view class="nav-content" style="height: {{navBarHeight}}px;">
       <view class="back-icon" bindtap="handleBack">
         <image src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit"></image>
       </view>
@@ -27,24 +27,56 @@
     </view>
   </view>
   
-  <!-- 内容区域 -->
-  <view class="content" style="padding-top: {{statusBarHeight + navBarHeight + 60}}px;">
-    <view class="article-container">
-      <view wx:for="{{articles}}" 
-            wx:key="id" 
-            class="article-item"
-            bindtap="onArticleTap"
-            data-index="{{index}}">
-        <image class="article-image" src="{{item.coverImage}}" mode="aspectFill"></image>
-        <view class="article-content">
-          <view class="article-title">{{item.title}}</view>
-          <text class="article-time">{{item.createTime}}</text>
+  <!-- 主要内容区域 (左右布局) -->
+  <view class="main-content" style="padding-top: {{statusBarHeight + navBarHeight + 60}}px;">
+    <!-- 左侧面板 -->
+    <view class="left-panel">
+      <scroll-view scroll-y="true" class="left-scroll" style="height: {{scrollHeight}}px;">
+        <view wx:for="{{leftList}}" wx:key="id"
+              class="left-item {{item.id === currentLeftId ? 'active' : ''}}"
+              bindtap="onLeftItemTap" data-id="{{item.id}}">
+          {{item.name}}
         </view>
-      </view>
+      </scroll-view>
     </view>
 
-    <view wx:if="{{hasMore}}" bindtap="loadMore" class="load-more">
-      {{loading ? '加载中...' : '加载更多...'}}
+    <!-- 右侧面板 -->
+    <view class="right-panel">
+      <scroll-view scroll-y="true" class="right-scroll" style="height: {{scrollHeight}}px;" bindscrolltolower="loadMore">
+        <!-- 标签区域 -->
+        <view class="tags-container" wx:if="{{currentTags.length > 0}}">
+          <block wx:for="{{currentTags}}" wx:key="id">
+            <view wx:if="{{item.id !== 'all' || articles.length > 0}}"
+                  class="tag-item {{item.id === currentTagId ? 'active' : ''}}"
+                  bindtap="onTagTap"
+                  data-id="{{item.id}}">
+              {{item.name}}
+            </view>
+          </block>
+        </view>
+
+        <!-- 文章列表区域 -->
+        <view class="article-container">
+          <view wx:for="{{articles}}"
+                wx:key="id"
+                class="article-item"
+                bindtap="onArticleTap"
+                data-index="{{index}}">
+            <image class="article-image" src="{{item.coverImage}}" mode="aspectFill"></image>
+            <view class="article-content">
+              <view class="article-title">{{item.title}}</view>
+              <text class="article-time">{{item.createTime}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 加载更多/无数据提示 -->
+        <view wx:if="{{loading}}" class="load-more">加载中...</view>
+        <view wx:elif="{{hasMore}}" class="load-more">上拉加载更多...</view>
+        <view wx:elif="{{articles.length > 0 && !hasMore}}" class="load-more">没有更多了</view>
+        <view wx:if="{{articles.length === 0 && !loading}}" class="empty-tip">暂无相关文章</view>
+
+      </scroll-view>
     </view>
   </view>
 </view> 

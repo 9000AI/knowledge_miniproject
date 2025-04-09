@@ -1,0 +1,38 @@
+<view class="prime-course">
+  <!-- 标题区域 -->
+  <view class="section-title">
+    <view class="title-bar"></view>
+    <text>精华课程</text>
+  </view>
+
+  <!-- 课程卡片网格 -->
+  <view class="course-list">
+    <view class="course-card" 
+          wx:for="{{courses}}" 
+          wx:key="id"
+          bindtap="navigateToLesson"
+          data-id="{{item.id}}"
+          data-title="{{item.title}}"
+          data-cover="{{item.coverImage}}"
+          data-desc="{{item.description}}"
+          data-teacher="{{item.teacherInfo}}">
+      <view class="course-left">
+        <image class="course-image" src="{{item.coverImage}}" mode="aspectFill"></image>
+      </view>
+      <view class="course-right">
+        <view class="title-row">
+          <view class="vip-badge">会员免费</view>
+          <view class="course-title">{{item.title}}</view>
+        </view>
+        <view class="course-desc">{{item.description || '暂无描述'}}</view>
+        <view class="course-teacher">讲师：{{item.teacherInfo || '未知'}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-status">
+    <view wx:if="{{loading}}" class="loading">加载中...</view>
+    <view wx:elif="{{!hasMore}}" class="no-more">没有更多了</view>
+  </view>
+</view>

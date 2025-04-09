@@ -211,51 +211,54 @@ Page({
         console.log('登录请求响应:', res.data)
         
         if (res.data.code === 200) {
-          const { data } = res.data
+          const userInfo = res.data.data;
           
-          if (data.needReg) {
-            console.log('用户未注册，需要获取手机号')
-            // 弹出获取手机号授权按钮
+          // 判断是否需要注册
+          if (userInfo.needReg === true) {
+            // 显示需要注册的提示
             wx.showModal({
               title: '提示',
-              content: '需要获取您的手机号完成注册',
+              content: '您还未注册，需要完成注册才能使用更多功能',
+              confirmText: '立即注册',
+              cancelText: '暂不注册',
               success: (res) => {
                 if (res.confirm) {
-                  // 打开获取手机号界面
-                  this.getPhoneNumber()
+                  // 用户点击立即注册，跳转到注册页面
+                  this.goToRegister();
+                } else {
+                  // 用户选择暂不注册，可以返回上一页或留在当前页面
+                  wx.showToast({
+                    title: '您可以稍后再注册',
+                    icon: 'none'
+                  });
                 }
               }
-            })
-          } else {
-            console.log('登录成功,用户信息:', data)
-            // 保存用户信息和token
-            wx.setStorageSync('token', data.token)
-            wx.setStorageSync('userInfo', data)
-            
-            wx.showToast({
-              title: '登录成功',
-              icon: 'success',
-              duration: 1500
-            })
-            
-            // 获取重定向URL
-            const redirectUrl = wx.getStorageSync('redirect_url')
-            wx.removeStorageSync('redirect_url') // 使用后立即清除
-            
-            setTimeout(() => {
-              if (redirectUrl) {
-                // 重定向到之前的页面
-                wx.reLaunch({
-                  url: redirectUrl
-                })
-              } else {
-                // 默认跳转到首页
-                wx.switchTab({
-                  url: '/pages/index/index'
-                })
-              }
-            }, 1500)
+            });
+            return;
           }
+          
+          // 如果不需要注册，则正常登录流程
+          // 存储用户信息和token
+          wx.setStorageSync('token', userInfo.token);
+          wx.setStorageSync('userInfo', userInfo);
+          // 新增：存储用户类型
+          wx.setStorageSync('userType', userInfo.userType);
+
+          // 获取当前页面栈
+          const pages = getCurrentPages();
+          const prevPage = pages[pages.length - 2]; // 上一页
+
+          // 如果上一页是文章详情页，设置需要刷新的标志
+          if (prevPage && prevPage.route.includes('article-detail')) {
+            // 直接调用上一页的方法，刷新文章详情
+            prevPage.checkLoginStatus();
+            prevPage.fetchArticleDetail();
+          }
+
+          // 返回上一页
+          wx.navigateBack({
+            delta: 1
+          });
         } else {
           wx.showToast({
             title: res.data.message || '登录失败,请重试',
@@ -328,6 +331,14 @@ Page({
           icon: 'none'
         })
       }
+    })
+  },
+
+  // 处理暂不登录
+  handleSkipLogin() {
+    // 直接跳转到首页
+    wx.switchTab({
+      url: '/pages/index/index'
     })
   }
 }) 

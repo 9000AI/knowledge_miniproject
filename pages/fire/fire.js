@@ -111,20 +111,11 @@ Page({
 
   // 获取卡片列表数据
   fetchCardList() {
-    // 获取token
-    const token = wx.getStorageSync('token');
-    if (!token) {
-      wx.navigateTo({
-        url: '/pages/auth/auth'
-      });
-      return;
-    }
-
     wx.request({
       url: 'https://know-admin.9000aigc.com/knowledge/member/category/page',
       method: 'GET',
       header: {
-        'Authorization': `Bearer ${token}`
+        'Content-Type': 'application/json'
       },
       data: {
         current: 1,
@@ -135,12 +126,6 @@ Page({
         if (res.data.code === 200) {
           this.setData({
             cardList: res.data.data.records || []
-          });
-        } else if (res.data.code === 401) {
-          // token失效，跳转登录页
-          wx.removeStorageSync('token');
-          wx.navigateTo({
-            url: '/pages/auth/auth'
           });
         } else {
           wx.showToast({
@@ -161,8 +146,10 @@ Page({
   // 卡片点击事件
   onCardTap(e) {
     const id = e.currentTarget.dataset.id;
+    const cardInfo = this.data.cardList.find(item => item.id === id) || {};
+    
     wx.navigateTo({
-      url: `/pages/detail/detail?id=${id}`
+      url: `/pages/member-card-list/member-card-list?categoryId=${id}&title=${cardInfo.title || '会员列表'}`
     });
   },
 
@@ -206,14 +193,6 @@ Page({
 
   // 获取会员列表数据
   fetchMemberList(isLoadMore = false) {
-    const token = wx.getStorageSync('token');
-    if (!token) {
-      wx.navigateTo({
-        url: '/pages/auth/auth'
-      });
-      return;
-    }
-
     const { lastId, size, currentTab, keyword } = this.data;
     
     // 根据当前选中的 tab 确定 labelType
@@ -248,23 +227,18 @@ Page({
       url: 'https://know-admin.9000aigc.com/knowledge/user/member/scroll',
       method: 'POST',
       header: {
-        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       data: requestData,
       success: (res) => {
+        wx.hideLoading();
         if (res.data.code === 200) {
-          const { list, hasMore, lastId, total } = res.data.data;
+          const newList = res.data.data.list || [];
           
           this.setData({
-            hasMore,
-            lastId,
-            memberList: isLoadMore ? [...this.data.memberList, ...list] : list
-          });
-        } else if (res.data.code === 401) {
-          wx.removeStorageSync('token');
-          wx.navigateTo({
-            url: '/pages/auth/auth'
+            memberList: isLoadMore ? [...this.data.memberList, ...newList] : newList,
+            lastId: res.data.data.nextLastId || '',
+            hasMore: res.data.data.hasMore
           });
         } else {
           wx.showToast({
@@ -274,13 +248,11 @@ Page({
         }
       },
       fail: (err) => {
+        wx.hideLoading();
         wx.showToast({
           title: '网络请求失败',
           icon: 'none'
         });
-      },
-      complete: () => {
-        wx.hideLoading();
       }
     });
   },

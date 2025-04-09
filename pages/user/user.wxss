@@ -141,3 +141,41 @@
   border-radius: 20rpx;
   margin-left: 12rpx;
 }
+
+/* 未登录状态的样式 */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 40rpx;
+}
+
+.login-image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 40rpx;
+}
+
+.login-text {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 40rpx;
+}
+
+.login-btn {
+  width: 80%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #d8eb50;
+  color: #333333 ;
+  font-size: 32rpx;
+  border-radius: 44rpx;
+  box-shadow: 0 8rpx 16rpx rgba(58, 123, 255, 0.2);
+}
+
+.login-btn:active {
+  opacity: 0.9;
+  transform: scale(0.98);
+}

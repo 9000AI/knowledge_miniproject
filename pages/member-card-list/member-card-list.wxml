@@ -1,0 +1,74 @@
+<!--pages/member-card-list/member-card-list.wxml-->
+<view class="page-container">
+  
+  <!-- 自定义导航栏 -->
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-content">
+      <view class="back-icon" bindtap="navigateBack">
+        <image src="https://miniknowledge.9000aigc.com/assets/icons/back (1).png" mode="aspectFit"></image>
+      </view>
+      <view class="nav-title">{{categoryTitle}}</view>
+    </view>
+  </view>
+  
+  <!-- 搜索框 -->
+  <view class="search-container" style="top: {{statusBarHeight + navBarHeight + 20}}px;">
+    <input class="search-input" placeholder="搜索会员" placeholder-class="placeholder-style" value="{{keyword}}" bindinput="onSearchInput" bindconfirm="onSearchConfirm" />
+  </view>
+
+  <scroll-view class="scrollarea" scroll-y type="list" bindscrolltolower="onReachBottom" refresher-enabled="{{true}}" refresher-triggered="{{loading}}" bindrefresherrefresh="onPullDownRefresh" style="padding-top: {{statusBarHeight + navBarHeight + 60}}px;">
+    <!-- 会员列表 -->
+    <view class="member-list">
+      <block wx:for="{{memberList}}" wx:key="id">
+        <view class="member-card" bindtap="onMemberCardTap" data-id="{{item.id}}">
+          <view class="member-header">
+            <image class="member-avatar" src="{{item.avatar || defaultAvatar}}" mode="aspectFill"></image>
+            <view class="member-info">
+              <view class="name-label-container">
+                <text class="member-name">{{item.nickname || '未设置昵称'}}</text>
+                <view class="member-labels">
+                  <view class="label-item label-type-{{label.type}}" 
+                        wx:for="{{item.labels}}" 
+                        wx:for-item="label"
+                        wx:key="name">
+                    {{label.name}}
+                  </view>
+                </view>
+              </view>
+              <view class="member-position">{{item.company || '未填写公司'}}{{item.company && item.position ? ' · ' : ''}}{{item.position || '未填写职位'}}</view>
+            </view>
+          </view>
+
+          <view class="member-location" wx:if="{{item.location}}">
+            <image class="icon" src="https://miniknowledge.9000aigc.com/assets/icons/location.png" mode="aspectFit"></image>
+            <text>{{item.location}}</text>
+          </view>
+          
+          <view class="member-about" wx:if="{{item.about}}">
+            <image class="icons" src="https://miniknowledge.9000aigc.com/assets/icons/lists.png" mode="aspectFit"></image>
+            <text>{{item.about}}</text>
+          </view>
+
+          <!-- 只在有资源内容时显示资源区块 -->
+          <view class="member-section" wx:if="{{item.shareableResources}}">
+            <view class="section-title">资源</view>
+            <view class="section-content">{{item.shareableResources}}</view>
+          </view>
+
+          <!-- 只在有需求内容时显示需求区块 -->
+          <view class="member-section" wx:if="{{item.demands}}">
+            <view class="section-title">需求</view>
+            <view class="section-content">{{item.demands}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    
+    <!-- 加载状态 -->
+    <view class="loading-status">
+      <view wx:if="{{loading && memberList.length > 0}}" class="loading">加载中...</view>
+      <view wx:elif="{{!hasMore && memberList.length > 0}}" class="no-more">没有更多了</view>
+      <view wx:elif="{{!loading && memberList.length === 0}}" class="empty-list">暂无会员数据</view>
+    </view>
+  </scroll-view>
+</view> 
