@@ -69,8 +69,8 @@ Page({
       const fromPrime = options.fromPrime === 'true'
       
       // 根据来源设置不同文本
-      const lockText = fromPrime ? '开通会员观看完整视频' : '报名后即可收看'
-      const unlockBtnText = fromPrime ? '立即开通' : '立即报名'
+      const lockText = fromPrime ? '联系客服开通' : '联系客服报名'
+      const unlockBtnText = fromPrime ? '立即联系' : '立即报名'
       
       this.setData({
         lessonId: options.id,

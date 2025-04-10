@@ -51,8 +51,8 @@
           <button class="unlock-btn" bindtap="goBuyCourse">{{unlockBtnText}}</button>
         </block>
         <block wx:else>
-          <text class="lock-text">开通会员观看完整视频</text>
-          <button class="unlock-btn" bindtap="goToVip">立即开通</button>
+          <text class="lock-text">联系客服开通</text>
+          <button class="unlock-btn" bindtap="goToVip">立即联系</button>
         </block>
       </view>
     </block>
@@ -113,7 +113,7 @@
   <!-- 客服二维码模态框 -->
   <view class="qrcode-modal" wx:if="{{showQrcodeModal}}" bindtap="closeQrcodeModal">
     <view class="qrcode-container" catchtap="stopPropagation">
-      <view class="qrcode-title">联系客服开通会员</view>
+      <view class="qrcode-title">加好友咨询</view>
       <image src="https://mini.9000aigc.com/assets/images/kefu.png" mode="aspectFit" class="qrcode-image" show-menu-by-longpress="true"></image>
       <view class="qrcode-tips">长按识别二维码添加客服</view>
    

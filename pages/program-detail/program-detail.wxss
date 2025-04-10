@@ -1,0 +1,85 @@
+.detail-container {
+  position: relative;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+}
+
+.back-btn {
+  position: fixed;
+  top: 80rpx;
+  left: 20rpx;
+  display: flex;
+  align-items: center;
+  padding: 10rpx 20rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border-radius: 30rpx;
+  z-index: 100;
+}
+
+.back-icon {
+  margin-right: 8rpx;
+  font-size: 32rpx;
+}
+
+.poster-container {
+  width: 100%;
+  text-align: center;
+}
+
+.poster-image {
+  width: 100%;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.no-poster {
+  width: 100%;
+  height: 400rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20rpx;
+  margin-top: 20rpx;
+}
+
+.project-title {
+  font-size: 38rpx;
+  font-weight: bold;
+  margin: 30rpx 0;
+  text-align: center;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200rpx;
+}
+
+.loading-tips {
+  color: #999;
+  font-size: 28rpx;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300rpx;
+}
+
+.error-tips {
+  color: #ff4d4f;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.retry-btn {
+  background-color: #1890ff;
+  color: #fff;
+  padding: 10rpx 30rpx;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+} 

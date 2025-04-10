@@ -35,9 +35,14 @@
   font-size: 14px;
 }
 
-.container {
-  margin-top: 40rpx;
+.containers {
+  position: fixed;
+  top: 136px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   background: #f5f5f5;
+
 }
 
 .project-list {

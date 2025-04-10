@@ -19,7 +19,8 @@
     "pages/lesson/lesson",
     "pages/my-course/my-course",
     "pages/video/video",
-    "pages/member-card-list/member-card-list"
+    "pages/member-card-list/member-card-list",
+    "pages/program-detail/program-detail"
   ],
   "window": {
     "navigationStyle": "custom",

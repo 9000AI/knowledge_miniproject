@@ -1,0 +1,25 @@
+<view class="detail-container">
+  <!-- 返回按钮 -->
+  <view class="back-btn" bindtap="goBack">
+    <text class="back-icon">←</text>
+  </view>
+  
+  <!-- 项目海报图片 -->
+  <view class="poster-container" wx:if="{{projectDetail.posterImage}}">
+    <image class="poster-image" src="{{projectDetail.posterImage}}" mode="widthFix"></image>
+  </view>
+  <view class="no-poster" wx:else>
+    <text>暂无海报图片</text>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <view class="loading-tips">加载中...</view>
+  </view>
+
+  <!-- 错误提示 -->
+  <view class="error-container" wx:if="{{error}}">
+    <view class="error-tips">{{errorMsg}}</view>
+    <view class="retry-btn" bindtap="loadProjectDetail">重试</view>
+  </view>
+</view> 

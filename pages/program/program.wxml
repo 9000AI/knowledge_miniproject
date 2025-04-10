@@ -9,7 +9,7 @@
 </view>
 
 <!-- 主要内容区域 -->
-<scroll-view class="container" scroll-y bindscrolltolower="loadMore" refresher-enabled="{{true}}" bindrefresherrefresh="onRefresh" refresher-triggered="{{isRefreshing}}">
+<scroll-view class="containers" scroll-y bindscrolltolower="loadMore" refresher-enabled="{{true}}" bindrefresherrefresh="onRefresh" refresher-triggered="{{isRefreshing}}">
   <view class="project-list">
     <block wx:for="{{projects}}" wx:key="id">
       <view class="project-item" bindtap="goToDetail" data-id="{{item.id}}">
