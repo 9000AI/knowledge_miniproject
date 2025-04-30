@@ -194,29 +194,29 @@ Page({
   },
 
   // 获取收藏数量
-  getCollectionCount() {
-    const token = wx.getStorageSync('token');
-    const userInfo = wx.getStorageSync('userInfo');
+  // getCollectionCount() {
+  //   const token = wx.getStorageSync('token');
+  //   const userInfo = wx.getStorageSync('userInfo');
 
-    if (!token || !userInfo) {
-      return;
-    }
+  //   if (!token || !userInfo) {
+  //     return;
+  //   }
 
-    wx.request({
-      url: `${config.baseURL}/knowledge/article/collection/count`,
-      method: 'GET',
-      header: {
-        'Authorization': `Bearer ${token}`
-      },
-      success: (res) => {
-        if (res.data.code === 200) {
-          this.setData({
-            collectionCount: res.data.data || 0
-          });
-        }
-      }
-    });
-  },
+  //   wx.request({
+  //     url: `${config.baseURL}/knowledge/article/collection/count`,
+  //     method: 'GET',
+  //     header: {
+  //       'Authorization': `Bearer ${token}`
+  //     },
+  //     success: (res) => {
+  //       if (res.data.code === 200) {
+  //         this.setData({
+  //           collectionCount: res.data.data || 0
+  //         });
+  //       }
+  //     }
+  //   });
+  // },
 
   // 跳转到收藏文章列表
   goToCollections() {

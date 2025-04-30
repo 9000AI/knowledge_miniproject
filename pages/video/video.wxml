@@ -51,7 +51,7 @@
           <button class="unlock-btn" bindtap="goBuyCourse">{{unlockBtnText}}</button>
         </block>
         <block wx:else>
-          <text class="lock-text">联系客服开通</text>
+          <text class="lock-text">联系客服报名</text>
           <button class="unlock-btn" bindtap="goToVip">立即联系</button>
         </block>
       </view>
