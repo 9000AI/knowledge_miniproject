@@ -16,7 +16,11 @@ Page({
     userType: null,
     isUnlocked: false,
     buttonText: '登录账号，阅读完整内容',
-    showQrcodeModal: false
+    showQrcodeModal: false,
+    tagStyle: {
+      img: 'width: 100%; max-width: 600rpx; border-radius: 16rpx; box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1); display: block; margin: 20rpx auto;',
+      p: 'text-align: center; margin: 20rpx 0; line-height: 1.6;'
+    }
   },
 
   onLoad(options) {
@@ -55,13 +59,15 @@ Page({
           let content = res.data.data.content;
           content = this.processRichTextContent(content);
           
-          // 打印isUnlocked的值
-          console.log('文章解锁状态 isUnlocked:', res.data.data.isUnlocked);
-          
           // 根据登录状态、会员限制和是否解锁来决定是否显示登录按钮
           const isUnlocked = res.data.data.isUnlocked || false;
           const showLoginButton = (!this.data.isLoggedIn || (this.data.isLoggedIn && !isUnlocked));
           const buttonText = this.data.isLoggedIn ? (isUnlocked ? '' : '加入会员查看更多') : '登录账号，阅读完整内容';
+          
+          // 如果内容为空或只有图片，添加一些提示文本
+          if (!content || content.trim() === '') {
+            content = '<p>内容加载中...</p>';
+          }
           
           this.setData({
             content,
@@ -208,4 +214,6 @@ Page({
   onShow() {
     this.checkLoginStatus();
   },
+
+
 }); 

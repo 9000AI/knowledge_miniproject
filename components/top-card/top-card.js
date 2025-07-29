@@ -34,64 +34,88 @@ Component({
       });
     },
 
-    async fetchCategories() {
-      try {
-        const token = wx.getStorageSync('token') || '';
-        const res = await wx.request({
-          url: 'https://know-admin.9000aigc.com/knowledge/category/first-level',
-          method: 'GET',
-          header: {
-            'Authorization': token ? `Bearer ${token}` : ''
+    fetchCategories() {
+      const token = wx.getStorageSync('token') || '';
+      
+      wx.request({
+        url: 'https://know-admin.9000aigc.com/knowledge/category/first-level',
+        method: 'GET',
+        header: {
+          'Authorization': token ? `Bearer ${token}` : ''
+        },
+        success: (res) => {
+          if (res.data && res.data.code === 200 && Array.isArray(res.data.data)) {
+            // 分离出 featured 为 1 且有 cover_image 的数据
+            const featuredData = res.data.data.filter(item => 
+              item.featured === 1 && item.cover_image
+            );
+            
+            // 分离出其他数据
+            const otherData = res.data.data.filter(item => 
+              !(item.featured === 1 && item.cover_image)
+            );
+            
+            // 对 featured 数据按 sort 降序排序
+            featuredData.sort((a, b) => b.sort - a.sort);
+            
+            // 对其他数据按 sort 降序排序
+            otherData.sort((a, b) => b.sort - a.sort);
+            
+            // 合并数据，featured 在前
+            const sortedData = featuredData.concat(otherData);
+            
+            // 只取前三个分类
+            const topThree = sortedData.slice(0, 3);
+            
+            // 映射数据到卡片格式
+            const cardList = topThree.map(item => ({
+              image: item.cover_image || 'https://miniknowledge.9000aigc.com/assets/images/zl-one.png',
+              title: item.name
+            }));
+
+            this.setData({ 
+              cardList,
+              categoryList: topThree // 保存完整的分类数据
+            });
+          } else {
+            console.error('获取分类失败: 响应格式错误', res);
+            this.useDefaultData();
           }
-        });
-
-        if (res.data.code === 200 && Array.isArray(res.data.data)) {
-          // 按 sort 降序排序
-          const sortedData = res.data.data.sort((a, b) => b.sort - a.sort);
-          
-          // 只取前三个分类
-          const topThree = sortedData.slice(0, 3);
-          
-          // 映射数据到卡片格式
-          const cardList = topThree.map(item => ({
-            image: 'https://miniknowledge.9000aigc.com/assets/images/zl-one.png', // 默认图片，可根据实际需求修改
-            title: item.name
-          }));
-
-          this.setData({ 
-            cardList,
-            categoryList: topThree // 保存完整的分类数据
-          });
+        },
+        fail: (error) => {
+          console.error('获取分类失败:', error);
+          this.useDefaultData();
         }
-      } catch (error) {
-        console.error('获取分类失败:', error);
-        // 使用默认数据
-        const defaultData = [
-          {
-            id: '1',
-            name: '有趣有料',
-            image: 'https://miniknowledge.9000aigc.com/assets/images/zl-one.png'
-          },
-          {
-            id: '2',
-            name: '李家旺专栏',
-            image: 'https://miniknowledge.9000aigc.com/assets/images/zl_two.jpg'
-          },
-          {
-            id: '3',
-            name: '闭环裂变',
-            image: 'https://miniknowledge.9000aigc.com/assets/images/zl-three.png'
-          }
-        ];
+      });
+    },
 
-        this.setData({
-          cardList: defaultData.map(item => ({
-            image: item.image,
-            title: item.name
-          })),
-          categoryList: defaultData
-        });
-      }
+    useDefaultData() {
+      // 使用默认数据
+      const defaultData = [
+        {
+          id: '1896820356350521346',
+          name: '有趣有料',
+          cover_image: 'https://miniknowledge.9000aigc.com/assets/images/zl-one.png'
+        },
+        {
+          id: '1896820726854365185',
+          name: '李家旺专栏',
+          cover_image: 'https://miniknowledge.9000aigc.com/assets/images/zl_two.jpg'
+        },
+        {
+          id: '1896820777026629634',
+          name: '闭环裂变',
+          cover_image: 'https://miniknowledge.9000aigc.com/assets/images/zl-three.png'
+        }
+      ];
+
+      this.setData({
+        cardList: defaultData.map(item => ({
+          image: item.cover_image,
+          title: item.name
+        })),
+        categoryList: defaultData
+      });
     }
   }
 })

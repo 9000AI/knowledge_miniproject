@@ -19,6 +19,7 @@ Page({
     currentTags: [],
     tagsLoading: false,
     currentTagId: 'all',
+    isSidebarShow: false,
   },
 
   onLoad(options) {
@@ -57,10 +58,10 @@ Page({
             name: item.name,
             path: item.path
           }));
-          const finalList = [
-            { id: 'all', name: '全部' },
-            ...formattedList
-          ];
+          // 只有存在子分类时才添加"全部"选项
+          const finalList = formattedList.length > 0 
+            ? [{ id: 'all', name: '全部' }, ...formattedList]
+            : [];
           this.setData({
             leftList: finalList,
             currentLeftId: 'all',
@@ -248,8 +249,13 @@ Page({
   onLeftItemTap(e) {
     const selectedId = e.currentTarget.dataset.id;
     if (selectedId === this.data.currentLeftId || this.data.loading || this.data.tagsLoading) {
+      if (selectedId === this.data.currentLeftId) {
+        this.hideSidebar(); // 如果点击的是当前已选中的分类，也关闭侧边栏
+      }
       return;
     }
+
+    this.hideSidebar(); // 点击任何分类后都关闭侧边栏
 
     let tagParentId = null;
     let tagsLoadingState = false;
@@ -357,6 +363,18 @@ Page({
       complete: () => {
         this.setData({ tagsLoading: false });
       }
+    });
+  },
+
+  toggleSidebar() {
+    this.setData({
+      isSidebarShow: !this.data.isSidebarShow
+    });
+  },
+
+  hideSidebar() {
+    this.setData({
+      isSidebarShow: false
     });
   },
 }); 

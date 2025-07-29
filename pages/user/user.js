@@ -82,8 +82,8 @@ Page({
         isLoggedIn: true,
         userInfo 
       })
-      this.getCollectionCount()
-      this.getCourseCount()
+      // this.getCollectionCount() // 接口不存在，暂时注释
+      // this.getCourseCount() // 接口不存在，暂时注释
     } else {
       this.setData({ 
         isLoggedIn: false,

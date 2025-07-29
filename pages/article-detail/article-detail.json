@@ -1,7 +1,7 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
-    "mp-html": "mp-html"
+    "mp-html": "/miniprogram_npm/mp-html/index"
   },
   "enablePullDownRefresh": false
 } 

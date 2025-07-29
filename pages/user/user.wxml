@@ -2,7 +2,7 @@
 <view class="user-container">
   <block wx:if="{{!isLoggedIn}}">
     <view class="login-container">
-      <image class="login-image" src="https://miniknowledge.9000aigc.com/assets/icons/login-placeholder.png" mode="aspectFit"></image>
+      <image class="login-image" src="https://miniknowledge.9000aigc.com/assets/icons/9000AI图标.ico" mode="aspectFit"></image>
       <view class="login-text">登录后即可查看我的信息</view>
       <view class="login-btn" bindtap="goToLogin">立即登录</view>
     </view>

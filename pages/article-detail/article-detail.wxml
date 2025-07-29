@@ -18,8 +18,14 @@
   </view>
 
   <!-- 文章内容 -->
-  <view wx:else class="content" style="padding-top: {{statusBarHeight + navBarHeight}}px;">
-    <mp-html content="{{content}}" />
+  <view wx:else class="article-detail-content">    
+    <!-- 使用mp-html组件渲染内容 -->
+    <mp-html 
+      content="{{content}}" 
+      show-img-menu="{{true}}"
+      lazy-load="{{false}}"
+      tag-style="{{tagStyle}}"
+    />
     
     <!-- 登录按钮 -->
     <view wx:if="{{showLoginButton}}" class="login-button-container">

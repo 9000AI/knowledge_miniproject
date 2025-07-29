@@ -1,3 +1,15 @@
+<!-- 抽屉式侧边栏 -->
+<view class="sidebar-overlay {{isSidebarShow ? 'show' : ''}}" bindtap="hideSidebar"></view>
+<view class="left-panel sidebar {{isSidebarShow ? 'show' : ''}}" style="padding-top: {{statusBarHeight}}px;">
+  <scroll-view scroll-y="true" class="left-scroll" style="height: calc(100vh - {{statusBarHeight}}px);">
+    <view wx:for="{{leftList}}" wx:key="id"
+          class="left-item {{item.id === currentLeftId ? 'active' : ''}}"
+          bindtap="onLeftItemTap" data-id="{{item.id}}">
+      {{item.name}}
+    </view>
+  </scroll-view>
+</view>
+
 <view class="page-container">
   <!-- 添加渐变背景 -->
   <view class="gradient-header"></view>
@@ -27,19 +39,8 @@
     </view>
   </view>
   
-  <!-- 主要内容区域 (左右布局) -->
+  <!-- 主要内容区域 -->
   <view class="main-content" style="padding-top: {{statusBarHeight + navBarHeight + 60}}px;">
-    <!-- 左侧面板 -->
-    <view class="left-panel">
-      <scroll-view scroll-y="true" class="left-scroll" style="height: {{scrollHeight}}px;">
-        <view wx:for="{{leftList}}" wx:key="id"
-              class="left-item {{item.id === currentLeftId ? 'active' : ''}}"
-              bindtap="onLeftItemTap" data-id="{{item.id}}">
-          {{item.name}}
-        </view>
-      </scroll-view>
-    </view>
-
     <!-- 右侧面板 -->
     <view class="right-panel">
       <scroll-view scroll-y="true" class="right-scroll" style="height: {{scrollHeight}}px;" bindscrolltolower="loadMore">
@@ -65,6 +66,12 @@
             <image class="article-image" src="{{item.coverImage}}" mode="aspectFill"></image>
             <view class="article-content">
               <view class="article-title">{{item.title}}</view>
+              <!-- 添加标签显示区域 -->
+              <view class="article-tags" wx:if="{{item.tags && item.tags.length > 0}}">
+                <view wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag" class="article-tag">
+                  {{tag}}
+                </view>
+              </view>
               <text class="article-time">{{item.createTime}}</text>
             </view>
           </view>
@@ -78,5 +85,10 @@
 
       </scroll-view>
     </view>
+  </view>
+  
+  <!-- 悬浮分类按钮 - 只有存在子分类时才显示 -->
+  <view wx:if="{{leftList.length > 1}}" class="floating-category-btn" bindtap="toggleSidebar">
+    <image src="https://miniknowledge.9000aigc.com/assets/icons/category.png" mode="aspectFit"></image>
   </view>
 </view> 
