@@ -1,3 +1,5 @@
+const config = require('../../utils/config.js')
+
 Component({
   properties: {
   },
@@ -25,7 +27,7 @@ Component({
       // 使用Promise包装wx.request
       new Promise((resolve, reject) => {
         wx.request({
-          url: 'https://know-admin.9000aigc.com/knowledge/course/scroll',
+          url: `${config.baseURL}/knowledge/course/scroll`,
           method: 'POST',
           header: {
             'Content-Type': 'application/json'

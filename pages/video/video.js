@@ -1,3 +1,7 @@
+const shareUtils = require('../../utils/share.js')
+const { request } = require('../../utils/request.js')
+const config = require('../../utils/config.js')
+
 Page({
   data: {
     lessonId: '', // 课时ID
@@ -24,7 +28,9 @@ Page({
     fromPrime: false, // 是否来自会员专区
     lockText: '报名后即可收看', // 锁定文本
     unlockBtnText: '立即报名', // 解锁按钮文本
-    showQrcodeModal: false // 控制二维码模态框显示
+    showQrcodeModal: false, // 控制二维码模态框显示
+    auditSwitchEnabled: true, // 审核开关状态
+    canPlayVideo: true // 是否可以播放视频（综合审核开关和视频URL判断）
   },
 
   // 检查登录状态
@@ -55,11 +61,18 @@ Page({
 
   // 页面加载时获取参数
   onLoad(options) {
+    // 启用分享菜单
+    shareUtils.enableShareMenu()
+    
     // 先检查登录状态
     if (!this.checkLogin()) {
       return
     }
 
+    // 获取全局审核开关状态
+    const app = getApp()
+    const auditSwitchEnabled = app.globalData.auditSwitchEnabled
+    
     if (options.id) {
       // 获取用户信息和会员状态
       const userInfo = wx.getStorageSync('userInfo')
@@ -82,7 +95,8 @@ Page({
         isVip: isVip,
         fromPrime: fromPrime,
         lockText: lockText,
-        unlockBtnText: unlockBtnText
+        unlockBtnText: unlockBtnText,
+        auditSwitchEnabled: auditSwitchEnabled
       })
       
       // 获取章节列表
@@ -178,32 +192,29 @@ Page({
   },
   
   // 加载章节列表
-  loadChapters(courseId) {
-    wx.request({
-      url: 'https://know-admin.9000aigc.com/knowledge/lesson/scroll',
-      method: 'POST',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      data: {
-        size: 20,
-        courseId: courseId,
-        lastId: '0'
-      },
-      success: (res) => {
-        console.log('章节列表请求成功:', res.data)
-        if (res.data.code === 200) {
-          const { list } = res.data.data
-          
-          this.setData({
-            chapterList: list || []
-          })
+  async loadChapters(courseId) {
+    try {
+      const res = await request({
+        url: `${config.baseURL}/knowledge/lesson/scroll`,
+        method: 'POST',
+        data: {
+          size: 20,
+          courseId: courseId,
+          lastId: '0'
         }
-      },
-      fail: (err) => {
-        console.error('加载章节列表失败:', err)
+      });
+      
+      console.log('章节列表请求成功:', res.data)
+      if (res.data.code === 200) {
+        const { list } = res.data.data
+        
+        this.setData({
+          chapterList: list || []
+        })
       }
-    })
+    } catch (err) {
+      console.error('加载章节列表失败:', err)
+    }
   },
   
   // 播放章节
@@ -261,21 +272,14 @@ Page({
     this.setData({ loading: true });
 
     try {
-      const promise = new Promise((resolve, reject) => {
-        wx.request({
-          url: 'https://know-admin.9000aigc.com/knowledge/lesson/scroll',
-          method: 'POST',
-          header: {
-            'Content-Type': 'application/json'
-          },
-          data: {
-            courseId: this.data.courseId,
-            lastId: this.data.nextId,
-            size: 20
-          },
-          success: resolve,
-          fail: reject
-        });
+      const promise = request({
+        url: `${config.baseURL}/knowledge/lesson/scroll`,
+        method: 'POST',
+        data: {
+          courseId: this.data.courseId,
+          lastId: this.data.nextId,
+          size: 20
+        }
       });
 
       const res = await promise;
@@ -310,24 +314,17 @@ Page({
       
       if(!lesson) {
         // 如果本地没有,从服务器获取
-        const promise = new Promise((resolve, reject) => {
-          wx.request({
-            url: `https://know-admin.9000aigc.com/knowledge/lesson/${lessonId}`,
-            method: 'GET',
-            header: {
-              'Content-Type': 'application/json'
-            },
-            data: {
-            },
-            success: resolve,
-            fail: reject
-          });
+        const promise = request({
+          url: `http://localhost:8100/knowledge/lesson/${lessonId}`,
+          method: 'GET'
         });
 
         const res = await promise;
+        console.log('课时详情API响应:', JSON.stringify(res.data, null, 2));
         
         if(res.data.code === 200) {
           lesson = res.data.data;
+          console.log('获取到的课时详情:', lesson);
         } else if(res.data.code === 500 && res.data.message === '无权访问该课时') {
           this.setData({ 
             errorType: 'no_access',
@@ -345,11 +342,20 @@ Page({
       
       if(lesson) {
         console.log('当前课时信息:', lesson);  // 添加日志
-        // 直接使用后端返回的视频地址
+        
+        // 结合审核开关状态和视频URL判断是否可以播放
+        const hasVideoUrl = !!lesson.videoUrl
+        const canPlayVideo = this.data.auditSwitchEnabled && hasVideoUrl
+        
+        console.log('审核开关状态:', this.data.auditSwitchEnabled)
+        console.log('视频URL存在:', hasVideoUrl)
+        console.log('可以播放视频:', canPlayVideo)
+        
         this.setData({ 
           currentLesson: lesson,
           videoUrl: lesson.videoUrl || '',
-          errorType: lesson.videoUrl ? '' : 'need_vip'
+          canPlayVideo: canPlayVideo,
+          errorType: canPlayVideo ? '' : (hasVideoUrl ? 'audit_disabled' : 'need_vip')
         });
       }
     } catch(err) {
@@ -388,5 +394,58 @@ Page({
   stopPropagation() {
     // 仅用于阻止事件冒泡
     return;
+  },
+
+  // 分享给好友
+  onShareAppMessage(options) {
+    const { lessonTitle, lessonId, teacherInfo } = this.data
+    return {
+      title: `${lessonTitle} - ${teacherInfo}`,
+      path: `/pages/video/video?id=${lessonId}&source=share`,
+      imageUrl: this.data.coverImage || 'https://mini.9000aigc.com/assets/images/share-video.png'
+    }
+  },
+
+  // 分享到朋友圈
+  onShareTimeline() {
+    const { lessonTitle, lessonId, teacherInfo } = this.data
+    return {
+      title: `${lessonTitle} - ${teacherInfo}`,
+      query: `id=${lessonId}&source=timeline&t=${Date.now()}`,
+      imageUrl: this.data.coverImage || 'https://mini.9000aigc.com/assets/images/share-video-timeline.png'
+    }
+  },
+
+  // 添加到收藏
+  onAddToFavorites() {
+    const { lessonTitle, lessonId } = this.data
+    return {
+      title: `${lessonTitle} - 视频收藏`,
+      imageUrl: this.data.coverImage || 'https://mini.9000aigc.com/assets/images/favorite-video.png',
+      query: `id=${lessonId}&source=favorite&t=${Date.now()}`
+    }
+  },
+
+  // 复制视频链接
+  copyVideoLink() {
+    const { lessonId, lessonTitle } = this.data
+    const link = `${shareUtils.getBaseUrl()}/pages/video/video?id=${lessonId}&from=copy`
+    
+    wx.setClipboardData({
+      data: link,
+      success: () => {
+        wx.showToast({
+          title: '视频链接已复制',
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      fail: () => {
+        wx.showToast({
+          title: '复制失败',
+          icon: 'none'
+        })
+      }
+    })
   }
-}) 
+})

@@ -1,4 +1,7 @@
 // pages/fire/fire.js
+const shareUtils = require('../../utils/share.js')
+const config = require('../../utils/config.js')
+
 Page({
 
   /**
@@ -22,6 +25,8 @@ Page({
    */
   onLoad(options) {
     console.log('fire页面加载');
+    // 启用分享菜单
+    shareUtils.enableShareMenu()
     // 获取系统信息
     const systemInfo = wx.getSystemInfoSync();
     this.setData({
@@ -85,7 +90,22 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
+    return shareUtils.getShareConfig('fire', 'friend')
+  },
 
+  // 分享到朋友圈
+  onShareTimeline() {
+    return shareUtils.getShareConfig('fire', 'timeline')
+  },
+
+  // 添加到收藏
+  onAddToFavorites() {
+    return shareUtils.getShareConfig('fire', 'favorite')
+  },
+
+  // 复制链接
+  copyPageLink() {
+    shareUtils.copyLink('fire', { from: 'miniprogram' })
   },
 
   // 切换 tab
@@ -112,7 +132,7 @@ Page({
   // 获取卡片列表数据
   fetchCardList() {
     wx.request({
-      url: 'https://know-admin.9000aigc.com/knowledge/member/category/page',
+      url: `${config.baseURL}/knowledge/member/category/page`,
       method: 'GET',
       header: {
         'Content-Type': 'application/json'
@@ -224,7 +244,7 @@ Page({
     });
 
     wx.request({
-      url: 'https://know-admin.9000aigc.com/knowledge/user/member/scroll',
+      url: `${config.baseURL}/knowledge/user/member/scroll`,
       method: 'POST',
       header: {
         'Content-Type': 'application/json'

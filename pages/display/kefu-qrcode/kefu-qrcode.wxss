@@ -1,0 +1,186 @@
+/* pages/display/kefu-qrcode/kefu-qrcode.wxss */
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 0;
+  margin: 0;
+}
+
+/* 自定义导航栏 */
+.custom-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 101;
+  padding-top: 40px;
+  box-shadow: 0 2rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.nav-content {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 30rpx;
+}
+
+.back-btn {
+  position: absolute;
+  left: 30rpx;
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.back-btn:active {
+  background: rgba(0, 0, 0, 0.1);
+  transform: scale(0.95);
+}
+
+.back-icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.nav-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 主要内容区域 */
+.content {
+  padding-top: 120px;
+  padding-bottom: 60rpx;
+  min-height: calc(100vh - 120px);
+}
+
+/* 标题区域 */
+.title-section {
+  text-align: center;
+  padding: 60rpx 40rpx 40rpx;
+}
+
+.main-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 20rpx;
+  text-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.3);
+}
+
+.sub-title {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+
+/* 二维码展示区域 */
+.qrcode-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx;
+}
+
+.qrcode-container {
+  width: 500rpx;
+  height: 500rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.2);
+  margin-bottom: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qrcode-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 12rpx;
+}
+
+.tips-text {
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.tip-line {
+  display: block;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin-bottom: 8rpx;
+}
+
+
+
+/* 服务说明 */
+.service-section {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  margin: 0 40rpx;
+  border-radius: 20rpx;
+  padding: 40rpx;
+}
+
+.service-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  align-items: center;
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+
+.service-dot {
+  width: 12rpx;
+  height: 12rpx;
+  background: #c5eb59;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+/* 响应式适配 */
+@media (max-width: 375px) {
+  .qrcode-container {
+    width: 420rpx;
+    height: 420rpx;
+    padding: 30rpx;
+  }
+  
+  .main-title {
+    font-size: 42rpx;
+  }
+  
+  .action-section {
+    padding: 0 40rpx;
+  }
+}

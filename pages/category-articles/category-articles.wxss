@@ -321,8 +321,8 @@
   top: 50%;
   transform: translateY(-50%);
   background-color: #c0d449;
-  padding: 16rpx 12rpx 16rpx 16rpx;
-  border-radius: 40rpx 0 0 40rpx;
+  padding: 24rpx 18rpx 24rpx 24rpx;
+  border-radius: 50rpx 0 0 50rpx;
   box-shadow: -2rpx 0 8rpx rgba(0, 0, 0, 0.1);
   z-index: 999;
   transition: all 0.3s ease;
@@ -332,11 +332,11 @@
 }
 
 .floating-category-btn:active {
-  padding-right: 20rpx;
+  padding-right: 26rpx;
   background-color: #b0c439;
 }
 
 .floating-category-btn image {
-  width: 40rpx;
-  height: 40rpx;
-} 
+  width: 56rpx;
+  height: 56rpx;
+}
