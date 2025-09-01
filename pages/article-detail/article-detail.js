@@ -1,4 +1,5 @@
 const config = require('../../utils/config.js')
+const shareUtils = require('../../utils/share.js')
 
 Page({
   data: {
@@ -24,6 +25,8 @@ Page({
   },
 
   onLoad(options) {
+    // 启用分享菜单
+    shareUtils.enableShareMenu()
     const systemInfo = wx.getSystemInfoSync();
     this.setData({
       statusBarHeight: systemInfo.statusBarHeight,
@@ -215,5 +218,56 @@ Page({
     this.checkLoginStatus();
   },
 
+  // 分享给好友
+  onShareAppMessage(options) {
+    const { title, id } = this.data
+    return {
+      title: title || '精彩文章分享',
+      path: `/pages/article-detail/article-detail?id=${id}&source=share`,
+      imageUrl: 'https://mini.9000aigc.com/assets/images/share-article.png'
+    }
+  },
 
+  // 分享到朋友圈
+  onShareTimeline() {
+    const { title, id } = this.data
+    return {
+      title: title || '精彩文章分享',
+      query: `id=${id}&source=timeline&t=${Date.now()}`,
+      imageUrl: 'https://mini.9000aigc.com/assets/images/share-article-timeline.png'
+    }
+  },
+
+  // 添加到收藏
+  onAddToFavorites() {
+    const { title, id } = this.data
+    return {
+      title: title || '精彩文章收藏',
+      imageUrl: 'https://mini.9000aigc.com/assets/images/favorite-article.png',
+      query: `id=${id}&source=favorite&t=${Date.now()}`
+    }
+  },
+
+  // 复制文章链接
+  copyArticleLink() {
+    const { id, title } = this.data
+    const link = `${shareUtils.getBaseUrl()}/pages/article-detail/article-detail?id=${id}&from=copy`
+    
+    wx.setClipboardData({
+      data: link,
+      success: () => {
+        wx.showToast({
+          title: '文章链接已复制',
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      fail: () => {
+        wx.showToast({
+          title: '复制失败',
+          icon: 'none'
+        })
+      }
+    })
+  }
 }); 

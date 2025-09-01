@@ -1,3 +1,5 @@
+const config = require('../../utils/config.js')
+
 Page({
   /**
    * 页面的初始数据
@@ -131,7 +133,7 @@ Page({
     console.log('请求会员列表参数:', requestData);
     
     wx.request({
-      url: 'https://know-admin.9000aigc.com/knowledge/user/member/scroll',
+      url: `${config.baseURL}/knowledge/user/member/scroll`,
       method: 'POST',
       header: {
         'Content-Type': 'application/json'
@@ -197,4 +199,4 @@ Page({
     const id = e.currentTarget.dataset.id;
 
   }
-}); 
+});

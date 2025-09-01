@@ -1,3 +1,6 @@
+const shareUtils = require('../../utils/share.js')
+const config = require('../../utils/config.js')
+
 Page({
   data: {
     projects: [],
@@ -10,6 +13,8 @@ Page({
   },
   
   onLoad: function() {
+    // 启用分享菜单
+    shareUtils.enableShareMenu()
     this.loadProjects()
   },
 
@@ -40,7 +45,7 @@ Page({
     console.log('发送请求数据:', requestData);  // 添加请求数据日志
 
     wx.request({
-      url: 'https://know-admin.9000aigc.com/knowledge/projects/scroll',
+      url: `${config.baseURL}/knowledge/projects/scroll`,
       method: 'POST',
       data: requestData,
       header: {
@@ -139,5 +144,25 @@ Page({
     wx.navigateTo({
       url: `/pages/program-detail/program-detail?id=${id}`
     });
+  },
+
+  // 分享给好友
+  onShareAppMessage(options) {
+    return shareUtils.getShareConfig('program', 'friend')
+  },
+
+  // 分享到朋友圈
+  onShareTimeline() {
+    return shareUtils.getShareConfig('program', 'timeline')
+  },
+
+  // 添加到收藏
+  onAddToFavorites() {
+    return shareUtils.getShareConfig('program', 'favorite')
+  },
+
+  // 复制链接
+  copyPageLink() {
+    shareUtils.copyLink('program', { from: 'miniprogram' })
   }
-}) 
+})

@@ -1,3 +1,6 @@
+const shareUtils = require('../../utils/share.js')
+const config = require('../../utils/config.js')
+
 Page({
   data: {
     courseId: '', // 课程ID
@@ -12,6 +15,8 @@ Page({
 
   // 页面加载时获取参数
   onLoad(options) {
+    // 启用分享菜单
+    shareUtils.enableShareMenu()
     if (options.id) {
       // 获取fromPrime参数
       const fromPrime = options.fromPrime === 'true'
@@ -61,7 +66,7 @@ Page({
     // 使用Promise包装wx.request
     new Promise((resolve, reject) => {
       wx.request({
-        url: 'https://know-admin.9000aigc.com/knowledge/lesson/scroll',
+        url: `${config.baseURL}/knowledge/lesson/scroll`,
         method: 'POST',
         header: {
           'Content-Type': 'application/json'
@@ -160,7 +165,7 @@ Page({
   // 获取课程详情
   getCourseInfo() {
     wx.request({
-      url: 'https://know-admin.9000aigc.com/knowledge/course/detail',
+      url: `${config.baseURL}/knowledge/course/detail`,
       method: 'GET',
       header: {
         'Content-Type': 'application/json'
@@ -180,5 +185,58 @@ Page({
         console.error('获取课程详情失败:', err)
       }
     })
+  },
+
+  // 分享给好友
+  onShareAppMessage(options) {
+    const { courseName, courseId } = this.data
+    return {
+      title: `${courseName} - 精品课程`,
+      path: `/pages/lesson/lesson?id=${courseId}&source=share`,
+      imageUrl: 'https://mini.9000aigc.com/assets/images/share-course.png'
+    }
+  },
+
+  // 分享到朋友圈
+  onShareTimeline() {
+    const { courseName, courseId } = this.data
+    return {
+      title: `${courseName} - 精品课程`,
+      query: `id=${courseId}&source=timeline&t=${Date.now()}`,
+      imageUrl: 'https://mini.9000aigc.com/assets/images/share-course-timeline.png'
+    }
+  },
+
+  // 添加到收藏
+  onAddToFavorites() {
+    const { courseName, courseId } = this.data
+    return {
+      title: `${courseName} - 课程收藏`,
+      imageUrl: 'https://mini.9000aigc.com/assets/images/favorite-course.png',
+      query: `id=${courseId}&source=favorite&t=${Date.now()}`
+    }
+  },
+
+  // 复制课程链接
+  copyCourseLink() {
+    const { courseId, courseName } = this.data
+    const link = `${shareUtils.getBaseUrl()}/pages/lesson/lesson?id=${courseId}&from=copy`
+    
+    wx.setClipboardData({
+      data: link,
+      success: () => {
+        wx.showToast({
+          title: '课程链接已复制',
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      fail: () => {
+        wx.showToast({
+          title: '复制失败',
+          icon: 'none'
+        })
+      }
+    })
   }
-}) 
+})

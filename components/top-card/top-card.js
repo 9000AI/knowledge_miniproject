@@ -1,3 +1,5 @@
+const config = require('../../utils/config.js')
+
 Component({
   properties: {
     cardList: {
@@ -38,21 +40,21 @@ Component({
       const token = wx.getStorageSync('token') || '';
       
       wx.request({
-        url: 'https://know-admin.9000aigc.com/knowledge/category/first-level',
+        url: `${config.baseURL}/knowledge/category/first-level`,
         method: 'GET',
         header: {
           'Authorization': token ? `Bearer ${token}` : ''
         },
         success: (res) => {
           if (res.data && res.data.code === 200 && Array.isArray(res.data.data)) {
-            // 分离出 featured 为 1 且有 cover_image 的数据
+            // 分离出 featured 为 1 的数据（不要求必须有 cover_image）
             const featuredData = res.data.data.filter(item => 
-              item.featured === 1 && item.cover_image
+              item.featured === 1
             );
             
-            // 分离出其他数据
+            // 分离出其他数据（排除featured=1的分类）
             const otherData = res.data.data.filter(item => 
-              !(item.featured === 1 && item.cover_image)
+              item.featured !== 1
             );
             
             // 对 featured 数据按 sort 降序排序

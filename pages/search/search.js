@@ -105,7 +105,7 @@ Page({
     };
 
     wx.request({
-      url: 'https://know-admin.9000aigc.com/knowledge/article/category/cursor',
+      url: `${config.baseURL}/knowledge/article/category/cursor`,
       method: 'POST',
       data: requestData,
       header: {

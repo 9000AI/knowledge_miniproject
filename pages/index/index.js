@@ -68,6 +68,7 @@
 // })
 // index.js
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
+const shareUtils = require('../../utils/share.js')
 
 Page({
   data: {
@@ -104,6 +105,8 @@ Page({
   },
   onLoad() {
     // 移除登录检查相关代码
+    // 启用分享菜单
+    shareUtils.enableShareMenu()
   },
   bindViewTap() {
     wx.navigateTo({
@@ -148,7 +151,25 @@ Page({
     wx.navigateTo({
       url: '/pages/search/search'
     });
+  },
+
+  // 分享给好友
+  onShareAppMessage(options) {
+    return shareUtils.getShareConfig('index', 'friend')
+  },
+
+  // 分享到朋友圈
+  onShareTimeline() {
+    return shareUtils.getShareConfig('index', 'timeline')
+  },
+
+  // 添加到收藏
+  onAddToFavorites() {
+    return shareUtils.getShareConfig('index', 'favorite')
+  },
+
+  // 复制链接
+  copyPageLink() {
+    shareUtils.copyLink('index', { from: 'miniprogram' })
   }
-
-
 })

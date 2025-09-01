@@ -20,7 +20,8 @@
     "pages/my-course/my-course",
     "pages/video/video",
     "pages/member-card-list/member-card-list",
-    "pages/program-detail/program-detail"
+    "pages/program-detail/program-detail",
+    "pages/display/kefu-qrcode/kefu-qrcode"
   ],
   "window": {
     "navigationStyle": "custom",

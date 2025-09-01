@@ -1,5 +1,6 @@
 // pages/user/user.js
 const config = require('../../utils/config.js')
+const shareUtils = require('../../utils/share.js')
 
 Page({
 
@@ -21,6 +22,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    // 启用分享菜单
+    shareUtils.enableShareMenu()
     this.checkLoginStatus()
   },
 
@@ -70,7 +73,22 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
+    return shareUtils.getShareConfig('user', 'friend')
+  },
 
+  // 分享到朋友圈
+  onShareTimeline() {
+    return shareUtils.getShareConfig('user', 'timeline')
+  },
+
+  // 添加到收藏
+  onAddToFavorites() {
+    return shareUtils.getShareConfig('user', 'favorite')
+  },
+
+  // 复制链接
+  copyPageLink() {
+    shareUtils.copyLink('user', { from: 'miniprogram' })
   },
 
   checkLoginStatus() {

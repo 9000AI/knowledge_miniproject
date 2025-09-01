@@ -1,3 +1,5 @@
+const config = require('../../utils/config.js')
+
 Page({
   data: {
     statusBarHeight: 20, // 状态栏高度，默认值
@@ -40,7 +42,7 @@ Page({
     }
 
     wx.request({
-      url: 'https://know-admin.9000aigc.com/knowledge/member/category/page',
+      url: `${config.baseURL}/knowledge/member/category/page`,
       method: 'GET',
       header: {
         'Authorization': `Bearer ${token}`
@@ -102,4 +104,4 @@ Page({
       url: `/pages/detail/detail?id=${id}`
     });
   }
-}); 
+});

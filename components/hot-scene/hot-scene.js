@@ -1,3 +1,5 @@
+const config = require('../../utils/config.js')
+
 Component({
   data: {
     hotSceneList: [],
@@ -15,7 +17,7 @@ Component({
       // 使用 Promise 方式处理请求
       new Promise((resolve, reject) => {
         wx.request({
-          url: 'https://know-admin.9000aigc.com/knowledge/category/first-level',
+          url: `${config.baseURL}/knowledge/category/first-level`,
           method: 'GET',
           success: (res) => {
             resolve(res.data);

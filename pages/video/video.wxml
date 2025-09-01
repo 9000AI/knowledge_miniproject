@@ -16,8 +16,8 @@
   
   <!-- 视频播放区域 -->
   <view class="video-container">
-    <!-- 有视频链接时显示视频播放器 -->
-    <block wx:if="{{currentLesson.videoUrl}}">
+    <!-- 审核开关开启且有视频链接时显示视频播放器 -->
+    <block wx:if="{{canPlayVideo}}">
       <video 
         id="lessonVideo"
         class="video-player"
@@ -36,7 +36,7 @@
       />
     </block>
 
-    <!-- 没有视频链接时显示封面图 -->
+    <!-- 不能播放视频时显示封面图和提示 -->
     <block wx:else>
       <image 
         class="video-cover"
@@ -44,14 +44,13 @@
         mode="aspectFill"
       />
       <view class="video-lock-mask">
-        <image class="lock-icon" src="/assets/icons/lock.png" />
         <!-- 根据错误类型显示不同提示 -->
         <block wx:if="{{errorType === 'no_access'}}">
           <text class="lock-text">{{lockText}}</text>
           <button class="unlock-btn" bindtap="goBuyCourse">{{unlockBtnText}}</button>
         </block>
         <block wx:else>
-          <text class="lock-text">联系客服报名</text>
+          <text class="lock-text">请联系客服报名</text>
           <button class="unlock-btn" bindtap="goToVip">立即联系</button>
         </block>
       </view>
@@ -119,4 +118,4 @@
    
     </view>
   </view>
-</view> 
+</view>
