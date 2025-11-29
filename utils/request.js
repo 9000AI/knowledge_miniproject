@@ -46,18 +46,22 @@ const request = (options) => {
             wx.showModal({
               title: '登录已过期',
               content: '您的登录已过期，请重新登录',
-              showCancel: false,
-              success: () => {
-                // 保存当前页面路径
-                const pages = getCurrentPages()
-                const currentPage = pages[pages.length - 1]
-                const url = `/${currentPage.route}`
-                wx.setStorageSync('redirect_url', url)
-                
-                // 跳转到登录页
-                wx.reLaunch({
-                  url: '/pages/auth/auth'
-                })
+              showCancel: true,
+              cancelText: '稍后登录',
+              confirmText: '去登录',
+              success: (res) => {
+                if (res.confirm) {
+                  // 保存当前页面路径
+                  const pages = getCurrentPages()
+                  const currentPage = pages[pages.length - 1]
+                  const url = `/${currentPage.route}`
+                  wx.setStorageSync('redirect_url', url)
+                  
+                  // 跳转到登录页
+                  wx.reLaunch({
+                    url: '/pages/auth/auth'
+                  })
+                }
 
                 // 执行队列中的请求
                 requestQueue.forEach(callback => callback())
@@ -82,4 +86,4 @@ const request = (options) => {
 // 导出请求方法
 module.exports = {
   request
-} 
+}

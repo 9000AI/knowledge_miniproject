@@ -38,12 +38,19 @@ Page({
       },
       success: (res) => {
         if (res.data.code === 401) {
-          wx.showToast({
-            title: '登录已过期，请重新登录',
-            icon: 'none'
-          })
-          wx.navigateTo({
-            url: '/pages/login/login'
+          wx.showModal({
+            title: '登录已过期',
+            content: '您的登录已过期，请重新登录',
+            showCancel: true,
+            cancelText: '稍后登录',
+            confirmText: '去登录',
+            success: (res) => {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '/pages/auth/auth'
+                })
+              }
+            }
           })
           return
         }
@@ -107,4 +114,4 @@ Page({
       url: `/pages/course-detail/course-detail?id=${id}`
     })
   }
-}) 
+})

@@ -33,41 +33,11 @@ Page({
     canPlayVideo: true // 是否可以播放视频（综合审核开关和视频URL判断）
   },
 
-  // 检查登录状态
-  checkLogin() {
-    const token = wx.getStorageSync('token')
-    const userInfo = wx.getStorageSync('userInfo')
-    
-    if (!token || !userInfo) {
-      wx.showModal({
-        title: '提示',
-        content: '请先登录后观看视频',
-        confirmText: '去登录',
-        cancelText: '返回',
-        success: (res) => {
-          if (res.confirm) {
-            wx.redirectTo({
-              url: '/pages/auth/auth'
-            })
-          } else {
-            wx.navigateBack()
-          }
-        }
-      })
-      return false
-    }
-    return true
-  },
 
   // 页面加载时获取参数
   onLoad(options) {
     // 启用分享菜单
     shareUtils.enableShareMenu()
-    
-    // 先检查登录状态
-    if (!this.checkLogin()) {
-      return
-    }
 
     // 获取全局审核开关状态
     const app = getApp()
@@ -132,10 +102,6 @@ Page({
   
   // 视频播放状态变化
   onVideoPlay() {
-    // 再次检查登录状态
-    if (!this.checkLogin()) {
-      return
-    }
     this.setData({
       isPlaying: true
     })
@@ -219,10 +185,6 @@ Page({
   
   // 播放章节
   playChapter(e) {
-    // 检查登录状态
-    if (!this.checkLogin()) {
-      return
-    }
 
     const id = e.currentTarget.dataset.id
     const title = e.currentTarget.dataset.title
@@ -315,7 +277,7 @@ Page({
       if(!lesson) {
         // 如果本地没有,从服务器获取
         const promise = request({
-          url: `http://localhost:8100/knowledge/lesson/${lessonId}`,
+          url: `${config.baseURL}/knowledge/lesson/${lessonId}`,
           method: 'GET'
         });
 
@@ -328,13 +290,15 @@ Page({
         } else if(res.data.code === 500 && res.data.message === '无权访问该课时') {
           this.setData({ 
             errorType: 'no_access',
-            loading: false
+            loading: false,
+            canPlayVideo: false
           });
           return;
         } else {
           this.setData({ 
             errorType: 'need_vip',
-            loading: false
+            loading: false,
+            canPlayVideo: false
           });
           return;
         }
@@ -355,7 +319,15 @@ Page({
           currentLesson: lesson,
           videoUrl: lesson.videoUrl || '',
           canPlayVideo: canPlayVideo,
-          errorType: canPlayVideo ? '' : (hasVideoUrl ? 'audit_disabled' : 'need_vip')
+          errorType: canPlayVideo ? '' : (hasVideoUrl ? 'audit_disabled' : 'need_vip'),
+          loading: false
+        });
+      } else {
+        // 如果没有找到课时信息，设置为无权访问
+        this.setData({
+          errorType: 'no_access',
+          canPlayVideo: false,
+          loading: false
         });
       }
     } catch(err) {

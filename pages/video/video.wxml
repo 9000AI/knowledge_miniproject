@@ -16,8 +16,8 @@
   
   <!-- 视频播放区域 -->
   <view class="video-container">
-    <!-- 审核开关开启且有视频链接时显示视频播放器 -->
-    <block wx:if="{{canPlayVideo}}">
+    <!-- 审核开关开启且有视频链接且无权限错误时显示视频播放器 -->
+    <block wx:if="{{canPlayVideo && !errorType}}">
       <video 
         id="lessonVideo"
         class="video-player"
@@ -36,11 +36,11 @@
       />
     </block>
 
-    <!-- 不能播放视频时显示封面图和提示 -->
+    <!-- 不能播放视频或有权限错误时显示封面图和提示 -->
     <block wx:else>
       <image 
         class="video-cover"
-        src="{{currentLesson.coverImage}}"
+        src="{{currentLesson.coverImage || coverImage}}"
         mode="aspectFill"
       />
       <view class="video-lock-mask">

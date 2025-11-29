@@ -101,7 +101,7 @@ Component({
         },
         {
           id: '1896820726854365185',
-          name: '李家旺专栏',
+          name: '流量专栏',
           cover_image: 'https://miniknowledge.9000aigc.com/assets/images/zl_two.jpg'
         },
         {
