@@ -115,39 +115,8 @@ Page({
     })
   },
   
-  // 检查登录状态
-  checkLogin() {
-    const token = wx.getStorageSync('token')
-    const userInfo = wx.getStorageSync('userInfo')
-    
-    if (!token || !userInfo) {
-      wx.showModal({
-        title: '提示',
-        content: '请先登录后观看视频',
-        confirmText: '去登录',
-        cancelText: '返回',
-        success: (res) => {
-          if (res.confirm) {
-            wx.redirectTo({
-              url: '/pages/auth/auth'
-            })
-          } else {
-            wx.navigateBack()
-          }
-        }
-      })
-      return false
-    }
-    return true
-  },
-  
   // 播放课时视频
   playLesson(e) {
-    // 先检查登录状态
-    if (!this.checkLogin()) {
-      return
-    }
-    
     const index = e.currentTarget.dataset.index
     const lesson = this.data.lessons[index]
     

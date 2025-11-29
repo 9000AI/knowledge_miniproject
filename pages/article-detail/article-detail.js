@@ -19,9 +19,29 @@ Page({
     buttonText: '登录账号，阅读完整内容',
     showQrcodeModal: false,
     tagStyle: {
-      img: 'width: 100%; max-width: 600rpx; border-radius: 16rpx; box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1); display: block; margin: 20rpx auto;',
-      p: 'text-align: center; margin: 20rpx 0; line-height: 1.6;'
-    }
+      body: 'color: #2B2B2B; line-height: 1.9; word-break: break-word;',
+      h1: 'font-size: 48rpx; font-weight: 800; text-align: center; margin: 40rpx 0 28rpx; line-height: 1.35; letter-spacing: 1rpx; color: #0F0F0F; text-shadow: 0 2rpx 6rpx rgba(0,0,0,0.06);',
+      h2: 'font-size: 40rpx; font-weight: 700; margin: 36rpx 0 22rpx; line-height: 1.4; padding-left: 20rpx;',
+      h3: 'font-size: 34rpx; font-weight: 700; margin: 30rpx auto 18rpx; color: #222; line-height: 1.45; background: #E3F1B2; padding: 12rpx 16rpx; border-radius: 12rpx; display: table;',
+      h4: 'font-size: 30rpx; font-weight: 600; margin: 24rpx 0 14rpx; color: #333; line-height: 1.5; padding-left: 16rpx; border-left: 6rpx solid #E5F2A8;',
+      h5: 'font-size: 28rpx; font-weight: 600; margin: 20rpx 0 12rpx; color: #444; line-height: 1.55;',
+      h6: 'font-size: 26rpx; font-weight: 600; margin: 18rpx 0 10rpx; color: #555; line-height: 1.6;',
+      p: 'text-align: justify; margin: 18rpx 0; line-height: 1.9; color: #2B2B2B;',
+      img: 'display: block; width: 100%; border-radius: 16rpx; box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.08); margin: 24rpx auto;',
+      blockquote: 'margin: 24rpx 0; padding: 20rpx 24rpx; background: #F7FAEF; border-left: 8rpx solid #C8E256; color: #445; border-radius: 12rpx;',
+      ul: 'margin: 16rpx 0; padding-left: 40rpx;',
+      ol: 'margin: 16rpx 0; padding-left: 40rpx;',
+      li: 'margin: 8rpx 0; line-height: 1.9;',
+      a: 'color: #007ACC; text-decoration: underline; word-break: break-all;',
+      strong: 'color: #101010;',
+      code: 'font-family: Menlo, Consolas, Monaco, monospace; background: #F5F7FA; padding: 4rpx 8rpx; border-radius: 8rpx; color: #C7254E;',
+      pre: 'font-family: Menlo, Consolas, Monaco, monospace; background: #0F172A; color: #E2E8F0; padding: 20rpx; border-radius: 12rpx; overflow: auto; line-height: 1.8; margin: 24rpx 0;',
+      hr: 'border: none; border-top: 2rpx solid #EEE; margin: 24rpx 0;',
+      table: 'width: 100%; border-collapse: collapse; margin: 24rpx 0; font-size: 28rpx;',
+      th: 'background: #F5F7FA; border: 2rpx solid #EEE; padding: 12rpx 16rpx; text-align: left; color: #333; font-weight: 600;',
+      td: 'border: 2rpx solid #EEE; padding: 12rpx 16rpx; color: #444;'
+    },
+    containerStyle: 'font-size: 30rpx; line-height: 1.9; color: #2B2B2B; word-break: break-word;'
   },
 
   onLoad(options) {

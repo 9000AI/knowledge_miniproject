@@ -95,7 +95,7 @@ Page({
       },
       {
         image: 'https://mini.9000aigc.com/assets/images/zl_two.jpg',
-        title: '李家旺专栏'
+        title: '流量专栏'
       },
       {
         image: 'https://mini.9000aigc.com/assets/images/zl-three.png',

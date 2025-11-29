@@ -248,17 +248,21 @@ Page({
           const pages = getCurrentPages();
           const prevPage = pages[pages.length - 2]; // 上一页
 
-          // 如果上一页是文章详情页，设置需要刷新的标志
+          // 如果上一页是文章详情页，设置需要刷新的标志并返回上一页
           if (prevPage && prevPage.route.includes('article-detail')) {
             // 直接调用上一页的方法，刷新文章详情
             prevPage.checkLoginStatus();
             prevPage.fetchArticleDetail();
+            // 返回上一页
+            wx.navigateBack({
+              delta: 1
+            });
+          } else {
+            // 其他情况跳转到首页
+            wx.switchTab({
+              url: '/pages/index/index'
+            });
           }
-
-          // 返回上一页
-          wx.navigateBack({
-            delta: 1
-          });
         } else {
           wx.showToast({
             title: res.data.message || '登录失败,请重试',
@@ -341,4 +345,4 @@ Page({
       url: '/pages/index/index'
     })
   }
-}) 
+})
